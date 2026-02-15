@@ -141,12 +141,33 @@
             <template x-for="comp in (section.comparisons || [])" :key="comp.title">
               <div class="metric-card bg-dark-700 rounded-xl border border-dark-600 p-5"
                    x-show="getMetric(comp.us) || getMetric(comp.eu)">
-                <h4 class="text-sm font-semibold text-white mb-3" x-text="comp.title"></h4>
+                <div class="flex items-center justify-between mb-3">
+                  <h4 class="text-sm font-semibold text-white" x-text="comp.title"></h4>
+                  <button @click="toggleMetricInfo(comp.us)" class="text-muted hover:text-accent transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                  </button>
+                </div>
+                <div x-show="showMetricInfo[comp.us]" x-cloak class="mb-3 pt-3 border-t border-dark-600 text-xs space-y-2">
+                  <p class="text-slate-400" x-text="metricExplanations[comp.us]?.what"></p>
+                  <div class="flex gap-3">
+                    <div class="flex-1 p-2 rounded bg-emerald-500/10 border border-emerald-500/20">
+                      <span class="text-emerald-400 font-medium block mb-0.5" x-text="metricExplanations[comp.us]?.upLabel || ''"></span>
+                      <span class="text-emerald-300/70 text-[11px]" x-text="metricExplanations[comp.us]?.upMeaning || ''"></span>
+                    </div>
+                    <div class="flex-1 p-2 rounded bg-red-500/10 border border-red-500/20">
+                      <span class="text-red-400 font-medium block mb-0.5" x-text="metricExplanations[comp.us]?.downLabel || ''"></span>
+                      <span class="text-red-300/70 text-[11px]" x-text="metricExplanations[comp.us]?.downMeaning || ''"></span>
+                    </div>
+                  </div>
+                  <p class="text-accent/60 text-[11px]" x-text="metricExplanations[comp.us]?.aiContext || ''"></p>
+                </div>
 
                 <!-- Type A: Shared chart (same unit) -->
                 <div x-show="comp.type === 'shared'">
-                  <div class="flex items-start gap-4 sm:gap-6 mb-3 flex-wrap">
-                    <div class="flex-1 min-w-0">
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
+                    <div class="min-w-0">
                       <div class="flex items-center gap-1.5 mb-1">
                         <span class="text-sm" x-text="getRegionFlag(getMetric(comp.us))"></span>
                         <span class="text-xs text-slate-400" x-text="getMetric(comp.us)?.name"></span>
@@ -161,7 +182,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="flex-1 min-w-0">
+                    <div class="min-w-0">
                       <div class="flex items-center gap-1.5 mb-1">
                         <span class="text-sm" x-text="getRegionFlag(getMetric(comp.eu))"></span>
                         <span class="text-xs text-slate-400" x-text="getMetric(comp.eu)?.name"></span>
@@ -176,7 +197,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="flex-1 min-w-0" x-show="comp.asia && getMetric(comp.asia)">
+                    <div class="min-w-0" x-show="comp.asia && getMetric(comp.asia)">
                       <div class="flex items-center gap-1.5 mb-1">
                         <span class="text-sm" x-text="getRegionFlag(getMetric(comp.asia))"></span>
                         <span class="text-xs text-slate-400" x-text="getMetric(comp.asia)?.name"></span>
@@ -465,7 +486,7 @@
         <!-- Lonen chart -->
         <div class="bg-dark-700 rounded-xl border border-dark-600 p-6 mb-4">
           <div class="flex items-center justify-between mb-2">
-            <h4 class="text-sm font-medium text-muted">Lonen — Mediaan Weekinkomen ($)</h4>
+            <h4 class="text-sm font-medium text-muted">Lonen — US Mediaan Weekinkomen ($) <span class="text-xs text-slate-500">(EU/Japan niet beschikbaar via API)</span></h4>
             <button @click="showYearlyInfo.wages = !showYearlyInfo.wages" class="text-muted hover:text-accent transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -485,7 +506,7 @@
         <!-- AI Kosten chart -->
         <div class="bg-dark-700 rounded-xl border border-dark-600 p-6 mb-4">
           <div class="flex items-center justify-between mb-2">
-            <h4 class="text-sm font-medium text-muted">AI Kosten — Prijs per 1M Tokens ($)</h4>
+            <h4 class="text-sm font-medium text-muted">AI Kosten — Prijs per 1M Tokens ($) <span class="text-xs text-slate-500">(globaal)</span></h4>
             <button @click="showYearlyInfo.cost = !showYearlyInfo.cost" class="text-muted hover:text-accent transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -1283,6 +1304,19 @@
               {
                 label: usMetric.name,
                 data: usValues,
+                borderColor: '#e2e8f0',
+                backgroundColor: 'rgba(226,232,240,0.08)',
+                borderWidth: 2,
+                pointRadius: 2,
+                pointHoverRadius: 5,
+                pointBackgroundColor: '#e2e8f0',
+                pointHoverBackgroundColor: '#e2e8f0',
+                fill: true,
+                tension: 0.35,
+              },
+              {
+                label: euMetric.name,
+                data: euValues,
                 borderColor: '#60a5fa',
                 backgroundColor: 'rgba(96,165,250,0.08)',
                 borderWidth: 2,
@@ -1290,19 +1324,6 @@
                 pointHoverRadius: 5,
                 pointBackgroundColor: '#60a5fa',
                 pointHoverBackgroundColor: '#60a5fa',
-                fill: true,
-                tension: 0.35,
-              },
-              {
-                label: euMetric.name,
-                data: euValues,
-                borderColor: '#fb923c',
-                backgroundColor: 'rgba(251,146,60,0.08)',
-                borderWidth: 2,
-                pointRadius: 2,
-                pointHoverRadius: 5,
-                pointBackgroundColor: '#fb923c',
-                pointHoverBackgroundColor: '#fb923c',
                 fill: true,
                 tension: 0.35,
               }
@@ -1316,13 +1337,13 @@
               datasets.push({
                 label: asiaMetric.name,
                 data: asiaValues,
-                borderColor: '#c084fc',
-                backgroundColor: 'rgba(192,132,252,0.08)',
+                borderColor: '#f87171',
+                backgroundColor: 'rgba(248,113,113,0.08)',
                 borderWidth: 2,
                 pointRadius: 2,
                 pointHoverRadius: 5,
-                pointBackgroundColor: '#c084fc',
-                pointHoverBackgroundColor: '#c084fc',
+                pointBackgroundColor: '#f87171',
+                pointHoverBackgroundColor: '#f87171',
                 fill: true,
                 tension: 0.35,
               });
@@ -1423,23 +1444,26 @@
             this.charts[canvasId].destroy();
           }
 
-          const colors = ['#60a5fa', '#34d399', '#fbbf24', '#f87171', '#c084fc', '#fb923c'];
+          const defaultColors = ['#60a5fa', '#34d399', '#fbbf24', '#f87171', '#c084fc', '#fb923c'];
 
           this.charts[canvasId] = new Chart(canvas, {
             type: 'line',
             data: {
               labels,
-              datasets: datasets.map((ds, i) => ({
-                label: ds.label,
-                data: ds.data,
-                borderColor: colors[i % colors.length],
-                backgroundColor: 'transparent',
-                borderWidth: 2,
-                pointRadius: 3,
-                pointHoverRadius: 6,
-                pointBackgroundColor: colors[i % colors.length],
-                tension: 0.35,
-              }))
+              datasets: datasets.map((ds, i) => {
+                const c = ds.color || defaultColors[i % defaultColors.length];
+                return {
+                  label: ds.label,
+                  data: ds.data,
+                  borderColor: c,
+                  backgroundColor: 'transparent',
+                  borderWidth: 2,
+                  pointRadius: 3,
+                  pointHoverRadius: 6,
+                  pointBackgroundColor: c,
+                  tension: 0.35,
+                };
+              })
             },
             options: {
               responsive: true,
@@ -1524,13 +1548,13 @@
             const civpartQ = this.monthlyToQuarterly(civpart.history);
             const labels = unrateQ.map(q => q.quarter);
             const datasets = [
-              { label: 'US Werkloosheid (%)', data: unrateQ.map(q => q.value) },
-              { label: 'EU Werkloosheid (%)', data: euQ.map(q => q.value) },
-              { label: 'Participatie (% / 10)', data: civpartQ.map(q => +(q.value / 10).toFixed(1)) },
+              { label: 'US Werkloosheid (%)', data: unrateQ.map(q => q.value), color: '#e2e8f0' },
+              { label: 'EU Werkloosheid (%)', data: euQ.map(q => q.value), color: '#60a5fa' },
+              { label: 'Participatie (% / 10)', data: civpartQ.map(q => +(q.value / 10).toFixed(1)), color: '#94a3b8' },
             ];
             if (asiaUnemp) {
               const asiaQ = this.monthlyToQuarterly(asiaUnemp.history);
-              datasets.push({ label: 'Japan Werkloosheid (%)', data: asiaQ.map(q => q.value) });
+              datasets.push({ label: 'Japan Werkloosheid (%)', data: asiaQ.map(q => q.value), color: '#f87171' });
             }
             this.createYearlyChart('chart-yearly-labor', datasets, labels);
           }
@@ -1543,14 +1567,14 @@
           if (prod && opw) {
             const quarters = prod.history.map(h => h.quarter);
             const datasets = [
-              { label: 'US Labor Productivity (%)', data: prod.history.map(h => h.value) },
-              { label: 'US Output per Worker (%)', data: opw.history.map(h => h.value) },
+              { label: 'US Labor Productivity (%)', data: prod.history.map(h => h.value), color: '#e2e8f0' },
+              { label: 'US Output per Worker (%)', data: opw.history.map(h => h.value), color: '#94a3b8' },
             ];
             if (euProd) {
-              datasets.push({ label: 'EU Labour Productivity (%)', data: euProd.history.map(h => h.value) });
+              datasets.push({ label: 'EU Labour Productivity (%)', data: euProd.history.map(h => h.value), color: '#60a5fa' });
             }
             if (asiaProd) {
-              datasets.push({ label: 'Japan Labour Productivity (%)', data: asiaProd.history.map(h => h.value) });
+              datasets.push({ label: 'Japan Labour Productivity (%)', data: asiaProd.history.map(h => h.value), color: '#f87171' });
             }
             this.createYearlyChart('chart-yearly-productivity', datasets, quarters);
           }
@@ -1576,7 +1600,7 @@
           if (earnings) {
             const quarters = earnings.history.map(h => h.quarter);
             this.createYearlyChart('chart-yearly-wages', [
-              { label: 'Median Weekly Earnings ($)', data: earnings.history.map(h => h.value) },
+              { label: 'US Median Weekly Earnings ($)', data: earnings.history.map(h => h.value), color: '#e2e8f0' },
             ], quarters);
           }
 
@@ -1597,11 +1621,11 @@
           if (gini && euGini) {
             const years = gini.history.map(h => h.year);
             const datasets = [
-              { label: 'US Gini', data: gini.history.map(h => h.value) },
-              { label: 'EU Gini', data: euGini.history.map(h => h.value) },
+              { label: 'US Gini', data: gini.history.map(h => h.value), color: '#e2e8f0' },
+              { label: 'EU Gini', data: euGini.history.map(h => h.value), color: '#60a5fa' },
             ];
             if (asiaGini) {
-              datasets.push({ label: 'Japan Gini', data: asiaGini.history.map(h => h.value) });
+              datasets.push({ label: 'Japan Gini', data: asiaGini.history.map(h => h.value), color: '#f87171' });
             }
             this.createYearlyChart('chart-yearly-gini', datasets, years);
           }
