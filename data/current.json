@@ -1,6 +1,6 @@
 {
   "month": "2026-02",
-  "timestamp": "2026-02-15T06:51:48.191Z",
+  "timestamp": "2026-02-15T13:24:44.858Z",
   "next_harvest": "2026-03-06",
   "metrics": {
     "unrate": {
@@ -358,10 +358,10 @@
       "name": "US Labor Productivity",
       "subtitle": "Productiviteitsgroei (jaar-op-jaar)",
       "category": "productivity",
-      "value": 1.92,
+      "value": 1.91982,
       "unit": "% YoY",
-      "prev": 1.48,
-      "delta": 0.44,
+      "prev": 1.47926,
+      "delta": 0.441,
       "direction": "up",
       "signal": "positive",
       "source": "FRED",
@@ -371,39 +371,39 @@
       "next_update": "2026-05-15",
       "history": [
         {
-          "value": 3.07,
+          "value": 3.06918,
           "quarter": "Q3-2023"
         },
         {
-          "value": 3.5,
+          "value": 3.49507,
           "quarter": "Q4-2023"
         },
         {
-          "value": 3.35,
+          "value": 3.35149,
           "quarter": "Q1-2024"
         },
         {
-          "value": 3.12,
+          "value": 3.11995,
           "quarter": "Q2-2024"
         },
         {
-          "value": 2.6,
+          "value": 2.60456,
           "quarter": "Q3-2024"
         },
         {
-          "value": 1.88,
+          "value": 1.87604,
           "quarter": "Q4-2024"
         },
         {
-          "value": 1.21,
+          "value": 1.20871,
           "quarter": "Q1-2025"
         },
         {
-          "value": 1.48,
+          "value": 1.47926,
           "quarter": "Q2-2025"
         },
         {
-          "value": 1.92,
+          "value": 1.91982,
           "quarter": "Q3-2025"
         }
       ],
@@ -1252,6 +1252,6 @@
       ]
     }
   },
-  "scenario_signal": "stagnation",
-  "ai_interpretation": "De arbeidsmarkt toont een gemengd beeld met tekenen van stagnatie richting voorzichtige verslechtering. In de VS daalt de werkloosheid licht naar 4,3%, maar het aantal openstaande vacatures kromp fors van 6,9M naar 6,5M – de scherpste daling in een jaar tijd. De EU en Japan blijven stabiel op respectievelijk 6,2% en 2,6% werkloosheid, maar ook daar koelt de vraag naar arbeid af: de Europese vacaturegraad daalde naar 2,0% en Japan's vacature-per-sollicitant ratio blijft hangen op 1,19 (laagste sinds begin 2025). Opvallend positief is dat arbeidsparticipatie overal licht stijgt en de gemiddelde werkloosheidsduur in de VS daalt, wat wijst op betere matching. De productiviteitsgroei vertraagt echter zorgwekkend: VS +1,4% (sterk), EU +0,6% (fors lager), Japan +0,2% (nagenoeg stil). Dit patroon – dalende vacatures bij stabiele werkloosheid en afnemende productiviteitswinst – suggereert dat bedrijven voorzichtiger worden met inhuren, mogelijk door onzekerheid over AI-gedreven efficiency gains. De loongroei stagneert (VS mediaan vlak op $376) en ongelijkheid neemt toe (VS Gini 41,8), wat typisch is voor transitiefases waarin winsten nog niet breed worden gedeeld."
+  "scenario_signal": "job_shift",
+  "ai_interpretation": "De data wijst op een voorzichtige arbeidsmarkttransitie met regionale verschillen. In de **VS** daalt de werkloosheid licht (4,3%) en blijft arbeidsparticipatie stabiel (62,5%), maar de scherpe daling van vacatures (-0,4M naar 6,5M) en dalende productiviteitsgroei (+1,9% vs eerder >3%) signaleren afkoeling. De **EU** toont vergelijkbaar patroon: werkloosheid daalt naar 6,2% en arbeidsdeelname stijgt (75,9%), maar vacaturegraad krimpt (2,0%) en productiviteit stagneert (+0,6%). **Japan** blijft stabiel met zeer lage werkloosheid (2,6%) en hoge arbeidsparticipatie (64,1%), hoewel de job-applicant ratio daalt (1,19) en productiviteit zwak blijft (+0,2%). Opvallend positief: werkloosheidsduur in VS daalt, initiële claims blijven laag, en ongelijkheid neemt af in EU en Japan. Negatief: stagnerende lonen (VS mediaan $376 ongewijzigd) en dalende productiviteit wijzen op structurele aanpassingsdruk, vermoedelijk door AI-gedreven automatisering in middenvaardigheden."
 }

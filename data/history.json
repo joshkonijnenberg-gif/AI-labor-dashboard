@@ -22,9 +22,9 @@
   "months": [
     {
       "month": "2026-02",
-      "timestamp": "2026-02-15T06:51:48.191Z",
-      "scenario_signal": "stagnation",
-      "ai_interpretation": "De arbeidsmarkt toont een gemengd beeld met tekenen van stagnatie richting voorzichtige verslechtering. In de VS daalt de werkloosheid licht naar 4,3%, maar het aantal openstaande vacatures kromp fors van 6,9M naar 6,5M – de scherpste daling in een jaar tijd. De EU en Japan blijven stabiel op respectievelijk 6,2% en 2,6% werkloosheid, maar ook daar koelt de vraag naar arbeid af: de Europese vacaturegraad daalde naar 2,0% en Japan's vacature-per-sollicitant ratio blijft hangen op 1,19 (laagste sinds begin 2025). Opvallend positief is dat arbeidsparticipatie overal licht stijgt en de gemiddelde werkloosheidsduur in de VS daalt, wat wijst op betere matching. De productiviteitsgroei vertraagt echter zorgwekkend: VS +1,4% (sterk), EU +0,6% (fors lager), Japan +0,2% (nagenoeg stil). Dit patroon – dalende vacatures bij stabiele werkloosheid en afnemende productiviteitswinst – suggereert dat bedrijven voorzichtiger worden met inhuren, mogelijk door onzekerheid over AI-gedreven efficiency gains. De loongroei stagneert (VS mediaan vlak op $376) en ongelijkheid neemt toe (VS Gini 41,8), wat typisch is voor transitiefases waarin winsten nog niet breed worden gedeeld."
+      "timestamp": "2026-02-15T13:24:44.858Z",
+      "scenario_signal": "job_shift",
+      "ai_interpretation": "De data wijst op een voorzichtige arbeidsmarkttransitie met regionale verschillen. In de **VS** daalt de werkloosheid licht (4,3%) en blijft arbeidsparticipatie stabiel (62,5%), maar de scherpe daling van vacatures (-0,4M naar 6,5M) en dalende productiviteitsgroei (+1,9% vs eerder >3%) signaleren afkoeling. De **EU** toont vergelijkbaar patroon: werkloosheid daalt naar 6,2% en arbeidsdeelname stijgt (75,9%), maar vacaturegraad krimpt (2,0%) en productiviteit stagneert (+0,6%). **Japan** blijft stabiel met zeer lage werkloosheid (2,6%) en hoge arbeidsparticipatie (64,1%), hoewel de job-applicant ratio daalt (1,19) en productiviteit zwak blijft (+0,2%). Opvallend positief: werkloosheidsduur in VS daalt, initiële claims blijven laag, en ongelijkheid neemt af in EU en Japan. Negatief: stagnerende lonen (VS mediaan $376 ongewijzigd) en dalende productiviteit wijzen op structurele aanpassingsdruk, vermoedelijk door AI-gedreven automatisering in middenvaardigheden."
     },
     {
       "month": "2026-01",
