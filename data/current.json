@@ -356,12 +356,12 @@
       "id": "ophnfb",
       "region": "US",
       "name": "US Labor Productivity",
-      "subtitle": "Output per gewerkt uur",
+      "subtitle": "Productiviteitsgroei (jaar-op-jaar)",
       "category": "productivity",
-      "value": 117.962,
-      "unit": "% change",
-      "prev": 116.554,
-      "delta": 1.408,
+      "value": 1.92,
+      "unit": "% YoY",
+      "prev": 1.48,
+      "delta": 0.44,
       "direction": "up",
       "signal": "positive",
       "source": "FRED",
@@ -371,39 +371,39 @@
       "next_update": "2026-05-15",
       "history": [
         {
-          "value": 112.802,
+          "value": 3.07,
           "quarter": "Q3-2023"
         },
         {
-          "value": 113.857,
+          "value": 3.5,
           "quarter": "Q4-2023"
         },
         {
-          "value": 114.006,
+          "value": 3.35,
           "quarter": "Q1-2024"
         },
         {
-          "value": 114.855,
+          "value": 3.12,
           "quarter": "Q2-2024"
         },
         {
-          "value": 115.74,
+          "value": 2.6,
           "quarter": "Q3-2024"
         },
         {
-          "value": 115.993,
+          "value": 1.88,
           "quarter": "Q4-2024"
         },
         {
-          "value": 115.384,
+          "value": 1.21,
           "quarter": "Q1-2025"
         },
         {
-          "value": 116.554,
+          "value": 1.48,
           "quarter": "Q2-2025"
         },
         {
-          "value": 117.962,
+          "value": 1.92,
           "quarter": "Q3-2025"
         }
       ],
