@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="nl" x-data="dashboard()" x-init="init()">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Labor Market Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"
+          onerror="this.onerror=null;this.src='https://unpkg.com/chart.js@4.4.0/dist/chart.umd.min.js'"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dark: {
+              900: '#0b0f19',
+              800: '#111827',
+              700: '#1a2235',
+              600: '#243049',
+              500: '#2d3a54',
+            },
+            positive: '#34d399',
+            warning: '#fbbf24',
+            negative: '#f87171',
+            accent: '#60a5fa',
+            muted: '#94a3b8',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    [x-cloak] { display: none !important; }
+    .chart-container { position: relative; height: 120px; width: 100%; }
+    .chart-container-large { position: relative; height: 200px; }
+    .chart-container-xl { position: relative; height: 280px; }
+    .signal-pulse { animation: pulse 2.5s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    .metric-card { transition: all 0.2s ease; }
+    .metric-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+    body { background: #0b0f19; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #111827; }
+    ::-webkit-scrollbar-thumb { background: #2d3a54; border-radius: 3px; }
+  </style>
+</head>
+<body class="min-h-screen font-sans text-slate-200">
+
+  <!-- Header -->
+  <header class="bg-dark-800/80 backdrop-blur-md border-b border-dark-600 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div>
+          <h1 class="text-xl sm:text-2xl font-bold text-white">AI Labor Market Dashboard</h1>
+          <p class="text-sm text-muted mt-0.5">
+            Last updated: <span x-text="formatDate(data.timestamp)" class="text-slate-300"></span>
+            <span class="mx-2 text-dark-500">|</span>
+            Volgende harvest: <span x-text="data.next_harvest" class="text-slate-300"></span>
+          </p>
+        </div>
+        <div class="flex gap-2">
+          <button @click="view = 'monthly'"
+                  :class="view === 'monthly' ? 'bg-accent text-white' : 'bg-dark-600 text-slate-400 hover:bg-dark-500 hover:text-slate-200'"
+                  class="px-4 py-2 rounded-lg text-sm font-medium transition-all">
+            Maandoverzicht
+          </button>
+          <button @click="switchToYearly()"
+                  :class="view === 'yearly' ? 'bg-accent text-white' : 'bg-dark-600 text-slate-400 hover:bg-dark-500 hover:text-slate-200'"
+                  class="px-4 py-2 rounded-lg text-sm font-medium transition-all">
+            Jaaroverzicht
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+
+    <!-- ==================== VIEW 1: MAANDOVERZICHT ==================== -->
+    <div x-show="view === 'monthly'">
+
+      <!-- Scenario Signal -->
+      <div class="mb-8 rounded-xl p-6 border"
+           :class="{
+             'bg-emerald-500/10 border-emerald-500/30': data.scenario_signal === 'job_shift',
+             'bg-amber-500/10 border-amber-500/30': data.scenario_signal === 'stagnation',
+             'bg-red-500/10 border-red-500/30': data.scenario_signal === 'job_loss'
+           }">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-3 h-3 rounded-full signal-pulse"
+               :class="{
+                 'bg-emerald-400': data.scenario_signal === 'job_shift',
+                 'bg-amber-400': data.scenario_signal === 'stagnation',
+                 'bg-red-400': data.scenario_signal === 'job_loss'
+               }"></div>
+          <h2 class="text-lg font-bold uppercase tracking-wider"
+              :class="{
+                'text-emerald-300': data.scenario_signal === 'job_shift',
+                'text-amber-300': data.scenario_signal === 'stagnation',
+                'text-red-300': data.scenario_signal === 'job_loss'
+              }">
+            <span x-text="signalLabels[data.scenario_signal]"></span>
+          </h2>
+        </div>
+        <p class="text-sm leading-relaxed"
+           :class="{
+             'text-emerald-200/80': data.scenario_signal === 'job_shift',
+             'text-amber-200/80': data.scenario_signal === 'stagnation',
+             'text-red-200/80': data.scenario_signal === 'job_loss'
+           }"
+           x-text="data.ai_interpretation">
+        </p>
+      </div>
+
+      <!-- SECTION MACRO -->
+      <template x-for="section in sections" :key="section.key">
+        <section class="mb-8">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <h3 class="text-lg font-semibold text-white" x-text="section.title"></h3>
+              <span x-show="section.manual" class="text-xs bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded-full">handmatig</span>
+            </div>
+            <button @click="toggleInfo(section.key)" class="text-muted hover:text-accent transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </button>
+          </div>
+          <div x-show="showInfo[section.key]" x-cloak
+               class="mb-4 p-4 bg-accent/10 rounded-lg text-sm text-blue-200 border border-accent/20">
+            <p class="font-medium mb-1 text-accent" x-text="section.infoTitle"></p>
+            <p x-text="section.infoText"></p>
+          </div>
+          <!-- Comparison cards (US vs EU) -->
+          <div class="space-y-4" x-show="section.comparisons && section.comparisons.length > 0">
+            <template x-for="comp in (section.comparisons || [])" :key="comp.title">
+              <div class="metric-card bg-dark-700 rounded-xl border border-dark-600 p-5"
+                   x-show="getMetric(comp.us) || getMetric(comp.eu)">
+                <h4 class="text-sm font-semibold text-white mb-3" x-text="comp.title"></h4>
+
+                <!-- Type A: Shared chart (same unit) -->
+                <div x-show="comp.type === 'shared'">
+                  <div class="flex items-start gap-4 sm:gap-6 mb-3 flex-wrap">
+                    <div class="flex-1 min-w-0">
+                      <div class="flex items-center gap-1.5 mb-1">
+                        <span class="text-sm" x-text="getRegionFlag(getMetric(comp.us))"></span>
+                        <span class="text-xs text-slate-400" x-text="getMetric(comp.us)?.name"></span>
+                      </div>
+                      <div class="flex items-baseline gap-2">
+                        <span class="text-2xl font-bold text-white" x-text="formatValue(getMetric(comp.us))"></span>
+                        <span class="text-xs text-muted" x-text="getMetric(comp.us)?.unit"></span>
+                        <div class="flex items-center gap-1 px-1.5 py-0.5 rounded-full text-xs font-semibold"
+                             :class="deltaClass(getMetric(comp.us))">
+                          <span x-text="deltaIcon(getMetric(comp.us))"></span>
+                          <span x-text="formatDelta(getMetric(comp.us))"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <div class="flex items-center gap-1.5 mb-1">
+                        <span class="text-sm" x-text="getRegionFlag(getMetric(comp.eu))"></span>
+                        <span class="text-xs text-slate-400" x-text="getMetric(comp.eu)?.name"></span>
+                      </div>
+                      <div class="flex items-baseline gap-2">
+                        <span class="text-2xl font-bold text-white" x-text="formatValue(getMetric(comp.eu))"></span>
+                        <span class="text-xs text-muted" x-text="getMetric(comp.eu)?.unit"></span>
+                        <div class="flex items-center gap-1 px-1.5 py-0.5 rounded-full text-xs font-semibold"
+                             :class="deltaClass(getMetric(comp.eu))">
+                          <span x-text="deltaIcon(getMetric(comp.eu))"></span>
+                          <span x-text="formatDelta(getMetric(comp.eu))"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex-1 min-w-0" x-show="comp.asia && getMetric(comp.asia)">
+                      <div class="flex items-center gap-1.5 mb-1">
+                        <span class="text-sm" x-text="getRegionFlag(getMetric(comp.asia))"></span>
+                        <span class="text-xs text-slate-400" x-text="getMetric(comp.asia)?.name"></span>
+                      </div>
+                      <div class="flex items-baseline gap-2">
+                        <span class="text-2xl font-bold text-white" x-text="formatValue(getMetric(comp.asia))"></span>
+                        <span class="text-xs text-muted" x-text="getMetric(comp.asia)?.unit"></span>
+                        <div class="flex items-center gap-1 px-1.5 py-0.5 rounded-full text-xs font-semibold"
+                             :class="deltaClass(getMetric(comp.asia))">
+                          <span x-text="deltaIcon(getMetric(comp.asia))"></span>
+                          <span x-text="formatDelta(getMetric(comp.asia))"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="chart-container mb-3" style="height:180px">
+                    <canvas :id="'chart-comp-' + comp.us + '-' + comp.eu + (comp.asia ? '-' + comp.asia : '')"></canvas>
+                  </div>
+                </div>
+
+                <!-- Type B: Side-by-side (different units) -->
+                <div x-show="comp.type === 'sidebyside'">
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div class="bg-dark-800/50 rounded-lg p-3">
+                      <div class="flex items-center gap-1.5 mb-1">
+                        <span class="text-sm" x-text="getRegionFlag(getMetric(comp.us))"></span>
+                        <span class="text-xs text-slate-400" x-text="getMetric(comp.us)?.name"></span>
+                      </div>
+                      <div class="flex items-baseline gap-1.5 mb-2">
+                        <span class="text-xl font-bold text-white" x-text="formatValue(getMetric(comp.us))"></span>
+                        <span class="text-xs text-muted" x-text="getMetric(comp.us)?.unit"></span>
+                        <div class="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[10px] font-semibold"
+                             :class="deltaClass(getMetric(comp.us))">
+                          <span x-text="deltaIcon(getMetric(comp.us))"></span>
+                          <span x-text="formatDelta(getMetric(comp.us))"></span>
+                        </div>
+                      </div>
+                      <div class="chart-container" style="height:80px">
+                        <canvas :id="'chart-' + comp.us"></canvas>
+                      </div>
+                    </div>
+                    <div class="bg-dark-800/50 rounded-lg p-3">
+                      <div class="flex items-center gap-1.5 mb-1">
+                        <span class="text-sm" x-text="getRegionFlag(getMetric(comp.eu))"></span>
+                        <span class="text-xs text-slate-400" x-text="getMetric(comp.eu)?.name"></span>
+                      </div>
+                      <div class="flex items-baseline gap-1.5 mb-2">
+                        <span class="text-xl font-bold text-white" x-text="formatValue(getMetric(comp.eu))"></span>
+                        <span class="text-xs text-muted" x-text="getMetric(comp.eu)?.unit"></span>
+                        <div class="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[10px] font-semibold"
+                             :class="deltaClass(getMetric(comp.eu))">
+                          <span x-text="deltaIcon(getMetric(comp.eu))"></span>
+                          <span x-text="formatDelta(getMetric(comp.eu))"></span>
+                        </div>
+                      </div>
+                      <div class="chart-container" style="height:80px">
+                        <canvas :id="'chart-' + comp.eu"></canvas>
+                      </div>
+                    </div>
+                    <div class="bg-dark-800/50 rounded-lg p-3" x-show="comp.asia && getMetric(comp.asia)">
+                      <div class="flex items-center gap-1.5 mb-1">
+                        <span class="text-sm" x-text="getRegionFlag(getMetric(comp.asia))"></span>
+                        <span class="text-xs text-slate-400" x-text="getMetric(comp.asia)?.name"></span>
+                      </div>
+                      <div class="flex items-baseline gap-1.5 mb-2">
+                        <span class="text-xl font-bold text-white" x-text="formatValue(getMetric(comp.asia))"></span>
+                        <span class="text-xs text-muted" x-text="getMetric(comp.asia)?.unit"></span>
+                        <div class="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[10px] font-semibold"
+                             :class="deltaClass(getMetric(comp.asia))">
+                          <span x-text="deltaIcon(getMetric(comp.asia))"></span>
+                          <span x-text="formatDelta(getMetric(comp.asia))"></span>
+                        </div>
+                      </div>
+                      <div class="chart-container" style="height:80px">
+                        <canvas :id="'chart-' + comp.asia"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-between text-xs text-muted mt-3">
+                  <span>Bron: <span x-text="getMetric(comp.us)?.source" class="text-slate-400"></span> / <span x-text="getMetric(comp.eu)?.source" class="text-slate-400"></span><template x-if="comp.asia && getMetric(comp.asia)"><span> / <span x-text="getMetric(comp.asia)?.source" class="text-slate-400"></span></span></template></span>
+                  <span>Volgende: <span x-text="getMetric(comp.us)?.next_update" class="text-slate-400"></span></span>
+                </div>
+              </div>
+            </template>
+          </div>
+
+          <!-- Solo metrics + backward-compatible metrics -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+               :class="{ 'mt-4': section.comparisons && section.comparisons.length > 0 }"
+               x-show="(section.soloMetrics || section.metrics || []).length > 0">
+            <template x-for="id in (section.soloMetrics || section.metrics || [])" :key="id">
+              <div class="metric-card bg-dark-700 rounded-xl border border-dark-600 p-5" x-show="getMetric(id)">
+                <div class="flex items-start justify-between mb-1">
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-1.5">
+                      <span class="text-sm" x-text="getRegionFlag(getMetric(id))"></span>
+                      <h4 class="text-sm font-medium text-slate-300" x-text="getMetric(id)?.name"></h4>
+                    </div>
+                    <p class="text-xs text-muted mt-0.5" x-text="getMetric(id)?.subtitle"></p>
+                  </div>
+                  <div class="flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold ml-2 shrink-0"
+                       :class="deltaClass(getMetric(id))">
+                    <span x-text="deltaIcon(getMetric(id))"></span>
+                    <span x-text="formatDelta(getMetric(id))"></span>
+                  </div>
+                </div>
+                <div class="flex items-baseline gap-2 mb-3">
+                  <span class="text-3xl font-bold text-white" x-text="formatValue(getMetric(id))"></span>
+                  <span class="text-xs text-muted" x-text="getMetric(id)?.unit"></span>
+                  <span x-show="getMetric(id)?.frequency === 'quarterly' || getMetric(id)?.frequency === 'annual'"
+                        class="text-xs bg-dark-500 text-slate-400 px-1.5 py-0.5 rounded ml-1"
+                        x-text="getMetric(id)?.quarter || getMetric(id)?.year"></span>
+                </div>
+                <div class="chart-container mb-3">
+                  <canvas :id="'chart-' + id"></canvas>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-xs text-muted">
+                    Volgende: <span x-text="getMetric(id)?.next_update" class="text-slate-400"></span>
+                  </span>
+                  <button @click="toggleMetricInfo(id)" class="text-muted hover:text-accent transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                  </button>
+                </div>
+                <div x-show="showMetricInfo[id]" x-cloak class="mt-3 pt-3 border-t border-dark-600 text-xs space-y-2">
+                  <p class="text-slate-400" x-text="metricExplanations[id]?.what"></p>
+                  <div class="flex gap-3">
+                    <div class="flex-1 p-2 rounded bg-emerald-500/10 border border-emerald-500/20">
+                      <span class="text-emerald-400 font-medium block mb-0.5" x-text="metricExplanations[id]?.upLabel || ''"></span>
+                      <span class="text-emerald-300/70 text-[11px]" x-text="metricExplanations[id]?.upMeaning || ''"></span>
+                    </div>
+                    <div class="flex-1 p-2 rounded bg-red-500/10 border border-red-500/20">
+                      <span class="text-red-400 font-medium block mb-0.5" x-text="metricExplanations[id]?.downLabel || ''"></span>
+                      <span class="text-red-300/70 text-[11px]" x-text="metricExplanations[id]?.downMeaning || ''"></span>
+                    </div>
+                  </div>
+                  <p class="text-accent/60 text-[11px]" x-text="metricExplanations[id]?.aiContext || ''"></p>
+                  <p class="text-slate-500 text-[11px]">
+                    Bron: <span x-text="getMetric(id)?.source"></span>
+                  </p>
+                </div>
+              </div>
+            </template>
+          </div>
+        </section>
+      </template>
+
+    </div>
+
+    <!-- ==================== VIEW 2: JAAROVERZICHT ==================== -->
+    <div x-show="view === 'yearly'" x-cloak>
+
+      <!-- Year Evaluation -->
+      <section class="mb-8" x-show="history.year_evaluation">
+        <div class="rounded-xl p-6 border"
+             :class="{
+               'bg-emerald-500/10 border-emerald-500/30': history.year_evaluation?.signal === 'job_shift',
+               'bg-amber-500/10 border-amber-500/30': history.year_evaluation?.signal === 'stagnation',
+               'bg-red-500/10 border-red-500/30': history.year_evaluation?.signal === 'job_loss'
+             }">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-3 h-3 rounded-full signal-pulse"
+                 :class="{
+                   'bg-emerald-400': history.year_evaluation?.signal === 'job_shift',
+                   'bg-amber-400': history.year_evaluation?.signal === 'stagnation',
+                   'bg-red-400': history.year_evaluation?.signal === 'job_loss'
+                 }"></div>
+            <h3 class="text-lg font-bold text-white">Jaarevaluatie</h3>
+            <span class="text-xs px-2 py-0.5 rounded-full"
+                  :class="{
+                    'bg-emerald-500/20 text-emerald-400': history.year_evaluation?.signal === 'job_shift',
+                    'bg-amber-500/20 text-amber-400': history.year_evaluation?.signal === 'stagnation',
+                    'bg-red-500/20 text-red-400': history.year_evaluation?.signal === 'job_loss'
+                  }"
+                  x-text="history.year_evaluation?.period"></span>
+          </div>
+
+          <p class="text-sm leading-relaxed mb-4"
+             :class="{
+               'text-emerald-200/80': history.year_evaluation?.signal === 'job_shift',
+               'text-amber-200/80': history.year_evaluation?.signal === 'stagnation',
+               'text-red-200/80': history.year_evaluation?.signal === 'job_loss'
+             }"
+             x-text="history.year_evaluation?.summary"></p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div class="p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+              <h4 class="text-emerald-400 font-semibold text-sm mb-2">Positieve trends</h4>
+              <ul class="space-y-1.5">
+                <template x-for="trend in (history.year_evaluation?.trends || [])" :key="trend">
+                  <li class="text-xs text-emerald-300/70 flex gap-2">
+                    <span class="text-emerald-400 shrink-0">+</span>
+                    <span x-text="trend"></span>
+                  </li>
+                </template>
+              </ul>
+            </div>
+            <div class="p-4 rounded-lg bg-amber-500/10 border border-amber-500/20">
+              <h4 class="text-amber-400 font-semibold text-sm mb-2">Aandachtspunten</h4>
+              <ul class="space-y-1.5">
+                <template x-for="item in (history.year_evaluation?.watch_items || [])" :key="item">
+                  <li class="text-xs text-amber-300/70 flex gap-2">
+                    <span class="text-amber-400 shrink-0">!</span>
+                    <span x-text="item"></span>
+                  </li>
+                </template>
+              </ul>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-lg bg-accent/10 border border-accent/20">
+            <h4 class="text-accent font-semibold text-sm mb-2">Vooruitblik</h4>
+            <p class="text-xs text-blue-200/70 leading-relaxed" x-text="history.year_evaluation?.prediction"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trendlijnen -->
+      <section class="mb-8">
+        <h3 class="text-lg font-semibold text-white mb-4">Trendlijnen Q1-2024 — Q1-2026</h3>
+
+        <!-- Arbeidsmarkt chart -->
+        <div class="bg-dark-700 rounded-xl border border-dark-600 p-6 mb-4">
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="text-sm font-medium text-muted">Arbeidsmarkt — Werkloosheid & Participatie</h4>
+            <button @click="showYearlyInfo.labor = !showYearlyInfo.labor" class="text-muted hover:text-accent transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </button>
+          </div>
+          <div x-show="showYearlyInfo.labor" x-cloak class="mb-4 p-4 bg-accent/10 rounded-lg text-xs border border-accent/20 space-y-2">
+            <p class="text-blue-200">Vergelijkt werkloosheid (VS, EU en Japan) met arbeidsparticipatie over 14 maanden. Participatie is gedeeld door 10 voor visuele vergelijkbaarheid.</p>
+            <p class="text-blue-200/70">VS-werkloosheid bleef stabiel rond 4%, EU daalt geleidelijk naar 5.9%, Japan blijft structureel laag rond 2.5% ondanks vergrijzing. Participatie is vlak in VS maar stijgt in Japan (record hoog door vrouwelijke deelname).</p>
+            <p class="text-accent/60">Conclusie: Drie verschillende arbeidsmarkten, dezelfde AI-impact. Japan heeft het laagste werkloosheidsrisico door vergrijzing — daar is AI eerder een oplossing dan een bedreiging. VS en EU zitten in het midden.</p>
+          </div>
+          <div class="chart-container-xl">
+            <canvas id="chart-yearly-labor"></canvas>
+          </div>
+        </div>
+
+        <!-- Productiviteit chart -->
+        <div class="bg-dark-700 rounded-xl border border-dark-600 p-6 mb-4">
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="text-sm font-medium text-muted">Productiviteit (kwartaaldata)</h4>
+            <button @click="showYearlyInfo.productivity = !showYearlyInfo.productivity" class="text-muted hover:text-accent transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </button>
+          </div>
+          <div x-show="showYearlyInfo.productivity" x-cloak class="mb-4 p-4 bg-accent/10 rounded-lg text-xs border border-accent/20 space-y-2">
+            <p class="text-blue-200">Meet hoeveel output per gewerkt uur wordt geproduceerd in de VS, EU en Japan. Dit is de sleutelmetric voor het bepalen of AI waarde creëert.</p>
+            <p class="text-blue-200/70">US productiviteit steeg van 0.4% naar 2.3%, EU van 0.2% naar 1.0%, Japan schommelt rond 0.2%. Het productiviteitsgat groeit — de VS profiteert het snelst van AI. Japan staat 28e in de OECD op productiviteit.</p>
+            <p class="text-accent/60">Conclusie: Stijgende productiviteit + stabiele werkgelegenheid = het ideale scenario. Japan's chronisch lage productiviteit (58% van VS-niveau) maakt het de ultieme test: als AI daar productiviteit kan verhogen, werkt het overal.</p>
+          </div>
+          <div class="chart-container-large">
+            <canvas id="chart-yearly-productivity"></canvas>
+          </div>
+        </div>
+
+        <!-- AI Impact chart -->
+        <div class="bg-dark-700 rounded-xl border border-dark-600 p-6 mb-4">
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="text-sm font-medium text-muted">AI-Impact — Layoffs vs Nieuwe AI-banen</h4>
+            <button @click="showYearlyInfo.ai = !showYearlyInfo.ai" class="text-muted hover:text-accent transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </button>
+          </div>
+          <div x-show="showYearlyInfo.ai" x-cloak class="mb-4 p-4 bg-accent/10 rounded-lg text-xs border border-accent/20 space-y-2">
+            <p class="text-blue-200">Vergelijkt tech layoffs (in duizenden) met de groei van AI-vacatures (index, 100 = jan 2023) en het aandeel AI/ML in alle vacatures (%, x10 voor schaal).</p>
+            <p class="text-blue-200/70">De lijnen kruisen: layoffs dalen terwijl AI-vacatures stijgen. Dit is het klassieke "shift" patroon — oude rollen verdwijnen, nieuwe ontstaan. Het AI/ML aandeel verdubbelde van 1.8% naar 3.8%, wat aantoont dat AI niet alleen bestaande banen vernietigt maar ook een heel nieuw beroepsveld creëert.</p>
+            <p class="text-accent/60">Conclusie: Zolang de AI job postings lijn boven de layoffs lijn blijft, worden er netto meer banen gecreëerd dan vernietigd. Het moment dat deze lijnen kruisen (layoffs stijgen, vacatures dalen) is een red flag.</p>
+          </div>
+          <div class="chart-container-xl">
+            <canvas id="chart-yearly-ai"></canvas>
+          </div>
+        </div>
+
+        <!-- Lonen chart -->
+        <div class="bg-dark-700 rounded-xl border border-dark-600 p-6 mb-4">
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="text-sm font-medium text-muted">Lonen — Mediaan Weekinkomen ($)</h4>
+            <button @click="showYearlyInfo.wages = !showYearlyInfo.wages" class="text-muted hover:text-accent transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </button>
+          </div>
+          <div x-show="showYearlyInfo.wages" x-cloak class="mb-4 p-4 bg-accent/10 rounded-lg text-xs border border-accent/20 space-y-2">
+            <p class="text-blue-200">Het mediaan weekinkomen van fulltime werknemers in de VS. 'Mediaan' = de middelste werknemer, niet vertekend door topverdieners.</p>
+            <p class="text-blue-200/70">Lonen stegen van $1,100 naar $1,165/week (+5.9%) over 8 kwartalen. Dit is vergelijkbaar met de productiviteitsgroei, wat betekent dat werknemers mee profiteren van de AI-gedreven efficiëntiewinst.</p>
+            <p class="text-accent/60">Conclusie: Als lonen meestijgen met productiviteit, wordt de AI-winst eerlijk verdeeld. Als productiviteit 2x sneller stijgt dan lonen, gaat het verschil naar bedrijfseigenaren — dat is het patroon om te monitoren.</p>
+          </div>
+          <div class="chart-container-large">
+            <canvas id="chart-yearly-wages"></canvas>
+          </div>
+        </div>
+
+        <!-- AI Kosten chart -->
+        <div class="bg-dark-700 rounded-xl border border-dark-600 p-6 mb-4">
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="text-sm font-medium text-muted">AI Kosten — Prijs per 1M Tokens ($)</h4>
+            <button @click="showYearlyInfo.cost = !showYearlyInfo.cost" class="text-muted hover:text-accent transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </button>
+          </div>
+          <div x-show="showYearlyInfo.cost" x-cloak class="mb-4 p-4 bg-accent/10 rounded-lg text-xs border border-accent/20 space-y-2">
+            <p class="text-blue-200">De prijs om het beste AI-model te gebruiken (output tokens, frontier model). Hoe lager, hoe meer bedrijven AI kunnen inzetten.</p>
+            <p class="text-blue-200/70">De kosten daalden 80% in 14 maanden: van $15 naar $3 per miljoen tokens. Dit is een van de snelste prijsdalingen in tech-geschiedenis, vergelijkbaar met de daling van cloud computing kosten in 2010-2015.</p>
+            <p class="text-accent/60">Conclusie: Bij $15/1M tokens was AI alleen voor grote bedrijven betaalbaar. Bij $3 kan elk MKB experimenteren. Dit is de accelerator voor arbeidsmarktimpact: goedkopere AI = meer adoptie = snellere verschuiving. Verwachting: onder $2 tegen eind 2026.</p>
+          </div>
+          <div class="chart-container-large">
+            <canvas id="chart-yearly-cost"></canvas>
+          </div>
+        </div>
+
+        <!-- Ongelijkheid chart -->
+        <div class="bg-dark-700 rounded-xl border border-dark-600 p-6 mb-4">
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="text-sm font-medium text-muted">Ongelijkheid — Gini US vs EU</h4>
+            <button @click="showYearlyInfo.gini = !showYearlyInfo.gini" class="text-muted hover:text-accent transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </button>
+          </div>
+          <div x-show="showYearlyInfo.gini" x-cloak class="mb-4 p-4 bg-accent/10 rounded-lg text-xs border border-accent/20 space-y-2">
+            <p class="text-blue-200">De Gini-coefficient meet inkomensongelijkheid (0 = perfect gelijk, 1 = maximale ongelijkheid). VS is structureel ongelijker dan de EU, Japan zit ertussenin.</p>
+            <p class="text-blue-200/70">VS Gini ~0.39, Japan ~0.32, EU ~0.30. Japan heeft het grootste verschil tussen Gini vóór herverdeling (0.56) en erna (0.32), wat toont dat sociaal beleid cruciaal is. Data voor Japan heeft 3-5 jaar vertraging.</p>
+            <p class="text-accent/60">Conclusie: Drie niveaus van ongelijkheid, drie benaderingen van AI-regulering. Als de lijnen convergeren, werkt AI als equalizer. Als ze divergeren, versterkt AI bestaande ongelijkheden. Het VS-Japan-EU spectrum toont hoe beleid uitmaakt.</p>
+          </div>
+          <div class="chart-container-large">
+            <canvas id="chart-yearly-gini"></canvas>
+          </div>
+        </div>
+
+        <!-- AI Investeringen chart -->
+        <div class="bg-dark-700 rounded-xl border border-dark-600 p-6 mb-4">
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="text-sm font-medium text-muted">AI Investeringen & Omscholing (index, 2019=100)</h4>
+            <button @click="showYearlyInfo.investment = !showYearlyInfo.investment" class="text-muted hover:text-accent transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </button>
+          </div>
+          <div x-show="showYearlyInfo.investment" x-cloak class="mb-4 p-4 bg-accent/10 rounded-lg text-xs border border-accent/20 space-y-2">
+            <p class="text-blue-200">Vergelijkt AI-investeringen ($189B in 2025), enterprise-adoptie (72%) en cursus-inschrijvingen (14.2M) als index genormaliseerd naar 2019=100.</p>
+            <p class="text-blue-200/70">Investeringen groeiden 152% (75→189B), adoptie 44% (50→72%), en cursusinschrijvingen 576% (2.1→14.2M). Omscholing groeit het snelst — een positief signaal dat mensen zich actief aanpassen.</p>
+            <p class="text-accent/60">Conclusie: Investeringen leiden, adoptie volgt, omscholing reageert. Het feit dat omscholing het snelst groeit toont dat de arbeidsmarkt zich actief aanpast. Als investeringen groeien maar omscholing stagneert, dreigt een skills-kloof.</p>
+          </div>
+          <div class="chart-container-xl">
+            <canvas id="chart-yearly-investment"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- Maandtabel -->
+      <section class="mb-8">
+        <h3 class="text-lg font-semibold text-white mb-4">Maandtabel</h3>
+        <div class="bg-dark-700 rounded-xl border border-dark-600 overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-dark-600">
+                <th class="text-left px-4 py-3 font-medium text-muted sticky left-0 bg-dark-700 z-10">Metric</th>
+                <template x-for="month in tableMonths" :key="month">
+                  <th class="text-center px-3 py-3 font-medium text-muted whitespace-nowrap" x-text="formatMonthShort(month)"></th>
+                </template>
+              </tr>
+            </thead>
+            <tbody>
+              <template x-for="row in tableRows" :key="row.id">
+                <tr class="border-b border-dark-600/50 hover:bg-dark-600/30">
+                  <td class="px-4 py-2.5 font-medium text-slate-300 sticky left-0 bg-dark-700 z-10 whitespace-nowrap" x-text="row.name"></td>
+                  <template x-for="month in tableMonths" :key="row.id + '-' + month">
+                    <td class="text-center px-3 py-2.5 text-slate-400" x-text="getTableValue(row.id, month)"></td>
+                  </template>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Maand-samenvattingen -->
+      <section class="mb-8">
+        <h3 class="text-lg font-semibold text-white mb-4">Maandsamenvattingen</h3>
+        <div class="space-y-3">
+          <!-- Current month -->
+          <div class="bg-dark-700 rounded-xl border border-dark-600 p-5">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-2.5 h-2.5 rounded-full"
+                   :class="{
+                     'bg-emerald-400': data.scenario_signal === 'job_shift',
+                     'bg-amber-400': data.scenario_signal === 'stagnation',
+                     'bg-red-400': data.scenario_signal === 'job_loss'
+                   }"></div>
+              <h4 class="font-semibold text-white" x-text="formatMonthLong(data.month)"></h4>
+              <span class="text-xs px-2 py-0.5 rounded-full"
+                    :class="{
+                      'bg-emerald-500/20 text-emerald-400': data.scenario_signal === 'job_shift',
+                      'bg-amber-500/20 text-amber-400': data.scenario_signal === 'stagnation',
+                      'bg-red-500/20 text-red-400': data.scenario_signal === 'job_loss'
+                    }"
+                    x-text="signalLabelsShort[data.scenario_signal]"></span>
+            </div>
+            <p class="text-sm text-slate-400 leading-relaxed" x-text="data.ai_interpretation"></p>
+          </div>
+          <!-- Historical months -->
+          <template x-for="entry in history.months" :key="entry.month">
+            <div class="bg-dark-700 rounded-xl border border-dark-600 p-5">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-2.5 h-2.5 rounded-full"
+                     :class="{
+                       'bg-emerald-400': entry.scenario_signal === 'job_shift',
+                       'bg-amber-400': entry.scenario_signal === 'stagnation',
+                       'bg-red-400': entry.scenario_signal === 'job_loss'
+                     }"></div>
+                <h4 class="font-semibold text-white" x-text="formatMonthLong(entry.month)"></h4>
+                <span class="text-xs px-2 py-0.5 rounded-full"
+                      :class="{
+                        'bg-emerald-500/20 text-emerald-400': entry.scenario_signal === 'job_shift',
+                        'bg-amber-500/20 text-amber-400': entry.scenario_signal === 'stagnation',
+                        'bg-red-500/20 text-red-400': entry.scenario_signal === 'job_loss'
+                      }"
+                      x-text="signalLabelsShort[entry.scenario_signal]"></span>
+              </div>
+              <p class="text-sm text-slate-400 leading-relaxed" x-text="entry.ai_interpretation"></p>
+            </div>
+          </template>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-dark-600 mt-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-muted">
+        <p>Data: FRED, Eurostat, Statistics Bureau of Japan, BLS, MHLW, layoffs.fyi, McKinsey, LinkedIn, LMSYS, Coursera, Stanford AI Index</p>
+        <p>AI-interpretatie door Claude (Anthropic)</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function dashboard() {
+      return {
+        view: 'monthly',
+        data: {},
+        manual: {},
+        history: { months: [] },
+        charts: {},
+        showInfo: {},
+        showMetricInfo: {},
+        showYearlyInfo: { labor: false, productivity: false, ai: false, wages: false, cost: false, gini: false, investment: false },
+        dataLoaded: false,
+
+        signalLabels: {
+          'job_shift': 'Job Shift — Gezonde transitie',
+          'stagnation': 'Stagnatie — Onduidelijk patroon',
+          'job_loss': 'Job Loss — Aandacht vereist',
+        },
+
+        signalLabelsShort: {
+          'job_shift': 'Job Shift',
+          'stagnation': 'Stagnatie',
+          'job_loss': 'Job Loss',
+        },
+
+        sections: [
+          {
+            key: 'labor_market',
+            title: 'Arbeidsmarkt',
+            comparisons: [
+              { type: 'shared', title: 'Werkloosheid', us: 'unrate', eu: 'eu_unemployment', asia: 'asia_unemployment' },
+              { type: 'sidebyside', title: 'Vacatures', us: 'jtsjol', eu: 'eu_job_vacancy_rate', asia: 'asia_job_ratio' },
+              { type: 'sidebyside', title: 'Arbeidsdeelname', us: 'civpart', eu: 'eu_activity_rate', asia: 'asia_activity_rate' },
+            ],
+            soloMetrics: ['icsa'],
+            infoTitle: 'Wat vertellen deze metrics?',
+            infoText: 'Deze cijfers meten de gezondheid van de arbeidsmarkt in drie regio\'s: hoeveel mensen werken, hoeveel banen er open staan, en hoe snel mensen werk vinden. Samen laten ze zien of AI banen verplaatst (shift) of vernietigt (loss).',
+          },
+          {
+            key: 'productivity',
+            title: 'Productiviteit',
+            comparisons: [
+              { type: 'shared', title: 'Arbeidsproductiviteit', us: 'ophnfb', eu: 'eu_labour_productivity', asia: 'asia_labour_productivity' },
+            ],
+            soloMetrics: ['output_per_worker', 'mfp'],
+            infoTitle: 'Waarom is productiviteit de sleutel?',
+            infoText: 'Als AI de productiviteit verhoogt zonder massaal banen te vernietigen, wijst dat op een gezonde technologische transitie. Stijgende productiviteit + stabiele werkgelegenheid = het beste scenario. Dit was ook het patroon bij eerdere revoluties (landbouw, IT).',
+          },
+          {
+            key: 'ai_specific',
+            title: 'AI-Specifiek',
+            manual: true,
+            metrics: ['tech_layoffs', 'ai_job_postings', 'enterprise_ai_adoption', 'ai_ml_job_share'],
+            infoTitle: 'De AI-pulse',
+            infoText: 'Deze metrics meten hoe snel AI daadwerkelijk geadopteerd wordt en of het nieuwe banen creeert. Het ideale patroon: stijgende AI-vacatures + dalende layoffs + groeiende adoptie. Als adoptie stijgt maar vacatures dalen, worden banen geautomatiseerd zonder vervanging.',
+          },
+          {
+            key: 'wages',
+            title: 'Lonen & Ongelijkheid',
+            comparisons: [
+              { type: 'shared', title: 'Inkomensongelijkheid', us: 'gini', eu: 'eu_gini', asia: 'asia_gini' },
+            ],
+            soloMetrics: ['median_earnings', 'college_wage_premium'],
+            infoTitle: 'Wie profiteert van AI?',
+            infoText: 'Als lonen stijgen maar de Gini-coefficient ook, profiteert vooral de top. Een dalende college wage premium kan betekenen dat AI kenniswerk democratiseert — of dat traditionele diploma\'s minder waard worden. Dit is cruciaal voor de vraag: wordt AI een equalizer of een ongelijkheids-versterker?',
+          },
+          {
+            key: 'ai_capability',
+            title: 'AI Capability & Kosten',
+            manual: true,
+            metrics: ['ai_model_performance', 'cost_per_token', 'ai_corporate_investment'],
+            infoTitle: 'Hoe snel groeit AI zelf?',
+            infoText: 'Dalende kosten + stijgende prestaties = de drempel voor adoptie wordt steeds lager. Als AI $15/1M tokens kost, gebruiken alleen grote bedrijven het. Bij $3/1M tokens kan elk MKB het inzetten. Corporate investment toont hoeveel de industrie inzet op AI.',
+          },
+          {
+            key: 'reskilling',
+            title: 'Omscholing & Aanpassing',
+            metrics: ['uempmean', 'ai_course_enrollments'],
+            infoTitle: 'Past de arbeidsmarkt zich aan?',
+            infoText: 'Als mensen langer werkloos zijn maar tegelijk massaal AI-cursussen volgen, wijst dat op een transitieperiode. Het ideaal: werkloosheidsduur blijft laag EN cursusinschrijvingen stijgen — dan past de markt zich snel aan aan de nieuwe realiteit.',
+          },
+        ],
+
+        metricExplanations: {
+          'unrate': {
+            what: 'Het percentage van de beroepsbevolking dat actief werk zoekt maar geen baan heeft. Historisch gemiddelde: ~5.5%.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Meer mensen zonder werk. Kan wijzen op economische vertraging of AI-vervanging.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Minder werklozen. Arbeidsmarkt absorbeert veranderingen goed.',
+            aiContext: 'AI-impact: Als werkloosheid stijgt terwijl productiviteit ook stijgt, kan dat wijzen op AI die banen vervangt sneller dan nieuwe gecreeerd worden.',
+          },
+          'jtsjol': {
+            what: 'Het totaal aantal openstaande vacatures in de VS. Na COVID piekte dit op 12M+ en normaliseert nu richting pre-COVID niveaus (~7M).',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Meer vraag naar werknemers. Bedrijven groeien en willen mensen aannemen.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Minder open posities. Bedrijven worden voorzichtiger of automatiseren rollen.',
+            aiContext: 'AI-impact: Een daling in vacatures samen met stijgende AI-adoptie kan betekenen dat bedrijven AI inzetten in plaats van nieuw personeel.',
+          },
+          'civpart': {
+            what: 'Het percentage Amerikanen (16+) dat werkt of actief zoekt. Pre-COVID: ~63.3%. Lagere participatie kan wijzen op ontmoediging.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Meer mensen betreden de arbeidsmarkt. Vertrouwen in baankansen groeit.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Mensen haken af. Mogelijk ontmoedigd door slechte vooruitzichten of skill-mismatch.',
+            aiContext: 'AI-impact: Als AI bepaalde beroepen overbodig maakt, kunnen werknemers ontmoedigd raken en stoppen met zoeken — dit verbergt de echte werkloosheid.',
+          },
+          'eu_unemployment': {
+            what: 'Werkloosheidspercentage in de Eurozone (20 landen). Vergelijking met VS helpt bepalen of trends globaal of VS-specifiek zijn.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Europese arbeidsmarkt verslechtert. Mogelijk globale trend.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Europa doet het beter. Kan wijzen op effectief arbeidsmarktbeleid.',
+            aiContext: 'AI-impact: Als VS-werkloosheid stijgt maar EU niet, kan de oorzaak VS-specifiek zijn (snellere AI-adoptie). Als beide stijgen, is het mogelijk een globaal AI-effect.',
+          },
+          'icsa': {
+            what: 'Nieuwe werkloosheidsaanvragen per week. Een vroege indicator — stijging signaleert ontslagen voordat het in werkloosheidscijfers zichtbaar wordt. Onder 250K is gezond.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Meer mensen worden ontslagen. Eerste waarschuwingssignaal voor baanverlies.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Minder ontslagen. Arbeidsmarkt is stabiel, bedrijven houden personeel vast.',
+            aiContext: 'AI-impact: Een plotse piek in claims, vooral in sectoren met veel kenniswerk, kan wijzen op AI-gedreven reorganisaties.',
+          },
+          'ophnfb': {
+            what: 'Hoeveel output per gewerkt uur wordt geproduceerd. DIT is de sleutelmetric: productiviteitsgroei zonder massaal ontslag = het ideale AI-scenario.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Werknemers produceren meer per uur. AI-tools vergroten de output.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Productiviteit daalt. Mogelijk door transitieproblemen of skill-tekorten.',
+            aiContext: 'AI-impact: Bij eerdere revoluties (IT, landbouw) steeg productiviteit eerst, gevolgd door baanverschuiving. Productiviteitsstijging is een leading indicator voor AI-impact.',
+          },
+          'output_per_worker': {
+            what: 'Output per werknemer (niet per uur). Helpt onderscheid maken tussen "meer uren werken" en "echt efficienter worden".',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Elke werknemer levert meer. AI vergroot individuele capaciteit.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Per werknemer wordt minder geproduceerd. Mogelijk aanpassingsproblemen.',
+            aiContext: 'AI-impact: Als output per uur stijgt maar output per worker niet, werken mensen minder uren — mogelijk door gedeelde banen of part-time werk door AI.',
+          },
+          'mfp': {
+            what: 'Productiviteitsgroei die niet verklaard wordt door meer arbeid of kapitaal — dus puur door innovatie en technologie. AI zou dit moeten verhogen.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Technologische innovatie levert meetbare productiviteitswinst op.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Innovatie levert (nog) niet op. Mogelijk adoptie-frictie of implementatieproblemen.',
+            aiContext: 'AI-impact: MFP is de zuiverste maat voor technologische impact. Een stijging bevestigt dat AI daadwerkelijk waarde creeeert, niet alleen kosten verschuift.',
+          },
+          'tech_layoffs': {
+            what: 'Aantal ontslagen in de tech-sector waarbij AI als reden wordt genoemd. Bron: layoffs.fyi tracker.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Meer AI-gerelateerde ontslagen. Bedrijven vervangen personeel door AI.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Minder ontslagen. Reorganisatiegolf ebt weg, markt stabiliseert.',
+            aiContext: 'AI-impact: Directe maat van AI-vervanging. Let op: layoffs zijn een lagging indicator — bedrijven die nu AI implementeren, ontslaan pas later.',
+          },
+          'ai_job_postings': {
+            what: 'Index die de groei van AI-gerelateerde vacatures meet ten opzichte van januari 2023 (= 100). Gebaseerd op Indeed data.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Meer vraag naar AI-talent. Nieuwe banen worden gecreeerd door AI.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Minder AI-vacatures. Markt verzadigt of bedrijven bouwen AI intern.',
+            aiContext: 'AI-impact: Het ideale scenario is dat AI job postings sneller stijgen dan tech layoffs dalen — dan creeeert AI netto meer banen dan het vernietigt.',
+          },
+          'enterprise_ai_adoption': {
+            what: 'Percentage bedrijven dat AI in minstens een business function gebruikt. Bron: McKinsey jaarlijkse global survey.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Meer bedrijven gebruiken AI. De impact op de arbeidsmarkt wordt groter.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Adoptie vertraagt. Mogelijk teleurstelling of implementatieproblemen.',
+            aiContext: 'AI-impact: Bij 72% adoptie bereiken we een kantelpunt. Als de meerderheid AI gebruikt, worden bedrijven zonder AI competitief benadeeld.',
+          },
+          'ai_ml_job_share': {
+            what: 'Het percentage van alle vacatures dat AI/ML-gerelateerd is. Bron: LinkedIn Economic Graph.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'AI wordt een steeds groter deel van de arbeidsmarkt. Groeiend beroepsveld.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'AI-vacatures groeien niet meer sneller dan de rest. Mogelijk normalisatie.',
+            aiContext: 'AI-impact: Als dit percentage stijgt terwijl totale vacatures stabiel zijn, verschuift de arbeidsmarkt actief richting AI-skills.',
+          },
+          'median_earnings': {
+            what: 'Het mediaan weekinkomen van fulltime werknemers in de VS. "Mediaan" = de middelste werknemer, niet het gemiddelde (dat door topverdieners vertekend wordt).',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'De gemiddelde werknemer verdient meer. Productiviteitswinst wordt gedeeld.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Lonen dalen. Werknemers profiteren niet van productiviteitsgroei.',
+            aiContext: 'AI-impact: Het cruciale signaal is of lonen meestijgen met productiviteit. Als productiviteit +2% groeit maar lonen niet, gaat de winst naar bedrijfseigenaren.',
+          },
+          'college_wage_premium': {
+            what: 'Hoeveel procent meer iemand met een bachelor verdient versus alleen een high school diploma. Historisch: ~75% meer.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Diploma wordt meer waard. Kenniswerk wordt beter beloond.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Diploma wordt minder waard. AI democratiseert kenniswerk of maakt het overbodig.',
+            aiContext: 'AI-impact: Een dalende premium is dubbelzinnig: het KAN betekenen dat AI iedereen productiever maakt (goed), OF dat kenniswerk wordt geautomatiseerd (slecht).',
+          },
+          'gini': {
+            what: 'Meet inkomensongelijkheid op een schaal van 0 (perfect gelijk) tot 1 (alle inkomen bij 1 persoon). VS historisch: ~0.39.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Ongelijkheid groeit. De winnaars van AI winnen meer dan de rest.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Ongelijkheid daalt. AI-winsten worden breder verdeeld.',
+            aiContext: 'AI-impact: Bij eerdere technologische revoluties steeg de Gini eerst (weinigen profiteerden) en daalde later (breed verspreid). We kijken of AI hetzelfde patroon volgt.',
+          },
+          'ai_model_performance': {
+            what: 'Elo-rating van het best presterende AI-model op de LMSYS Chatbot Arena. Hogere score = slimmer model. Gebaseerd op blind testen door gebruikers.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'AI wordt slimmer. Kan meer taken aan, wat meer beroepen raakt.',
+            downLabel: '\u25BC Daling / stagnatie',
+            downMeaning: 'AI-vooruitgang vertraagt. Minder druk op arbeidsmarkt op korte termijn.',
+            aiContext: 'AI-impact: Elke sprong in capability opent nieuwe toepassingsgebieden. Elo 1300+ betekent dat AI competitief is met menselijke experts in steeds meer domeinen.',
+          },
+          'cost_per_token': {
+            what: 'De prijs om het beste AI-model te gebruiken (output tokens). Hoe lager, hoe toegankelijker AI wordt voor elk bedrijf.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'AI wordt duurder. Adoptie vertraagt, alleen grote bedrijven profiteren.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'AI wordt goedkoper. Drempel voor adoptie daalt, meer bedrijven gaan AI inzetten.',
+            aiContext: 'AI-impact: Prijsdaling is een accelerator. Van $15 naar $3/1M tokens maakt AI 5x toegankelijker. Dit versnelt de impact op de arbeidsmarkt exponentieel.',
+          },
+          'ai_corporate_investment': {
+            what: 'Wereldwijde private investeringen in AI per jaar. Meer investering = meer ontwikkeling = meer impact op termijn.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Bedrijven investeren meer in AI. Verwacht grotere impact in 1-3 jaar.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Investeringen dalen. Mogelijk AI-winter of verschuiving naar andere tech.',
+            aiContext: 'AI-impact: Dit is een leading indicator. Investeringen vandaag worden producten over 1-2 jaar. $189B in 2025 voorspelt significante arbeidsmarkt-impact in 2026-2027.',
+          },
+          'ai_course_enrollments': {
+            what: 'Jaarlijkse inschrijvingen voor AI/ML-cursussen wereldwijd. Bron: Coursera Global Skills Report.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Mensen scholen zich massaal om. De arbeidsmarkt past zich actief aan.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Minder interesse in AI-skills. Mogelijk apathie of gevoel van hopeloosheid.',
+            aiContext: 'AI-impact: Snelle groei in omscholing is het beste signaal dat de transitie beheerst verloopt. De IT-revolutie toonde: landen die investeerden in omscholing, hadden de snelste job shift.',
+          },
+          'eu_job_vacancy_rate': {
+            what: 'Percentage onvervulde posities ten opzichte van alle posities (bezet + vacant) in de EU. Bron: Eurostat.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Meer vacatures onvervuld. Krapte op de Europese arbeidsmarkt.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Minder vacatures. Bedrijven vullen posities makkelijker of creëren minder banen.',
+            aiContext: 'AI-impact: Vergelijk met US JOLTS — als EU vacatures sneller dalen dan VS, kan dat wijzen op snellere automatisering in Europa.',
+          },
+          'eu_activity_rate': {
+            what: 'Percentage van de bevolking (15-64 jaar) dat werkt of actief zoekt in de EU. Vergelijkbaar met US Labor Force Participation.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Meer Europeanen actief op de arbeidsmarkt. Positief signaal.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Mensen trekken zich terug. Mogelijk ontmoediging of vroegpensioen.',
+            aiContext: 'AI-impact: EU heeft een hogere participatiegraad (74.8% vs VS 62.5%) maar andere meetmethode (15-64 vs 16+). Dalende trend in beide regio\'s zou wijzen op globale AI-ontmoediging.',
+          },
+          'eu_labour_productivity': {
+            what: 'Output per gewerkt uur in de EU, kwartaalgroei. Vergelijk met US Labor Productivity om te zien wie sneller van AI profiteert.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Europa wordt productiever. AI-tools worden effectief ingezet.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Europese productiviteit stagneert. Mogelijk tragere AI-adoptie.',
+            aiContext: 'AI-impact: VS productiviteit (2.3%) groeit sneller dan EU (1.0%). Dit productiviteitsgat kan wijzen op snellere AI-adoptie in de VS — of op Europese regulering die adoptie vertraagt.',
+          },
+          'eu_gini': {
+            what: 'Inkomensongelijkheid in de EU op schaal 0-1. EU Gini (0.298) is significant lager dan VS (0.394), wat minder ongelijkheid betekent.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Ongelijkheid groeit in Europa. AI-winsten worden ongelijk verdeeld.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Europa wordt gelijker. Sociaal beleid dempt AI-ongelijkheid.',
+            aiContext: 'AI-impact: Als de VS Gini stijgt maar EU Gini daalt, werkt Europees sociaal beleid als buffer tegen AI-gedreven ongelijkheid. Dit is een kernverschil tussen de twee regio\'s.',
+          },
+          'uempmean': {
+            what: 'Gemiddeld aantal weken dat werklozen nodig hebben om een nieuwe baan te vinden. Hoe langer, hoe moeilijker de arbeidsmarkt.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Mensen vinden moeilijker werk. Mogelijk skills-mismatch door AI.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Mensen vinden sneller werk. Arbeidsmarkt functioneert goed, skills matchen.',
+            aiContext: 'AI-impact: Als de werkloosheidsduur stijgt terwijl er genoeg vacatures zijn, is er een mismatch: bedrijven zoeken AI-skills die werkzoekenden niet hebben.',
+          },
+          'asia_unemployment': {
+            what: 'Werkloosheidspercentage in Japan, seizoensgecorrigeerd. Japan heeft structureel een van de laagste werkloosheidscijfers ter wereld (~2.5%). Bron: Statistics Bureau of Japan.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Meer Japanners zonder werk. Kan wijzen op economische vertraging of structurele verschuiving.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Arbeidsmarkt blijft krap. Japan kampt al met arbeidstekorten door vergrijzing.',
+            aiContext: 'AI-impact: Japan investeert zwaar in AI/robotisering vanwege een krimpende beroepsbevolking. Als werkloosheid stijgt ondanks vergrijzing, kan AI de oorzaak zijn.',
+          },
+          'asia_job_ratio': {
+            what: 'De verhouding van openstaande vacatures tot werkzoekenden in Japan. >1 = meer vacatures dan werkzoekenden. Historisch: ~1.2-1.6. Bron: MHLW Japan.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Meer vacatures per werkzoekende. Extreme krapte op de arbeidsmarkt.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Minder vacatures per werkzoekende. Krapte neemt af, mogelijk door automatisering.',
+            aiContext: 'AI-impact: Japan ziet AI als oplossing voor arbeidstekorten, niet als bedreiging. Een dalende ratio samen met stijgende AI-adoptie kan betekenen dat AI effectief arbeidstekorten aanvult.',
+          },
+          'asia_activity_rate': {
+            what: 'Percentage van de Japanse bevolking (15+) dat werkt of actief zoekt. Record hoog in 2025 door stijgende vrouwelijke participatie.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Meer Japanners actief op de arbeidsmarkt. Vooral vrouwelijke participatie groeit.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Mensen trekken zich terug. In Japan vaak door vergrijzing (pensioen).',
+            aiContext: 'AI-impact: Japan\u2019s stijgende participatie ondanks vergrijzing is opmerkelijk. AI/robotisering maakt het mogelijk dat ouderen langer doorwerken en dat vrouwen flexibeler deelnemen.',
+          },
+          'asia_labour_productivity': {
+            what: 'Output per gewerkt uur in Japan. Japan staat 28e van OECD-landen en produceert slechts 58% van het VS-niveau per uur. Bron: Japan Productivity Center.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Japan wordt productiever. AI-tools beginnen effect te hebben.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Productiviteit stagneert. Chronisch probleem in Japan, vooral in de dienstensector.',
+            aiContext: 'AI-impact: Japan\u2019s lage productiviteit is een decennialang probleem. AI wordt gezien als de potenti\u00eble doorbraak, maar culturele weerstand tegen digitalisering vertraagt adoptie.',
+          },
+          'asia_gini': {
+            what: 'Inkomensongelijkheid in Japan op schaal 0-1. Japan (~0.32) zit tussen de VS (0.39) en EU (0.30). Data verschijnt met 3-5 jaar vertraging.',
+            upLabel: '\u25B2 Stijging',
+            upMeaning: 'Ongelijkheid groeit in Japan. Mogelijk door toenemende tweedeling vast/flex werk.',
+            downLabel: '\u25BC Daling',
+            downMeaning: 'Japan wordt gelijker. Herverdelingsbeleid werkt.',
+            aiContext: 'AI-impact: Japan heeft een groot verschil tussen Gini v\u00f3\u00f3r herverdeling (0.56) en erna (0.32), wat aantoont dat sociaal beleid ongelijkheid sterk dempt. De vraag is of AI dit verschil vergroot.',
+          },
+        },
+
+        allMetricIds: [
+          'unrate', 'eu_unemployment', 'asia_unemployment', 'jtsjol', 'eu_job_vacancy_rate', 'asia_job_ratio', 'civpart', 'eu_activity_rate', 'asia_activity_rate', 'icsa',
+          'ophnfb', 'eu_labour_productivity', 'asia_labour_productivity', 'output_per_worker', 'mfp',
+          'tech_layoffs', 'ai_job_postings', 'enterprise_ai_adoption', 'ai_ml_job_share',
+          'median_earnings', 'college_wage_premium', 'gini', 'eu_gini', 'asia_gini',
+          'ai_model_performance', 'cost_per_token', 'ai_corporate_investment',
+          'ai_course_enrollments', 'uempmean'
+        ],
+
+        get tableMonths() {
+          const m = this.getMetric('unrate');
+          if (!m || !m.history) return [];
+          return m.history.map(h => h.month);
+        },
+
+        get tableRows() {
+          return this.allMetricIds
+            .map(id => {
+              const m = this.getMetric(id);
+              return m ? { id, name: m.name } : null;
+            })
+            .filter(Boolean);
+        },
+
+        async init() {
+          try {
+            const [currentRes, manualRes, historyRes] = await Promise.all([
+              fetch('data/current.json'),
+              fetch('data/manual-metrics.json'),
+              fetch('data/history.json'),
+            ]);
+            this.data = await currentRes.json();
+            this.manual = await manualRes.json();
+            this.history = await historyRes.json();
+          } catch (e) {
+            console.error('Failed to load data:', e);
+            return;
+          }
+
+          this.allMetricIds.forEach(id => {
+            this.showMetricInfo[id] = false;
+          });
+          this.sections.forEach(s => {
+            this.showInfo[s.key] = false;
+          });
+
+          this.dataLoaded = true;
+
+          // Brute-force chart rendering: meerdere pogingen, geen layout checks
+          const renderAll = () => {
+            this.allMetricIds.forEach(id => {
+              const metric = this.getMetric(id);
+              const canvas = document.getElementById('chart-' + id);
+              if (metric && canvas && !this.charts['chart-' + id]) {
+                this.createSparkline('chart-' + id, metric);
+              }
+            });
+            // Render comparison sparklines (Type A shared charts)
+            this.sections.forEach(section => {
+              (section.comparisons || []).forEach(comp => {
+                if (comp.type === 'shared') {
+                  const canvasId = 'chart-comp-' + comp.us + '-' + comp.eu + (comp.asia ? '-' + comp.asia : '');
+                  const canvas = document.getElementById(canvasId);
+                  if (canvas && !this.charts[canvasId]) {
+                    const usMetric = this.getMetric(comp.us);
+                    const euMetric = this.getMetric(comp.eu);
+                    const asiaMetric = comp.asia ? this.getMetric(comp.asia) : null;
+                    if (usMetric && euMetric) {
+                      this.createComparisonSparkline(canvasId, usMetric, euMetric, asiaMetric);
+                    }
+                  }
+                }
+              });
+            });
+          };
+
+          // Probeer op meerdere momenten (belt-and-suspenders)
+          [500, 1500, 3000].forEach(delay => setTimeout(renderAll, delay));
+          window.addEventListener('load', () => setTimeout(renderAll, 500));
+
+          // Yearly charts: render wanneer view switcht naar yearly
+        },
+
+        switchToYearly() {
+          this.view = 'yearly';
+          var self = this;
+          function tryRender() {
+            var canvas = document.getElementById('chart-yearly-labor');
+            if (canvas && canvas.offsetWidth > 0) {
+              self.renderYearlyCharts();
+            } else {
+              setTimeout(tryRender, 100);
+            }
+          }
+          setTimeout(tryRender, 50);
+        },
+
+        getMetric(id) {
+          if (this.data.metrics && this.data.metrics[id]) return this.data.metrics[id];
+          if (this.manual.metrics && this.manual.metrics[id]) return this.manual.metrics[id];
+          return null;
+        },
+
+        formatValue(metric) {
+          if (!metric) return '-';
+          const v = metric.value;
+          if (v >= 1000 && metric.unit !== 'Elo rating') return v.toLocaleString();
+          if (typeof v === 'number' && v < 10 && metric.unit !== 'K') return v.toFixed(1);
+          return v;
+        },
+
+        formatDelta(metric) {
+          if (!metric) return '';
+          const d = metric.delta;
+          if (d === 0) return '0.0';
+          const prefix = d > 0 ? '+' : '';
+          if (Math.abs(d) < 1 && metric.unit !== 'K') return prefix + d.toFixed(1);
+          if (Math.abs(d) >= 1000) return prefix + d.toLocaleString();
+          return prefix + d;
+        },
+
+        deltaIcon(metric) {
+          if (!metric) return '';
+          if (metric.direction === 'up') return '\u25B2';
+          if (metric.direction === 'down') return '\u25BC';
+          return '\u25AC';
+        },
+
+        deltaClass(metric) {
+          if (!metric) return 'bg-dark-500 text-slate-400';
+          const s = metric.signal;
+          if (s === 'positive') return 'bg-emerald-500/20 text-emerald-400';
+          if (s === 'warning' || s === 'negative') return 'bg-red-500/20 text-red-400';
+          // Fallback voor neutral: groen als delta positief, rood als negatief
+          if (metric.delta > 0) return 'bg-emerald-500/20 text-emerald-400';
+          if (metric.delta < 0) return 'bg-red-500/20 text-red-400';
+          return 'bg-dark-500 text-slate-400';
+        },
+
+        formatDate(ts) {
+          if (!ts) return '-';
+          const d = new Date(ts);
+          return d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
+        },
+
+        formatMonthShort(month) {
+          if (!month) return '';
+          const [y, m] = month.split('-');
+          const names = ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
+          return names[parseInt(m) - 1] + ' \'' + y.slice(2);
+        },
+
+        formatMonthLong(month) {
+          if (!month) return '';
+          const [y, m] = month.split('-');
+          const names = ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December'];
+          return names[parseInt(m) - 1] + ' ' + y;
+        },
+
+        getTableValue(metricId, month) {
+          const metric = this.getMetric(metricId);
+          if (!metric || !metric.history) return '-';
+          const entry = metric.history.find(h => h.month === month);
+          if (entry) return entry.value;
+          return '-';
+        },
+
+        toggleInfo(key) {
+          this.showInfo[key] = !this.showInfo[key];
+        },
+
+        toggleMetricInfo(id) {
+          this.showMetricInfo[id] = !this.showMetricInfo[id];
+        },
+
+        getRegionFlag(metric) {
+          if (!metric) return '';
+          if (metric.region === 'US') return '\u{1F1FA}\u{1F1F8}';
+          if (metric.region === 'EU') return '\u{1F1EA}\u{1F1FA}';
+          if (metric.region === 'Asia') return '\u{1F1EF}\u{1F1F5}';
+          if (metric.region === 'Global') return '\u{1F30D}';
+          return '';
+        },
+
+        getChartColor(metric) {
+          const s = typeof metric === 'string' ? metric : metric?.signal;
+          if (s === 'positive') return { line: '#34d399', bg: 'rgba(52,211,153,0.15)' };
+          if (s === 'warning' || s === 'negative') return { line: '#f87171', bg: 'rgba(248,113,113,0.15)' };
+          // Fallback: groen bij positieve delta, rood bij negatieve
+          if (metric?.delta > 0) return { line: '#34d399', bg: 'rgba(52,211,153,0.15)' };
+          if (metric?.delta < 0) return { line: '#f87171', bg: 'rgba(248,113,113,0.15)' };
+          return { line: '#34d399', bg: 'rgba(52,211,153,0.15)' };
+        },
+
+        calculateYBounds(values) {
+          if (!values || values.length === 0) return {};
+          const min = Math.min(...values);
+          const max = Math.max(...values);
+          const range = max - min;
+          if (range === 0) {
+            const artificial = Math.abs(min) * 0.05 || 1;
+            return { suggestedMin: min - artificial, suggestedMax: min + artificial };
+          }
+          const magnitude = (Math.abs(max) + Math.abs(min)) / 2;
+          const relativeRange = magnitude > 0 ? range / magnitude : range;
+          let padding;
+          if (relativeRange < 0.02) padding = range * 0.3;
+          else if (relativeRange < 0.05) padding = range * 0.4;
+          else if (relativeRange < 0.15) padding = range * 0.5;
+          else padding = range * 0.15;
+          padding = Math.max(padding, range * 0.2);
+          return { suggestedMin: min - padding, suggestedMax: max + padding };
+        },
+
+        createSparkline(canvasId, metric) {
+          const canvas = document.getElementById(canvasId);
+          if (!canvas || !metric || !metric.history) return;
+
+          if (typeof Chart === 'undefined') {
+            canvas.parentElement.innerHTML = '<p style="color:#f87171;font-size:10px;padding:8px">Chart.js niet geladen</p>';
+            return;
+          }
+
+          try {
+          if (this.charts[canvasId]) {
+            this.charts[canvasId].destroy();
+          }
+
+          const color = this.getChartColor(metric);
+          const labels = metric.history.map(h => h.month || h.quarter || h.year || '');
+          const values = metric.history.map(h => h.value);
+
+          this.charts[canvasId] = new Chart(canvas, {
+            type: 'line',
+            data: {
+              labels,
+              datasets: [{
+                data: values,
+                borderColor: color.line,
+                backgroundColor: color.bg,
+                borderWidth: 2,
+                pointRadius: 0,
+                pointHoverRadius: 4,
+                pointHoverBackgroundColor: color.line,
+                fill: true,
+                tension: 0.35,
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { display: false },
+                tooltip: {
+                  backgroundColor: '#1a2235',
+                  borderColor: '#2d3a54',
+                  borderWidth: 1,
+                  titleColor: '#94a3b8',
+                  bodyColor: '#e2e8f0',
+                  titleFont: { size: 11 },
+                  bodyFont: { size: 13, weight: 'bold' },
+                  padding: 10,
+                  displayColors: false,
+                  callbacks: {
+                    title: (items) => items[0].label,
+                    label: (item) => `${item.raw} ${metric.unit || ''}`,
+                  }
+                }
+              },
+              scales: {
+                x: {
+                  display: true,
+                  grid: { display: false },
+                  border: { display: false },
+                  ticks: {
+                    font: { size: 8 },
+                    color: '#475569',
+                    maxTicksLimit: 5,
+                    maxRotation: 0,
+                    callback: function(value) {
+                      var label = this.getLabelForValue(value);
+                      if (!label) return '';
+                      if (/^\d{4}-\d{2}$/.test(label)) {
+                        var m = ['jan','feb','mrt','apr','mei','jun','jul','aug','sep','okt','nov','dec'];
+                        return m[parseInt(label.split('-')[1]) - 1];
+                      }
+                      if (/^Q\d/.test(label)) return label.split('-')[0];
+                      if (/^\d{4}$/.test(label)) return "'" + label.slice(2);
+                      return label;
+                    }
+                  }
+                },
+                y: {
+                  display: true,
+                  position: 'right',
+                  beginAtZero: false,
+                  ...this.calculateYBounds(values),
+                  grid: { display: false },
+                  border: { display: false },
+                  ticks: {
+                    font: { size: 9 },
+                    color: '#64748b',
+                    maxTicksLimit: 3,
+                    padding: 4
+                  }
+                }
+              },
+              interaction: { intersect: false, mode: 'index' }
+            }
+          });
+          } catch (e) {
+            console.error('Sparkline error for ' + canvasId + ':', e);
+            canvas.parentElement.innerHTML = '<p style="color:#f87171;font-size:10px;padding:8px">Chart error: ' + e.message + '</p>';
+          }
+        },
+
+        createComparisonSparkline(canvasId, usMetric, euMetric, asiaMetric) {
+          const canvas = document.getElementById(canvasId);
+          if (!canvas || !usMetric?.history || !euMetric?.history) return;
+          if (typeof Chart === 'undefined') return;
+
+          try {
+            if (this.charts[canvasId]) this.charts[canvasId].destroy();
+
+            const labels = usMetric.history.map(h => h.month || h.quarter || h.year || '');
+            const usValues = usMetric.history.map(h => h.value);
+            const euValues = euMetric.history.map(h => h.value);
+
+            const datasets = [
+              {
+                label: usMetric.name,
+                data: usValues,
+                borderColor: '#60a5fa',
+                backgroundColor: 'rgba(96,165,250,0.08)',
+                borderWidth: 2,
+                pointRadius: 2,
+                pointHoverRadius: 5,
+                pointBackgroundColor: '#60a5fa',
+                pointHoverBackgroundColor: '#60a5fa',
+                fill: true,
+                tension: 0.35,
+              },
+              {
+                label: euMetric.name,
+                data: euValues,
+                borderColor: '#fb923c',
+                backgroundColor: 'rgba(251,146,60,0.08)',
+                borderWidth: 2,
+                pointRadius: 2,
+                pointHoverRadius: 5,
+                pointBackgroundColor: '#fb923c',
+                pointHoverBackgroundColor: '#fb923c',
+                fill: true,
+                tension: 0.35,
+              }
+            ];
+
+            let allValues = [...usValues, ...euValues];
+
+            if (asiaMetric?.history) {
+              const asiaValues = asiaMetric.history.map(h => h.value);
+              allValues = [...allValues, ...asiaValues];
+              datasets.push({
+                label: asiaMetric.name,
+                data: asiaValues,
+                borderColor: '#c084fc',
+                backgroundColor: 'rgba(192,132,252,0.08)',
+                borderWidth: 2,
+                pointRadius: 2,
+                pointHoverRadius: 5,
+                pointBackgroundColor: '#c084fc',
+                pointHoverBackgroundColor: '#c084fc',
+                fill: true,
+                tension: 0.35,
+              });
+            }
+
+            this.charts[canvasId] = new Chart(canvas, {
+              type: 'line',
+              data: { labels, datasets },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  legend: {
+                    position: 'bottom',
+                    labels: {
+                      color: '#94a3b8',
+                      usePointStyle: true,
+                      pointStyle: 'line',
+                      padding: 12,
+                      font: { size: 10 }
+                    }
+                  },
+                  tooltip: {
+                    backgroundColor: '#1a2235',
+                    borderColor: '#2d3a54',
+                    borderWidth: 1,
+                    titleColor: '#94a3b8',
+                    bodyColor: '#e2e8f0',
+                    titleFont: { size: 11 },
+                    bodyFont: { size: 12 },
+                    padding: 10,
+                    callbacks: {
+                      title: (items) => items[0].label,
+                      label: (item) => `${item.dataset.label}: ${item.raw} ${usMetric.unit || ''}`,
+                    }
+                  }
+                },
+                scales: {
+                  x: {
+                    display: true,
+                    grid: { display: false },
+                    border: { display: false },
+                    ticks: {
+                      font: { size: 8 },
+                      color: '#475569',
+                      maxTicksLimit: 6,
+                      maxRotation: 0,
+                      callback: function(value) {
+                        var label = this.getLabelForValue(value);
+                        if (!label) return '';
+                        if (/^\d{4}-\d{2}$/.test(label)) {
+                          var m = ['jan','feb','mrt','apr','mei','jun','jul','aug','sep','okt','nov','dec'];
+                          return m[parseInt(label.split('-')[1]) - 1];
+                        }
+                        if (/^Q\d/.test(label)) return label.split('-')[0];
+                        if (/^\d{4}$/.test(label)) return "'" + label.slice(2);
+                        return label;
+                      }
+                    }
+                  },
+                  y: {
+                    display: true,
+                    position: 'right',
+                    beginAtZero: false,
+                    ...this.calculateYBounds(allValues),
+                    grid: { display: false },
+                    border: { display: false },
+                    ticks: {
+                      font: { size: 9 },
+                      color: '#64748b',
+                      maxTicksLimit: 4,
+                      padding: 4
+                    }
+                  }
+                },
+                interaction: { intersect: false, mode: 'index' }
+              }
+            });
+          } catch (e) {
+            console.error('Comparison sparkline error for ' + canvasId + ':', e);
+          }
+        },
+
+        createYearlyChart(canvasId, datasets, labels) {
+          const canvas = document.getElementById(canvasId);
+          if (!canvas) {
+            console.error('Yearly chart: canvas not found:', canvasId);
+            return;
+          }
+
+          if (typeof Chart === 'undefined') {
+            canvas.parentElement.innerHTML = '<p style="color:#f87171;font-size:11px;padding:8px">Chart.js niet geladen</p>';
+            return;
+          }
+
+          try {
+          if (this.charts[canvasId]) {
+            this.charts[canvasId].destroy();
+          }
+
+          const colors = ['#60a5fa', '#34d399', '#fbbf24', '#f87171', '#c084fc', '#fb923c'];
+
+          this.charts[canvasId] = new Chart(canvas, {
+            type: 'line',
+            data: {
+              labels,
+              datasets: datasets.map((ds, i) => ({
+                label: ds.label,
+                data: ds.data,
+                borderColor: colors[i % colors.length],
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                pointRadius: 3,
+                pointHoverRadius: 6,
+                pointBackgroundColor: colors[i % colors.length],
+                tension: 0.35,
+              }))
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  position: 'top',
+                  labels: {
+                    color: '#94a3b8',
+                    usePointStyle: true,
+                    pointStyle: 'circle',
+                    padding: 16,
+                    font: { size: 11 }
+                  }
+                },
+                tooltip: {
+                  backgroundColor: '#1a2235',
+                  borderColor: '#2d3a54',
+                  borderWidth: 1,
+                  titleColor: '#94a3b8',
+                  bodyColor: '#e2e8f0',
+                  titleFont: { size: 11 },
+                  bodyFont: { size: 12 },
+                  padding: 10,
+                }
+              },
+              scales: {
+                x: {
+                  grid: { color: 'rgba(255,255,255,0.04)' },
+                  ticks: { font: { size: 10 }, color: '#64748b' }
+                },
+                y: {
+                  ...this.calculateYBounds(datasets.flatMap(ds => ds.data)),
+                  grid: { color: 'rgba(255,255,255,0.04)' },
+                  ticks: { font: { size: 10 }, color: '#64748b' }
+                }
+              },
+              interaction: { intersect: false, mode: 'index' }
+            }
+          });
+          } catch (e) {
+            console.error('Yearly chart error for ' + canvasId + ':', e);
+            canvas.parentElement.innerHTML = '<p style="color:#f87171;font-size:11px;padding:8px">Chart error: ' + e.message + '</p>';
+          }
+        },
+
+        monthlyToQuarterly(history) {
+          var quarters = {};
+          history.forEach(function(h) {
+            if (!h.month) return;
+            var parts = h.month.split('-');
+            var y = parts[0], m = parseInt(parts[1]);
+            var q = Math.ceil(m / 3);
+            var key = 'Q' + q + '-' + y;
+            if (!quarters[key]) quarters[key] = [];
+            quarters[key].push(h.value);
+          });
+          return Object.keys(quarters)
+            .sort(function(a, b) {
+              var ya = parseInt(a.split('-')[1]), qa = parseInt(a[1]);
+              var yb = parseInt(b.split('-')[1]), qb = parseInt(b[1]);
+              return ya !== yb ? ya - yb : qa - qb;
+            })
+            .map(function(key) {
+              var vals = quarters[key];
+              return {
+                quarter: key,
+                value: +(vals.reduce(function(a, b) { return a + b; }, 0) / vals.length).toFixed(1)
+              };
+            });
+        },
+
+        renderYearlyCharts() {
+          // 1. Arbeidsmarkt (monthly → quarterly)
+          const unrate = this.getMetric('unrate');
+          const civpart = this.getMetric('civpart');
+          const eu = this.getMetric('eu_unemployment');
+          const asiaUnemp = this.getMetric('asia_unemployment');
+          if (unrate && civpart && eu) {
+            const unrateQ = this.monthlyToQuarterly(unrate.history);
+            const euQ = this.monthlyToQuarterly(eu.history);
+            const civpartQ = this.monthlyToQuarterly(civpart.history);
+            const labels = unrateQ.map(q => q.quarter);
+            const datasets = [
+              { label: 'US Werkloosheid (%)', data: unrateQ.map(q => q.value) },
+              { label: 'EU Werkloosheid (%)', data: euQ.map(q => q.value) },
+              { label: 'Participatie (% / 10)', data: civpartQ.map(q => +(q.value / 10).toFixed(1)) },
+            ];
+            if (asiaUnemp) {
+              const asiaQ = this.monthlyToQuarterly(asiaUnemp.history);
+              datasets.push({ label: 'Japan Werkloosheid (%)', data: asiaQ.map(q => q.value) });
+            }
+            this.createYearlyChart('chart-yearly-labor', datasets, labels);
+          }
+
+          // 2. Productiviteit (already quarterly)
+          const prod = this.getMetric('ophnfb');
+          const opw = this.getMetric('output_per_worker');
+          const euProd = this.getMetric('eu_labour_productivity');
+          const asiaProd = this.getMetric('asia_labour_productivity');
+          if (prod && opw) {
+            const quarters = prod.history.map(h => h.quarter);
+            const datasets = [
+              { label: 'US Labor Productivity (%)', data: prod.history.map(h => h.value) },
+              { label: 'US Output per Worker (%)', data: opw.history.map(h => h.value) },
+            ];
+            if (euProd) {
+              datasets.push({ label: 'EU Labour Productivity (%)', data: euProd.history.map(h => h.value) });
+            }
+            if (asiaProd) {
+              datasets.push({ label: 'Japan Labour Productivity (%)', data: asiaProd.history.map(h => h.value) });
+            }
+            this.createYearlyChart('chart-yearly-productivity', datasets, quarters);
+          }
+
+          // 3. AI Impact (monthly → quarterly)
+          const layoffs = this.getMetric('tech_layoffs');
+          const aiJobs = this.getMetric('ai_job_postings');
+          const aiShare = this.getMetric('ai_ml_job_share');
+          if (layoffs && aiJobs && aiShare) {
+            const layoffsQ = this.monthlyToQuarterly(layoffs.history);
+            const aiJobsQ = this.monthlyToQuarterly(aiJobs.history);
+            const aiShareQ = this.monthlyToQuarterly(aiShare.history);
+            const labels = layoffsQ.map(q => q.quarter);
+            this.createYearlyChart('chart-yearly-ai', [
+              { label: 'Tech Layoffs (K)', data: layoffsQ.map(q => +(q.value / 1000).toFixed(1)) },
+              { label: 'AI Job Postings (index)', data: aiJobsQ.map(q => q.value) },
+              { label: 'AI/ML Share (% x10)', data: aiShareQ.map(q => +(q.value * 10).toFixed(1)) },
+            ], labels);
+          }
+
+          // 4. Lonen (already quarterly)
+          const earnings = this.getMetric('median_earnings');
+          if (earnings) {
+            const quarters = earnings.history.map(h => h.quarter);
+            this.createYearlyChart('chart-yearly-wages', [
+              { label: 'Median Weekly Earnings ($)', data: earnings.history.map(h => h.value) },
+            ], quarters);
+          }
+
+          // 5. AI Kosten (monthly → quarterly)
+          const cost = this.getMetric('cost_per_token');
+          if (cost) {
+            const costQ = this.monthlyToQuarterly(cost.history);
+            const labels = costQ.map(q => q.quarter);
+            this.createYearlyChart('chart-yearly-cost', [
+              { label: 'Cost per 1M tokens ($)', data: costQ.map(q => q.value) },
+            ], labels);
+          }
+
+          // 6. Ongelijkheid — US vs EU vs Japan Gini (annual)
+          const gini = this.getMetric('gini');
+          const euGini = this.getMetric('eu_gini');
+          const asiaGini = this.getMetric('asia_gini');
+          if (gini && euGini) {
+            const years = gini.history.map(h => h.year);
+            const datasets = [
+              { label: 'US Gini', data: gini.history.map(h => h.value) },
+              { label: 'EU Gini', data: euGini.history.map(h => h.value) },
+            ];
+            if (asiaGini) {
+              datasets.push({ label: 'Japan Gini', data: asiaGini.history.map(h => h.value) });
+            }
+            this.createYearlyChart('chart-yearly-gini', datasets, years);
+          }
+
+          // 7. AI Investeringen & Omscholing (annual, indexed to 2019=100)
+          const invest = this.getMetric('ai_corporate_investment');
+          const adopt = this.getMetric('enterprise_ai_adoption');
+          const courses = this.getMetric('ai_course_enrollments');
+          if (invest && courses) {
+            // Normalize to index (first value = 100)
+            const investBase = invest.history[0]?.value || 1;
+            const coursesBase = courses.history[0]?.value || 1;
+            const datasets = [
+              { label: 'AI Investment (index)', data: invest.history.map(h => +(h.value / investBase * 100).toFixed(0)) },
+              { label: 'Cursus Enrollments (index)', data: courses.history.map(h => +(h.value / coursesBase * 100).toFixed(0)) },
+            ];
+            if (adopt) {
+              const adoptBase = adopt.history[0]?.value || 1;
+              datasets.push({ label: 'Enterprise Adoptie (index)', data: adopt.history.map(h => +(h.value / adoptBase * 100).toFixed(0)) });
+            }
+            const years = invest.history.map(h => h.year);
+            this.createYearlyChart('chart-yearly-investment', datasets, years);
+          }
+        },
+      };
+    }
+  </script>
+
+</body>
+</html>

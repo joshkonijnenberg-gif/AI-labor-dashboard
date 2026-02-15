@@ -1,0 +1,102 @@
+{
+  "year_evaluation": {
+    "period": "Jan 2025 — Feb 2026",
+    "signal": "job_shift",
+    "summary": "De afgelopen 14 maanden tonen een duidelijk patroon van 'job shift' — een gezonde technologische transitie waarbij banen van aard veranderen maar niet massaal verdwijnen. Begin 2025 was er onzekerheid door grote tech-reorganisaties (28.5K layoffs in januari), maar vanaf april 2025 stabiliseerde het beeld en verschoof het signaal definitief naar job shift.",
+    "trends": [
+      "Werkloosheid bleef stabiel rond 3.9–4.2%, ondanks snelle AI-adoptie — de arbeidsmarkt absorbeert de veranderingen",
+      "Productiviteit steeg consistent van 0.4% (Q1-2024) naar 2.3% (Q4-2025) — AI-tools dragen meetbaar bij aan output per werknemer",
+      "Tech layoffs halveerden: van 28.5K (jan '25) naar 12.5K (feb '26) — de post-2023 reorganisatiegolf is voorbij",
+      "AI-vacatures groeiden 39% (index 102→142) en AI's aandeel in alle vacatures verdubbelde (1.8%→3.8%) — netto banencreatie",
+      "AI-kosten daalden 80%: van $15 naar $3 per miljoen tokens — de drempel voor brede MKB-adoptie is bereikt",
+      "Mediaan weekinkomen steeg van $1,100 naar $1,165 — werknemers profiteren mee van productiviteitsgroei"
+    ],
+    "watch_items": [
+      "Werkloosheidsduur stijgt (21.0→23.1 weken) — mogelijke skill-mismatch tussen vraag en aanbod",
+      "College wage premium daalt (75%→66%) — diploma wordt minder onderscheidend, dubbelzinnig signaal",
+      "Participatiegraad vlak rond 62.5% — geen groei ondanks sterke arbeidsmarkt"
+    ],
+    "prediction": "Bij de huidige trend verwachten we dat AI-kosten onder $2/1M tokens zakken tegen eind 2026, wat een nieuwe adoptiegolf bij MKB zal triggeren. De stijgende werkloosheidsduur verdient monitoring — als deze boven 25 weken komt, signaleert dat een structureel omscholingsprobleem. Zolang werkloosheid onder 4.5% blijft en productiviteit boven 2% groeit, blijft het job shift scenario intact. Het kantelpunt om naar te kijken: als tech layoffs weer boven 20K/maand komen terwijl AI-vacatures stagneren, verschuift het signaal richting job loss.",
+    "last_updated": "2026-02-07"
+  },
+  "months": [
+    {
+      "month": "2026-01",
+      "timestamp": "2026-01-10T15:00:00Z",
+      "scenario_signal": "job_shift",
+      "ai_interpretation": "Sterke start van 2026. Werkloosheid stabiel op 4.0%, productiviteit groeit gestaag. AI-adoptie versnelt maar de arbeidsmarkt absorbeert de veranderingen goed. De stijgende werkloosheidsduur (22.4 weken) verdient aandacht — mogelijk een vroeg signaal van skill-mismatch in bepaalde sectoren. AI-vacatures blijven groeien (+35% t.o.v. 2023), wat duidt op actieve banencreatie in de tech-sector."
+    },
+    {
+      "month": "2025-12",
+      "timestamp": "2025-12-05T15:00:00Z",
+      "scenario_signal": "job_shift",
+      "ai_interpretation": "Stabiel jaareinde. Werkloosheid gedaald naar 3.9%, laagste punt in 2025. Vacatures normaliseren geleidelijk. Tech layoffs zijn gehalveerd ten opzichte van januari 2025 — het post-2023 reorganisatie-effect ebt weg. AI-kosten per token daalden 67% in 2025 (van $15 naar $5), wat brede adoptie versnelt. College wage premium daalt verder (66%), mogelijk door democratisering van kenniswerk via AI-tools."
+    },
+    {
+      "month": "2025-11",
+      "timestamp": "2025-11-07T15:00:00Z",
+      "scenario_signal": "job_shift",
+      "ai_interpretation": "November toont een gezond beeld. Lonen stijgen gestaag ($1,145/week), productiviteit ook (+2.1% Q3). De Gini-coefficient is licht verbeterd. AI-cursusinschrijvingen explodeerden in 2025 met 67% groei — de arbeidsmarkt past zich actief aan. Enterprise AI adoptie bereikte 72%, het hoogste ooit gemeten. Aandachtspunt: werkloosheidsduur stijgt al 5 maanden op rij."
+    },
+    {
+      "month": "2025-10",
+      "timestamp": "2025-10-03T15:00:00Z",
+      "scenario_signal": "job_shift",
+      "ai_interpretation": "Arbeidsmarkt blijft veerkrachtig. Werkloosheid daalt naar 4.0%, participatie stabiel. JOLTS vacatures dalen geleidelijk (8.3M) maar blijven ruim boven pre-COVID niveaus. Tech layoffs dalen consistent. AI model performance stijgt gestaag — de top-Elo passeerde 1320. De combinatie van stabiele werkgelegenheid met stijgende AI-capability past bij het job shift scenario."
+    },
+    {
+      "month": "2025-09",
+      "timestamp": "2025-09-05T15:00:00Z",
+      "scenario_signal": "job_shift",
+      "ai_interpretation": "Zomer-normalisatie compleet. Werkloosheid terug op 4.1% na zomerpiek. Initiële claims daalden fors naar 221K. EU werkloosheid bereikte 6.0%, laagste in jaren. Productiviteit Q3 rapport komt binnen op 2.1%, solide groei. AI/ML vacatures nu 2.8% van alle vacatures — gestage groei zonder tekenen van verzadiging."
+    },
+    {
+      "month": "2025-08",
+      "timestamp": "2025-08-08T15:00:00Z",
+      "scenario_signal": "job_shift",
+      "ai_interpretation": "Lichte zomervertraging zichtbaar. Werkloosheid steeg naar 4.2%, initial claims op 228K — seizoenseffect. Geen alarmsignaal. AI kosten per token daalden naar $10, wat een nieuwe golf adoptie kan triggeren bij MKB. Tech layoffs daalden naar 17.5K, consistent dalende trend. Participatiegraad stabiel op 62.7%."
+    },
+    {
+      "month": "2025-07",
+      "timestamp": "2025-07-11T15:00:00Z",
+      "scenario_signal": "stagnation",
+      "ai_interpretation": "Gemengd beeld in juli. Werkloosheid steeg naar 4.1%, initial claims piekten naar 230K — hoogste punt in 2025. Dit is deels seizoensgebonden maar verdient monitoring. Positief: JOLTS vacatures stegen naar 8.9M en AI job postings groeiden naar index 120. De arbeidsmarkt toont spanning tussen AI-gedreven efficiëntie en traditionele werkgelegenheid. Scenario: stagnatie — nog geen duidelijke richting."
+    },
+    {
+      "month": "2025-06",
+      "timestamp": "2025-06-06T15:00:00Z",
+      "scenario_signal": "job_shift",
+      "ai_interpretation": "Positieve maand. Werkloosheid daalde naar 4.0%, participatie stabiliseerde. Q2 productiviteitsrapport toont 2.0% groei — de sterkste sinds Q2-2024. AI kosten daalden naar $10/1M tokens, een significante drempelverlaging. AI model performance steeg naar Elo 1285. Loongroei houdt gelijke tred met productiviteit — een gezond teken. Job shift patroon houdt aan."
+    },
+    {
+      "month": "2025-05",
+      "timestamp": "2025-05-09T15:00:00Z",
+      "scenario_signal": "job_shift",
+      "ai_interpretation": "Stabiele voortzetting. Werkloosheid op 4.1%, initial claims laag (218K). Tech layoffs daalden naar 17.8K — duidelijke afvlakking na de piek begin 2025. AI vacatures groeien gestaag (index 115). Werkloosheidsduur daalde naar 21.3 weken, wat wijst op redelijk vlotte arbeidsmarkttransities. Geen alarmsignalen."
+    },
+    {
+      "month": "2025-04",
+      "timestamp": "2025-04-04T15:00:00Z",
+      "scenario_signal": "job_shift",
+      "ai_interpretation": "Arbeidsmarkt stabiliseert na onzekere start van 2025. Werkloosheid stabiel op 4.2%, initial claims daalden naar 220K. EU werkloosheid daalt geleidelijk (6.3%). AI job postings stijgen (+12% t.o.v. baseline). Tech layoffs dalen significant van 25K naar 18.5K. Q1 productiviteitsrapport toont 1.8% groei — bescheiden maar positief."
+    },
+    {
+      "month": "2025-03",
+      "timestamp": "2025-03-07T15:00:00Z",
+      "scenario_signal": "stagnation",
+      "ai_interpretation": "Onzeker begin van Q2. Werkloosheid op 4.2%, iets hoger dan verwacht. JOLTS vacatures op 8.8M — dalende trend. Tech layoffs nog hoog (22K) maar dalend. AI adoptie versnelt: 72% van enterprises gebruikt nu AI in minstens één functie. Kosten per token nog hoog ($15) maar prijsdalingen worden verwacht. De combinatie van hoge layoffs en groeiende adoptie maakt de richting onduidelijk."
+    },
+    {
+      "month": "2025-02",
+      "timestamp": "2025-02-07T15:00:00Z",
+      "scenario_signal": "stagnation",
+      "ai_interpretation": "Februari toont de naweeën van de januari-reorganisatiegolf. Werkloosheid steeg naar 4.1%, tech layoffs op 25.2K. Positief: AI vacatures stijgen (index 105) en werkloosheidsduur daalt. De markt is in transitie — veel bedrijven reorganiseren rond AI maar creëren tegelijk nieuwe rollen. Nog te vroeg voor een duidelijk scenario."
+    },
+    {
+      "month": "2025-01",
+      "timestamp": "2025-01-10T15:00:00Z",
+      "scenario_signal": "stagnation",
+      "ai_interpretation": "Roerig begin van 2025. Grote tech-bedrijven kondigden 28.5K ontslagen aan, deels AI-gerelateerd (Microsoft, Google, Amazon). Werkloosheid op 4.0% — nog geen impact zichtbaar in macro-cijfers. JOLTS vacatures hoog (9.0M). AI kosten nog op $15/1M tokens maar prijsdalingen worden verwacht. De markt houdt z'n adem in: veel reorganisatie-aankondigingen maar nog geen macro-effect."
+    }
+  ]
+}
