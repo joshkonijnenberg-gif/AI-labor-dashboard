@@ -1,9 +1,7 @@
 {
   "month": "2026-02",
-  "timestamp": "2026-02-07T15:00:00Z",
+  "timestamp": "2026-02-15T06:51:48.191Z",
   "next_harvest": "2026-03-06",
-  "scenario_signal": "job_shift",
-  "ai_interpretation": "De Amerikaanse arbeidsmarkt blijft veerkrachtig ondanks groeiende AI-adoptie. Werkloosheid is licht gestegen naar 4.1% maar blijft historisch laag. Het aantal openstaande vacatures daalt geleidelijk, wat wijst op een normalisatie na de post-COVID overkrappe markt — geen alarmsignaal. Productiviteit stijgt sterker dan verwacht, mogelijk deels door AI-tools in kenniswerk. De combinatie van stabiele werkgelegenheid met stijgende productiviteit past bij het 'job shift' scenario: banen veranderen van aard, maar verdwijnen niet massaal. Aandachtspunt: de gemiddelde werkloosheidsduur stijgt, wat kan wijzen op een mismatch tussen gevraagde en aangeboden vaardigheden.",
   "metrics": {
     "unrate": {
       "id": "unrate",
@@ -11,32 +9,74 @@
       "name": "US Unemployment Rate",
       "subtitle": "Hoeveel mensen zoeken werk",
       "category": "labor_market",
-      "value": 4.1,
+      "value": 4.3,
       "unit": "%",
-      "prev": 4.0,
-      "delta": 0.1,
-      "direction": "up",
-      "signal": "warning",
+      "prev": 4.4,
+      "delta": -0.1,
+      "direction": "down",
+      "signal": "positive",
       "source": "FRED",
       "series_id": "UNRATE",
       "frequency": "monthly",
-      "last_updated": "2026-02-07",
-      "next_update": "2026-03-07",
+      "last_updated": "2026-02-15",
+      "next_update": "2026-03-15",
       "history": [
-        {"month": "2025-01", "value": 4.0},
-        {"month": "2025-02", "value": 4.1},
-        {"month": "2025-03", "value": 4.2},
-        {"month": "2025-04", "value": 4.2},
-        {"month": "2025-05", "value": 4.1},
-        {"month": "2025-06", "value": 4.0},
-        {"month": "2025-07", "value": 4.1},
-        {"month": "2025-08", "value": 4.2},
-        {"month": "2025-09", "value": 4.1},
-        {"month": "2025-10", "value": 4.0},
-        {"month": "2025-11", "value": 3.9},
-        {"month": "2025-12", "value": 3.9},
-        {"month": "2026-01", "value": 4.0},
-        {"month": "2026-02", "value": 4.1}
+        {
+          "value": 4.2,
+          "month": "2024-11"
+        },
+        {
+          "value": 4.1,
+          "month": "2024-12"
+        },
+        {
+          "value": 4,
+          "month": "2025-01"
+        },
+        {
+          "value": 4.2,
+          "month": "2025-02"
+        },
+        {
+          "value": 4.2,
+          "month": "2025-03"
+        },
+        {
+          "value": 4.2,
+          "month": "2025-04"
+        },
+        {
+          "value": 4.3,
+          "month": "2025-05"
+        },
+        {
+          "value": 4.1,
+          "month": "2025-06"
+        },
+        {
+          "value": 4.3,
+          "month": "2025-07"
+        },
+        {
+          "value": 4.3,
+          "month": "2025-08"
+        },
+        {
+          "value": 4.4,
+          "month": "2025-09"
+        },
+        {
+          "value": 4.5,
+          "month": "2025-11"
+        },
+        {
+          "value": 4.4,
+          "month": "2025-12"
+        },
+        {
+          "value": 4.3,
+          "month": "2026-01"
+        }
       ]
     },
     "jtsjol": {
@@ -45,32 +85,78 @@
       "name": "US Job Openings (JOLTS)",
       "subtitle": "Hoeveel banen staan open",
       "category": "labor_market",
-      "value": 8.2,
+      "value": 6.5,
       "unit": "M",
-      "prev": 8.5,
-      "delta": -0.3,
+      "prev": 6.9,
+      "delta": -0.4,
       "direction": "down",
       "signal": "warning",
       "source": "FRED",
       "series_id": "JTSJOL",
       "frequency": "monthly",
-      "last_updated": "2026-02-07",
-      "next_update": "2026-03-07",
+      "last_updated": "2026-02-15",
+      "next_update": "2026-03-15",
       "history": [
-        {"month": "2025-01", "value": 9.0},
-        {"month": "2025-02", "value": 8.9},
-        {"month": "2025-03", "value": 8.8},
-        {"month": "2025-04", "value": 8.6},
-        {"month": "2025-05", "value": 8.5},
-        {"month": "2025-06", "value": 8.7},
-        {"month": "2025-07", "value": 8.9},
-        {"month": "2025-08", "value": 8.6},
-        {"month": "2025-09", "value": 8.4},
-        {"month": "2025-10", "value": 8.3},
-        {"month": "2025-11", "value": 8.5},
-        {"month": "2025-12", "value": 8.6},
-        {"month": "2026-01", "value": 8.5},
-        {"month": "2026-02", "value": 8.2}
+        {
+          "value": 7.6,
+          "month": "2024-10"
+        },
+        {
+          "value": 8,
+          "month": "2024-11"
+        },
+        {
+          "value": 7.5,
+          "month": "2024-12"
+        },
+        {
+          "value": 7.8,
+          "month": "2025-01"
+        },
+        {
+          "value": 7.5,
+          "month": "2025-02"
+        },
+        {
+          "value": 7.2,
+          "month": "2025-03"
+        },
+        {
+          "value": 7.4,
+          "month": "2025-04"
+        },
+        {
+          "value": 7.7,
+          "month": "2025-05"
+        },
+        {
+          "value": 7.4,
+          "month": "2025-06"
+        },
+        {
+          "value": 7.2,
+          "month": "2025-07"
+        },
+        {
+          "value": 7.2,
+          "month": "2025-08"
+        },
+        {
+          "value": 7.7,
+          "month": "2025-09"
+        },
+        {
+          "value": 7.4,
+          "month": "2025-10"
+        },
+        {
+          "value": 6.9,
+          "month": "2025-11"
+        },
+        {
+          "value": 6.5,
+          "month": "2025-12"
+        }
       ]
     },
     "civpart": {
@@ -81,64 +167,72 @@
       "category": "labor_market",
       "value": 62.5,
       "unit": "%",
-      "prev": 62.6,
-      "delta": -0.1,
-      "direction": "down",
-      "signal": "warning",
+      "prev": 62.4,
+      "delta": 0.1,
+      "direction": "up",
+      "signal": "positive",
       "source": "FRED",
       "series_id": "CIVPART",
       "frequency": "monthly",
-      "last_updated": "2026-02-07",
-      "next_update": "2026-03-07",
+      "last_updated": "2026-02-15",
+      "next_update": "2026-03-15",
       "history": [
-        {"month": "2025-01", "value": 62.6},
-        {"month": "2025-02", "value": 62.7},
-        {"month": "2025-03", "value": 62.7},
-        {"month": "2025-04", "value": 62.6},
-        {"month": "2025-05", "value": 62.7},
-        {"month": "2025-06", "value": 62.5},
-        {"month": "2025-07", "value": 62.6},
-        {"month": "2025-08", "value": 62.7},
-        {"month": "2025-09", "value": 62.6},
-        {"month": "2025-10", "value": 62.5},
-        {"month": "2025-11", "value": 62.6},
-        {"month": "2025-12", "value": 62.6},
-        {"month": "2026-01", "value": 62.6},
-        {"month": "2026-02", "value": 62.5}
-      ]
-    },
-    "eu_unemployment": {
-      "id": "eu_unemployment",
-      "region": "EU",
-      "name": "EU Unemployment Rate",
-      "subtitle": "Werkloosheid in de Eurozone",
-      "category": "labor_market",
-      "value": 5.9,
-      "unit": "%",
-      "prev": 6.0,
-      "delta": -0.1,
-      "direction": "down",
-      "signal": "positive",
-      "source": "Eurostat",
-      "series_id": "une_rt_m",
-      "frequency": "monthly",
-      "last_updated": "2026-02-01",
-      "next_update": "2026-03-01",
-      "history": [
-        {"month": "2025-01", "value": 6.5},
-        {"month": "2025-02", "value": 6.5},
-        {"month": "2025-03", "value": 6.4},
-        {"month": "2025-04", "value": 6.3},
-        {"month": "2025-05", "value": 6.2},
-        {"month": "2025-06", "value": 6.2},
-        {"month": "2025-07", "value": 6.1},
-        {"month": "2025-08", "value": 6.1},
-        {"month": "2025-09", "value": 6.0},
-        {"month": "2025-10", "value": 6.0},
-        {"month": "2025-11", "value": 6.0},
-        {"month": "2025-12", "value": 6.0},
-        {"month": "2026-01", "value": 6.0},
-        {"month": "2026-02", "value": 5.9}
+        {
+          "value": 62.4,
+          "month": "2024-11"
+        },
+        {
+          "value": 62.5,
+          "month": "2024-12"
+        },
+        {
+          "value": 62.6,
+          "month": "2025-01"
+        },
+        {
+          "value": 62.5,
+          "month": "2025-02"
+        },
+        {
+          "value": 62.5,
+          "month": "2025-03"
+        },
+        {
+          "value": 62.6,
+          "month": "2025-04"
+        },
+        {
+          "value": 62.4,
+          "month": "2025-05"
+        },
+        {
+          "value": 62.3,
+          "month": "2025-06"
+        },
+        {
+          "value": 62.2,
+          "month": "2025-07"
+        },
+        {
+          "value": 62.3,
+          "month": "2025-08"
+        },
+        {
+          "value": 62.5,
+          "month": "2025-09"
+        },
+        {
+          "value": 62.5,
+          "month": "2025-11"
+        },
+        {
+          "value": 62.4,
+          "month": "2025-12"
+        },
+        {
+          "value": 62.5,
+          "month": "2026-01"
+        }
       ]
     },
     "icsa": {
@@ -147,33 +241,115 @@
       "name": "US Initial Jobless Claims",
       "subtitle": "Nieuwe werkloosheidsaanvragen",
       "category": "labor_market",
-      "value": 219,
+      "value": 227000,
       "unit": "K",
-      "prev": 215,
-      "delta": 4,
-      "direction": "up",
-      "signal": "warning",
+      "prev": 232000,
+      "delta": -5000,
+      "direction": "down",
+      "signal": "positive",
       "source": "FRED",
       "series_id": "ICSA",
       "frequency": "weekly",
-      "note": "Laatste week van de maand",
-      "last_updated": "2026-01-30",
-      "next_update": "2026-02-27",
+      "last_updated": "2026-02-15",
+      "next_update": "2026-03-15",
       "history": [
-        {"month": "2025-01", "value": 228},
-        {"month": "2025-02", "value": 226},
-        {"month": "2025-03", "value": 225},
-        {"month": "2025-04", "value": 220},
-        {"month": "2025-05", "value": 218},
-        {"month": "2025-06", "value": 222},
-        {"month": "2025-07", "value": 230},
-        {"month": "2025-08", "value": 228},
-        {"month": "2025-09", "value": 221},
-        {"month": "2025-10", "value": 216},
-        {"month": "2025-11", "value": 213},
-        {"month": "2025-12", "value": 210},
-        {"month": "2026-01", "value": 215},
-        {"month": "2026-02", "value": 219}
+        {
+          "value": 199000,
+          "month": "2026-01"
+        },
+        {
+          "value": 210000,
+          "month": "2026-01"
+        },
+        {
+          "value": 209000,
+          "month": "2026-01"
+        },
+        {
+          "value": 232000,
+          "month": "2026-01"
+        },
+        {
+          "value": 227000,
+          "month": "2026-02"
+        }
+      ],
+      "note": "Laatste week van de maand"
+    },
+    "uempmean": {
+      "id": "uempmean",
+      "region": "US",
+      "name": "US Avg Unemployment Duration",
+      "subtitle": "Hoe lang duurt werk vinden",
+      "category": "reskilling",
+      "value": 23.9,
+      "unit": "weeks",
+      "prev": 24.4,
+      "delta": -0.5,
+      "direction": "down",
+      "signal": "positive",
+      "source": "FRED",
+      "series_id": "UEMPMEAN",
+      "frequency": "monthly",
+      "last_updated": "2026-02-15",
+      "next_update": "2026-03-15",
+      "history": [
+        {
+          "value": 23.7,
+          "month": "2024-11"
+        },
+        {
+          "value": 23.7,
+          "month": "2024-12"
+        },
+        {
+          "value": 22,
+          "month": "2025-01"
+        },
+        {
+          "value": 21.4,
+          "month": "2025-02"
+        },
+        {
+          "value": 22.9,
+          "month": "2025-03"
+        },
+        {
+          "value": 23.2,
+          "month": "2025-04"
+        },
+        {
+          "value": 21.9,
+          "month": "2025-05"
+        },
+        {
+          "value": 23.1,
+          "month": "2025-06"
+        },
+        {
+          "value": 24,
+          "month": "2025-07"
+        },
+        {
+          "value": 24.5,
+          "month": "2025-08"
+        },
+        {
+          "value": 24.1,
+          "month": "2025-09"
+        },
+        {
+          "value": 23.1,
+          "month": "2025-11"
+        },
+        {
+          "value": 24.4,
+          "month": "2025-12"
+        },
+        {
+          "value": 23.9,
+          "month": "2026-01"
+        }
       ]
     },
     "ophnfb": {
@@ -182,83 +358,56 @@
       "name": "US Labor Productivity",
       "subtitle": "Output per gewerkt uur",
       "category": "productivity",
-      "value": 2.3,
+      "value": 117.962,
       "unit": "% change",
-      "prev": 2.1,
-      "delta": 0.2,
+      "prev": 116.554,
+      "delta": 1.408,
       "direction": "up",
       "signal": "positive",
       "source": "FRED",
       "series_id": "OPHNFB",
       "frequency": "quarterly",
-      "quarter": "Q4-2025",
-      "last_updated": "2026-02-06",
-      "next_update": "2026-05-08",
+      "last_updated": "2026-02-15",
+      "next_update": "2026-05-15",
       "history": [
-        {"quarter": "Q1-2024", "value": 0.4},
-        {"quarter": "Q2-2024", "value": 2.7},
-        {"quarter": "Q3-2024", "value": 2.2},
-        {"quarter": "Q4-2024", "value": 1.5},
-        {"quarter": "Q1-2025", "value": 1.8},
-        {"quarter": "Q2-2025", "value": 2.0},
-        {"quarter": "Q3-2025", "value": 2.1},
-        {"quarter": "Q4-2025", "value": 2.3}
-      ]
-    },
-    "output_per_worker": {
-      "id": "output_per_worker",
-      "region": "US",
-      "name": "US Output per Worker",
-      "subtitle": "Productiviteit per werknemer",
-      "category": "productivity",
-      "value": 1.9,
-      "unit": "% change",
-      "prev": 1.7,
-      "delta": 0.2,
-      "direction": "up",
-      "signal": "positive",
-      "source": "BLS",
-      "frequency": "quarterly",
-      "quarter": "Q4-2025",
-      "last_updated": "2026-02-06",
-      "next_update": "2026-05-08",
-      "history": [
-        {"quarter": "Q1-2024", "value": 0.2},
-        {"quarter": "Q2-2024", "value": 2.3},
-        {"quarter": "Q3-2024", "value": 1.8},
-        {"quarter": "Q4-2024", "value": 1.2},
-        {"quarter": "Q1-2025", "value": 1.4},
-        {"quarter": "Q2-2025", "value": 1.6},
-        {"quarter": "Q3-2025", "value": 1.7},
-        {"quarter": "Q4-2025", "value": 1.9}
-      ]
-    },
-    "mfp": {
-      "id": "mfp",
-      "region": "US",
-      "name": "US Multifactor Productivity",
-      "subtitle": "Groei door innovatie/technologie",
-      "category": "productivity",
-      "value": 1.1,
-      "unit": "% change",
-      "prev": 0.9,
-      "delta": 0.2,
-      "direction": "up",
-      "signal": "positive",
-      "source": "BLS",
-      "series_id": "MPU4910012",
-      "frequency": "annual",
-      "year": "2024",
-      "last_updated": "2025-09-15",
-      "next_update": "2026-09-15",
-      "history": [
-        {"year": "2019", "value": 0.5},
-        {"year": "2020", "value": 0.8},
-        {"year": "2021", "value": 0.3},
-        {"year": "2022", "value": -0.5},
-        {"year": "2023", "value": 0.9},
-        {"year": "2024", "value": 1.1}
-      ]
+        {
+          "value": 112.802,
+          "quarter": "Q3-2023"
+        },
+        {
+          "value": 113.857,
+          "quarter": "Q4-2023"
+        },
+        {
+          "value": 114.006,
+          "quarter": "Q1-2024"
+        },
+        {
+          "value": 114.855,
+          "quarter": "Q2-2024"
+        },
+        {
+          "value": 115.74,
+          "quarter": "Q3-2024"
+        },
+        {
+          "value": 115.993,
+          "quarter": "Q4-2024"
+        },
+        {
+          "value": 115.384,
+          "quarter": "Q1-2025"
+        },
+        {
+          "value": 116.554,
+          "quarter": "Q2-2025"
+        },
+        {
+          "value": 117.962,
+          "quarter": "Q3-2025"
+        }
+      ],
+      "quarter": "Q3-2025"
     },
     "median_earnings": {
       "id": "median_earnings",
@@ -266,28 +415,56 @@
       "name": "US Median Weekly Earnings",
       "subtitle": "Mediaan weekinkomen werknemers",
       "category": "wages",
-      "value": 1165,
+      "value": 376,
       "unit": "$",
-      "prev": 1145,
-      "delta": 20,
-      "direction": "up",
-      "signal": "positive",
+      "prev": 376,
+      "delta": 0,
+      "direction": "stable",
+      "signal": "neutral",
       "source": "FRED",
       "series_id": "LES1252881600Q",
       "frequency": "quarterly",
-      "quarter": "Q4-2025",
-      "last_updated": "2026-01-17",
-      "next_update": "2026-04-17",
+      "last_updated": "2026-02-15",
+      "next_update": "2026-05-15",
       "history": [
-        {"quarter": "Q1-2024", "value": 1100},
-        {"quarter": "Q2-2024", "value": 1110},
-        {"quarter": "Q3-2024", "value": 1118},
-        {"quarter": "Q4-2024", "value": 1125},
-        {"quarter": "Q1-2025", "value": 1130},
-        {"quarter": "Q2-2025", "value": 1138},
-        {"quarter": "Q3-2025", "value": 1145},
-        {"quarter": "Q4-2025", "value": 1165}
-      ]
+        {
+          "value": 366,
+          "quarter": "Q3-2023"
+        },
+        {
+          "value": 369,
+          "quarter": "Q4-2023"
+        },
+        {
+          "value": 365,
+          "quarter": "Q1-2024"
+        },
+        {
+          "value": 368,
+          "quarter": "Q2-2024"
+        },
+        {
+          "value": 371,
+          "quarter": "Q3-2024"
+        },
+        {
+          "value": 374,
+          "quarter": "Q4-2024"
+        },
+        {
+          "value": 373,
+          "quarter": "Q1-2025"
+        },
+        {
+          "value": 376,
+          "quarter": "Q2-2025"
+        },
+        {
+          "value": 376,
+          "quarter": "Q3-2025"
+        }
+      ],
+      "quarter": "Q3-2025"
     },
     "gini": {
       "id": "gini",
@@ -295,59 +472,211 @@
       "name": "US Gini Coefficient",
       "subtitle": "Mate van inkomensongelijkheid",
       "category": "wages",
-      "value": 0.394,
+      "value": 41.8,
       "unit": "index",
-      "prev": 0.397,
-      "delta": -0.003,
-      "direction": "down",
-      "signal": "positive",
-      "source": "FRED",
-      "series_id": "SIPOVGINIUSA",
-      "frequency": "annual",
-      "year": "2024",
-      "last_updated": "2025-09-10",
-      "next_update": "2026-09-10",
-      "history": [
-        {"year": "2019", "value": 0.397},
-        {"year": "2020", "value": 0.391},
-        {"year": "2021", "value": 0.394},
-        {"year": "2022", "value": 0.399},
-        {"year": "2023", "value": 0.397},
-        {"year": "2024", "value": 0.394}
-      ]
-    },
-    "uempmean": {
-      "id": "uempmean",
-      "region": "US",
-      "name": "US Avg Unemployment Duration",
-      "subtitle": "Hoe lang duurt werk vinden",
-      "category": "reskilling",
-      "value": 23.1,
-      "unit": "weeks",
-      "prev": 22.4,
-      "delta": 0.7,
+      "prev": 41.7,
+      "delta": 0.1,
       "direction": "up",
       "signal": "warning",
       "source": "FRED",
-      "series_id": "UEMPMEAN",
-      "frequency": "monthly",
-      "last_updated": "2026-02-07",
-      "next_update": "2026-03-07",
+      "series_id": "SIPOVGINIUSA",
+      "frequency": "annual",
+      "last_updated": "2026-02-15",
+      "next_update": "2027-09-15",
       "history": [
-        {"month": "2025-01", "value": 22.0},
-        {"month": "2025-02", "value": 21.9},
-        {"month": "2025-03", "value": 21.8},
-        {"month": "2025-04", "value": 21.5},
-        {"month": "2025-05", "value": 21.3},
-        {"month": "2025-06", "value": 21.0},
-        {"month": "2025-07", "value": 21.2},
-        {"month": "2025-08", "value": 21.5},
-        {"month": "2025-09", "value": 21.8},
-        {"month": "2025-10", "value": 22.0},
-        {"month": "2025-11", "value": 22.1},
-        {"month": "2025-12", "value": 22.2},
-        {"month": "2026-01", "value": 22.4},
-        {"month": "2026-02", "value": 23.1}
+        {
+          "value": 41.4,
+          "year": "2017"
+        },
+        {
+          "value": 41.8,
+          "year": "2018"
+        },
+        {
+          "value": 41.9,
+          "year": "2019"
+        },
+        {
+          "value": 40,
+          "year": "2020"
+        },
+        {
+          "value": 39.7,
+          "year": "2021"
+        },
+        {
+          "value": 41.7,
+          "year": "2022"
+        },
+        {
+          "value": 41.8,
+          "year": "2023"
+        }
+      ],
+      "year": "2023"
+    },
+    "eu_unemployment": {
+      "id": "eu_unemployment",
+      "region": "EU",
+      "name": "EU Unemployment Rate",
+      "subtitle": "Werkloosheid in de Eurozone",
+      "category": "labor_market",
+      "value": 6.2,
+      "unit": "%",
+      "prev": 6.3,
+      "delta": -0.1,
+      "direction": "down",
+      "signal": "positive",
+      "source": "Eurostat",
+      "series_id": "une_rt_m",
+      "frequency": "monthly",
+      "last_updated": "2026-02-15",
+      "next_update": "2026-03-15",
+      "history": [
+        {
+          "value": 6.7,
+          "month": "2023-01"
+        },
+        {
+          "value": 6.6,
+          "month": "2023-02"
+        },
+        {
+          "value": 6.6,
+          "month": "2023-03"
+        },
+        {
+          "value": 6.5,
+          "month": "2023-04"
+        },
+        {
+          "value": 6.5,
+          "month": "2023-05"
+        },
+        {
+          "value": 6.5,
+          "month": "2023-06"
+        },
+        {
+          "value": 6.6,
+          "month": "2023-07"
+        },
+        {
+          "value": 6.6,
+          "month": "2023-08"
+        },
+        {
+          "value": 6.6,
+          "month": "2023-09"
+        },
+        {
+          "value": 6.6,
+          "month": "2023-10"
+        },
+        {
+          "value": 6.6,
+          "month": "2023-11"
+        },
+        {
+          "value": 6.5,
+          "month": "2023-12"
+        },
+        {
+          "value": 6.6,
+          "month": "2024-01"
+        },
+        {
+          "value": 6.6,
+          "month": "2024-02"
+        },
+        {
+          "value": 6.5,
+          "month": "2024-03"
+        },
+        {
+          "value": 6.4,
+          "month": "2024-04"
+        },
+        {
+          "value": 6.4,
+          "month": "2024-05"
+        },
+        {
+          "value": 6.4,
+          "month": "2024-06"
+        },
+        {
+          "value": 6.4,
+          "month": "2024-07"
+        },
+        {
+          "value": 6.3,
+          "month": "2024-08"
+        },
+        {
+          "value": 6.3,
+          "month": "2024-09"
+        },
+        {
+          "value": 6.2,
+          "month": "2024-10"
+        },
+        {
+          "value": 6.2,
+          "month": "2024-11"
+        },
+        {
+          "value": 6.3,
+          "month": "2024-12"
+        },
+        {
+          "value": 6.3,
+          "month": "2025-01"
+        },
+        {
+          "value": 6.3,
+          "month": "2025-02"
+        },
+        {
+          "value": 6.4,
+          "month": "2025-03"
+        },
+        {
+          "value": 6.3,
+          "month": "2025-04"
+        },
+        {
+          "value": 6.4,
+          "month": "2025-05"
+        },
+        {
+          "value": 6.4,
+          "month": "2025-06"
+        },
+        {
+          "value": 6.4,
+          "month": "2025-07"
+        },
+        {
+          "value": 6.3,
+          "month": "2025-08"
+        },
+        {
+          "value": 6.4,
+          "month": "2025-09"
+        },
+        {
+          "value": 6.3,
+          "month": "2025-10"
+        },
+        {
+          "value": 6.3,
+          "month": "2025-11"
+        },
+        {
+          "value": 6.2,
+          "month": "2025-12"
+        }
       ]
     },
     "eu_job_vacancy_rate": {
@@ -356,58 +685,130 @@
       "name": "EU Job Vacancy Rate",
       "subtitle": "Onvervulde vacatures als % van totaal",
       "category": "labor_market",
-      "value": 2.5,
+      "value": 2,
       "unit": "%",
-      "prev": 2.6,
+      "prev": 2.1,
       "delta": -0.1,
       "direction": "down",
       "signal": "warning",
       "source": "Eurostat",
       "series_id": "jvs_q_nace2",
       "frequency": "quarterly",
-      "quarter": "Q4-2025",
-      "last_updated": "2026-02-01",
-      "next_update": "2026-05-01",
+      "last_updated": "2026-02-15",
+      "next_update": "2026-05-15",
       "history": [
-        {"quarter": "Q1-2024", "value": 2.8},
-        {"quarter": "Q2-2024", "value": 2.7},
-        {"quarter": "Q3-2024", "value": 2.7},
-        {"quarter": "Q4-2024", "value": 2.6},
-        {"quarter": "Q1-2025", "value": 2.6},
-        {"quarter": "Q2-2025", "value": 2.6},
-        {"quarter": "Q3-2025", "value": 2.6},
-        {"quarter": "Q4-2025", "value": 2.5}
-      ]
+        {
+          "value": 2.9,
+          "quarter": "2023-Q1"
+        },
+        {
+          "value": 2.8,
+          "quarter": "2023-Q2"
+        },
+        {
+          "value": 2.8,
+          "quarter": "2023-Q3"
+        },
+        {
+          "value": 2.6,
+          "quarter": "2023-Q4"
+        },
+        {
+          "value": 2.6,
+          "quarter": "2024-Q1"
+        },
+        {
+          "value": 2.4,
+          "quarter": "2024-Q2"
+        },
+        {
+          "value": 2.3,
+          "quarter": "2024-Q3"
+        },
+        {
+          "value": 2.3,
+          "quarter": "2024-Q4"
+        },
+        {
+          "value": 2.2,
+          "quarter": "2025-Q1"
+        },
+        {
+          "value": 2.1,
+          "quarter": "2025-Q2"
+        },
+        {
+          "value": 2,
+          "quarter": "2025-Q3"
+        }
+      ],
+      "quarter": "2025-Q3"
     },
     "eu_activity_rate": {
       "id": "eu_activity_rate",
       "region": "EU",
       "name": "EU Activity Rate",
-      "subtitle": "Arbeidsdeelname in de Eurozone",
+      "subtitle": "Arbeidsdeelname in de EU",
       "category": "labor_market",
-      "value": 74.8,
+      "value": 75.9,
       "unit": "%",
-      "prev": 74.5,
-      "delta": 0.3,
+      "prev": 75.8,
+      "delta": 0.1,
       "direction": "up",
       "signal": "positive",
       "source": "Eurostat",
-      "series_id": "lfsa_argan",
+      "series_id": "lfsq_argan",
       "frequency": "quarterly",
-      "quarter": "Q4-2025",
-      "note": "Activiteitsgraad 15-64 jaar",
-      "last_updated": "2026-01-15",
-      "next_update": "2026-04-15",
+      "last_updated": "2026-02-15",
+      "next_update": "2026-05-15",
       "history": [
-        {"quarter": "Q1-2024", "value": 74.0},
-        {"quarter": "Q2-2024", "value": 74.2},
-        {"quarter": "Q3-2024", "value": 74.1},
-        {"quarter": "Q4-2024", "value": 74.3},
-        {"quarter": "Q1-2025", "value": 74.3},
-        {"quarter": "Q2-2025", "value": 74.5},
-        {"quarter": "Q3-2025", "value": 74.5},
-        {"quarter": "Q4-2025", "value": 74.8}
-      ]
+        {
+          "value": 74.6,
+          "quarter": "2023-Q1"
+        },
+        {
+          "value": 75,
+          "quarter": "2023-Q2"
+        },
+        {
+          "value": 75.2,
+          "quarter": "2023-Q3"
+        },
+        {
+          "value": 75.2,
+          "quarter": "2023-Q4"
+        },
+        {
+          "value": 75.1,
+          "quarter": "2024-Q1"
+        },
+        {
+          "value": 75.4,
+          "quarter": "2024-Q2"
+        },
+        {
+          "value": 75.6,
+          "quarter": "2024-Q3"
+        },
+        {
+          "value": 75.3,
+          "quarter": "2024-Q4"
+        },
+        {
+          "value": 75.4,
+          "quarter": "2025-Q1"
+        },
+        {
+          "value": 75.8,
+          "quarter": "2025-Q2"
+        },
+        {
+          "value": 75.9,
+          "quarter": "2025-Q3"
+        }
+      ],
+      "quarter": "2025-Q3",
+      "note": "Activiteitsgraad 15-64 jaar"
     },
     "eu_labour_productivity": {
       "id": "eu_labour_productivity",
@@ -415,28 +816,64 @@
       "name": "EU Labour Productivity",
       "subtitle": "Output per gewerkt uur (EU)",
       "category": "productivity",
-      "value": 1.0,
+      "value": 0.6,
       "unit": "% change",
-      "prev": 0.8,
-      "delta": 0.2,
-      "direction": "up",
-      "signal": "positive",
+      "prev": 1.2,
+      "delta": -0.6,
+      "direction": "down",
+      "signal": "warning",
       "source": "Eurostat",
-      "series_id": "nama_10_lp_ulc",
+      "series_id": "namq_10_lp_ulc",
       "frequency": "quarterly",
-      "quarter": "Q4-2025",
-      "last_updated": "2026-02-06",
-      "next_update": "2026-05-08",
+      "last_updated": "2026-02-15",
+      "next_update": "2026-05-15",
       "history": [
-        {"quarter": "Q1-2024", "value": 0.2},
-        {"quarter": "Q2-2024", "value": 0.5},
-        {"quarter": "Q3-2024", "value": 0.6},
-        {"quarter": "Q4-2024", "value": 0.4},
-        {"quarter": "Q1-2025", "value": 0.6},
-        {"quarter": "Q2-2025", "value": 0.7},
-        {"quarter": "Q3-2025", "value": 0.8},
-        {"quarter": "Q4-2025", "value": 1.0}
-      ]
+        {
+          "value": -1.2,
+          "quarter": "2023-Q1"
+        },
+        {
+          "value": -1.3,
+          "quarter": "2023-Q2"
+        },
+        {
+          "value": -1.8,
+          "quarter": "2023-Q3"
+        },
+        {
+          "value": -1.4,
+          "quarter": "2023-Q4"
+        },
+        {
+          "value": -0.4,
+          "quarter": "2024-Q1"
+        },
+        {
+          "value": -0.5,
+          "quarter": "2024-Q2"
+        },
+        {
+          "value": 0.5,
+          "quarter": "2024-Q3"
+        },
+        {
+          "value": 0.3,
+          "quarter": "2024-Q4"
+        },
+        {
+          "value": 1.2,
+          "quarter": "2025-Q1"
+        },
+        {
+          "value": 1.2,
+          "quarter": "2025-Q2"
+        },
+        {
+          "value": 0.6,
+          "quarter": "2025-Q3"
+        }
+      ],
+      "quarter": "2025-Q3"
     },
     "eu_gini": {
       "id": "eu_gini",
@@ -444,26 +881,48 @@
       "name": "EU Gini Coefficient",
       "subtitle": "Inkomensongelijkheid in de EU",
       "category": "wages",
-      "value": 0.298,
+      "value": 29.4,
       "unit": "index",
-      "prev": 0.301,
-      "delta": -0.003,
+      "prev": 29.6,
+      "delta": -0.2,
       "direction": "down",
-      "signal": "positive",
+      "signal": "warning",
       "source": "Eurostat",
       "series_id": "ilc_di12",
       "frequency": "annual",
-      "year": "2024",
-      "last_updated": "2025-10-01",
-      "next_update": "2026-10-01",
+      "last_updated": "2026-02-15",
+      "next_update": "2027-10-01",
       "history": [
-        {"year": "2019", "value": 0.305},
-        {"year": "2020", "value": 0.302},
-        {"year": "2021", "value": 0.301},
-        {"year": "2022", "value": 0.303},
-        {"year": "2023", "value": 0.301},
-        {"year": "2024", "value": 0.298}
-      ]
+        {
+          "value": 30.4,
+          "year": "2018"
+        },
+        {
+          "value": 30.1,
+          "year": "2019"
+        },
+        {
+          "value": 30,
+          "year": "2020"
+        },
+        {
+          "value": 30.2,
+          "year": "2021"
+        },
+        {
+          "value": 29.6,
+          "year": "2022"
+        },
+        {
+          "value": 29.6,
+          "year": "2023"
+        },
+        {
+          "value": 29.4,
+          "year": "2024"
+        }
+      ],
+      "year": "2024"
     },
     "asia_unemployment": {
       "id": "asia_unemployment",
@@ -474,7 +933,7 @@
       "value": 2.6,
       "unit": "%",
       "prev": 2.6,
-      "delta": 0.0,
+      "delta": 0,
       "direction": "stable",
       "signal": "positive",
       "source": "Statistics Bureau of Japan",
@@ -484,20 +943,62 @@
       "next_update": "2026-02-28",
       "note": "Seizoensgecorrigeerd, bevolking 15+",
       "history": [
-        {"month": "2025-01", "value": 2.5},
-        {"month": "2025-02", "value": 2.4},
-        {"month": "2025-03", "value": 2.5},
-        {"month": "2025-04", "value": 2.5},
-        {"month": "2025-05", "value": 2.5},
-        {"month": "2025-06", "value": 2.5},
-        {"month": "2025-07", "value": 2.3},
-        {"month": "2025-08", "value": 2.6},
-        {"month": "2025-09", "value": 2.6},
-        {"month": "2025-10", "value": 2.6},
-        {"month": "2025-11", "value": 2.6},
-        {"month": "2025-12", "value": 2.6},
-        {"month": "2026-01", "value": 2.6},
-        {"month": "2026-02", "value": 2.6}
+        {
+          "month": "2025-01",
+          "value": 2.5
+        },
+        {
+          "month": "2025-02",
+          "value": 2.4
+        },
+        {
+          "month": "2025-03",
+          "value": 2.5
+        },
+        {
+          "month": "2025-04",
+          "value": 2.5
+        },
+        {
+          "month": "2025-05",
+          "value": 2.5
+        },
+        {
+          "month": "2025-06",
+          "value": 2.5
+        },
+        {
+          "month": "2025-07",
+          "value": 2.3
+        },
+        {
+          "month": "2025-08",
+          "value": 2.6
+        },
+        {
+          "month": "2025-09",
+          "value": 2.6
+        },
+        {
+          "month": "2025-10",
+          "value": 2.6
+        },
+        {
+          "month": "2025-11",
+          "value": 2.6
+        },
+        {
+          "month": "2025-12",
+          "value": 2.6
+        },
+        {
+          "month": "2026-01",
+          "value": 2.6
+        },
+        {
+          "month": "2026-02",
+          "value": 2.6
+        }
       ]
     },
     "asia_job_ratio": {
@@ -509,7 +1010,7 @@
       "value": 1.19,
       "unit": "ratio",
       "prev": 1.19,
-      "delta": 0.0,
+      "delta": 0,
       "direction": "stable",
       "signal": "warning",
       "source": "MHLW Japan",
@@ -518,20 +1019,62 @@
       "next_update": "2026-02-28",
       "note": "有効求人倍率 — seizoensgecorrigeerd, >1 = meer vacatures dan werkzoekenden",
       "history": [
-        {"month": "2025-01", "value": 1.26},
-        {"month": "2025-02", "value": 1.24},
-        {"month": "2025-03", "value": 1.26},
-        {"month": "2025-04", "value": 1.26},
-        {"month": "2025-05", "value": 1.24},
-        {"month": "2025-06", "value": 1.22},
-        {"month": "2025-07", "value": 1.22},
-        {"month": "2025-08", "value": 1.20},
-        {"month": "2025-09", "value": 1.20},
-        {"month": "2025-10", "value": 1.18},
-        {"month": "2025-11", "value": 1.18},
-        {"month": "2025-12", "value": 1.19},
-        {"month": "2026-01", "value": 1.19},
-        {"month": "2026-02", "value": 1.19}
+        {
+          "month": "2025-01",
+          "value": 1.26
+        },
+        {
+          "month": "2025-02",
+          "value": 1.24
+        },
+        {
+          "month": "2025-03",
+          "value": 1.26
+        },
+        {
+          "month": "2025-04",
+          "value": 1.26
+        },
+        {
+          "month": "2025-05",
+          "value": 1.24
+        },
+        {
+          "month": "2025-06",
+          "value": 1.22
+        },
+        {
+          "month": "2025-07",
+          "value": 1.22
+        },
+        {
+          "month": "2025-08",
+          "value": 1.2
+        },
+        {
+          "month": "2025-09",
+          "value": 1.2
+        },
+        {
+          "month": "2025-10",
+          "value": 1.18
+        },
+        {
+          "month": "2025-11",
+          "value": 1.18
+        },
+        {
+          "month": "2025-12",
+          "value": 1.19
+        },
+        {
+          "month": "2026-01",
+          "value": 1.19
+        },
+        {
+          "month": "2026-02",
+          "value": 1.19
+        }
       ]
     },
     "asia_activity_rate": {
@@ -542,7 +1085,7 @@
       "category": "labor_market",
       "value": 64.1,
       "unit": "%",
-      "prev": 64.0,
+      "prev": 64,
       "delta": 0.1,
       "direction": "up",
       "signal": "positive",
@@ -552,20 +1095,62 @@
       "next_update": "2026-02-28",
       "note": "Bevolking 15+, seizoensgecorrigeerd. Record hoog in 2025 door stijgende vrouwelijke participatie.",
       "history": [
-        {"month": "2025-01", "value": 63.2},
-        {"month": "2025-02", "value": 63.2},
-        {"month": "2025-03", "value": 63.5},
-        {"month": "2025-04", "value": 63.5},
-        {"month": "2025-05", "value": 63.7},
-        {"month": "2025-06", "value": 63.8},
-        {"month": "2025-07", "value": 64.0},
-        {"month": "2025-08", "value": 64.0},
-        {"month": "2025-09", "value": 64.0},
-        {"month": "2025-10", "value": 64.1},
-        {"month": "2025-11", "value": 64.1},
-        {"month": "2025-12", "value": 64.1},
-        {"month": "2026-01", "value": 64.1},
-        {"month": "2026-02", "value": 64.1}
+        {
+          "month": "2025-01",
+          "value": 63.2
+        },
+        {
+          "month": "2025-02",
+          "value": 63.2
+        },
+        {
+          "month": "2025-03",
+          "value": 63.5
+        },
+        {
+          "month": "2025-04",
+          "value": 63.5
+        },
+        {
+          "month": "2025-05",
+          "value": 63.7
+        },
+        {
+          "month": "2025-06",
+          "value": 63.8
+        },
+        {
+          "month": "2025-07",
+          "value": 64
+        },
+        {
+          "month": "2025-08",
+          "value": 64
+        },
+        {
+          "month": "2025-09",
+          "value": 64
+        },
+        {
+          "month": "2025-10",
+          "value": 64.1
+        },
+        {
+          "month": "2025-11",
+          "value": 64.1
+        },
+        {
+          "month": "2025-12",
+          "value": 64.1
+        },
+        {
+          "month": "2026-01",
+          "value": 64.1
+        },
+        {
+          "month": "2026-02",
+          "value": 64.1
+        }
       ]
     },
     "asia_labour_productivity": {
@@ -587,14 +1172,38 @@
       "next_update": "2026-11-15",
       "note": "Reële arbeidsproductiviteit per werknemer. Japan staat 28e van OECD-landen, 58% van het VS-niveau.",
       "history": [
-        {"quarter": "Q1-2024", "value": -0.6},
-        {"quarter": "Q2-2024", "value": 0.3},
-        {"quarter": "Q3-2024", "value": 0.5},
-        {"quarter": "Q4-2024", "value": 0.2},
-        {"quarter": "Q1-2025", "value": 0.8},
-        {"quarter": "Q2-2025", "value": 1.1},
-        {"quarter": "Q3-2025", "value": 0.0},
-        {"quarter": "Q4-2025", "value": 0.2}
+        {
+          "quarter": "Q1-2024",
+          "value": -0.6
+        },
+        {
+          "quarter": "Q2-2024",
+          "value": 0.3
+        },
+        {
+          "quarter": "Q3-2024",
+          "value": 0.5
+        },
+        {
+          "quarter": "Q4-2024",
+          "value": 0.2
+        },
+        {
+          "quarter": "Q1-2025",
+          "value": 0.8
+        },
+        {
+          "quarter": "Q2-2025",
+          "value": 1.1
+        },
+        {
+          "quarter": "Q3-2025",
+          "value": 0
+        },
+        {
+          "quarter": "Q4-2025",
+          "value": 0.2
+        }
       ]
     },
     "asia_gini": {
@@ -605,7 +1214,7 @@
       "category": "wages",
       "value": 0.323,
       "unit": "index",
-      "prev": 0.330,
+      "prev": 0.33,
       "delta": -0.007,
       "direction": "down",
       "signal": "positive",
@@ -616,13 +1225,33 @@
       "next_update": "2027-01-01",
       "note": "Beschikbaar inkomen na herverdeling. Japan data verschijnt met 3-5 jaar vertraging. Gini na herverdeling (~0.32) is lager dan VS (0.39) maar hoger dan EU (0.30).",
       "history": [
-        {"year": "2013", "value": 0.334},
-        {"year": "2016", "value": 0.318},
-        {"year": "2017", "value": 0.318},
-        {"year": "2018", "value": 0.329},
-        {"year": "2019", "value": 0.330},
-        {"year": "2020", "value": 0.323}
+        {
+          "year": "2013",
+          "value": 0.334
+        },
+        {
+          "year": "2016",
+          "value": 0.318
+        },
+        {
+          "year": "2017",
+          "value": 0.318
+        },
+        {
+          "year": "2018",
+          "value": 0.329
+        },
+        {
+          "year": "2019",
+          "value": 0.33
+        },
+        {
+          "year": "2020",
+          "value": 0.323
+        }
       ]
     }
-  }
+  },
+  "scenario_signal": "stagnation",
+  "ai_interpretation": "De arbeidsmarkt toont een gemengd beeld met tekenen van stagnatie richting voorzichtige verslechtering. In de VS daalt de werkloosheid licht naar 4,3%, maar het aantal openstaande vacatures kromp fors van 6,9M naar 6,5M – de scherpste daling in een jaar tijd. De EU en Japan blijven stabiel op respectievelijk 6,2% en 2,6% werkloosheid, maar ook daar koelt de vraag naar arbeid af: de Europese vacaturegraad daalde naar 2,0% en Japan's vacature-per-sollicitant ratio blijft hangen op 1,19 (laagste sinds begin 2025). Opvallend positief is dat arbeidsparticipatie overal licht stijgt en de gemiddelde werkloosheidsduur in de VS daalt, wat wijst op betere matching. De productiviteitsgroei vertraagt echter zorgwekkend: VS +1,4% (sterk), EU +0,6% (fors lager), Japan +0,2% (nagenoeg stil). Dit patroon – dalende vacatures bij stabiele werkloosheid en afnemende productiviteitswinst – suggereert dat bedrijven voorzichtiger worden met inhuren, mogelijk door onzekerheid over AI-gedreven efficiency gains. De loongroei stagneert (VS mediaan vlak op $376) en ongelijkheid neemt toe (VS Gini 41,8), wat typisch is voor transitiefases waarin winsten nog niet breed worden gedeeld."
 }

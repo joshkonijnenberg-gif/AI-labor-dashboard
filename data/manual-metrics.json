@@ -19,20 +19,62 @@
       "last_updated": "2026-02-01",
       "next_update": "2026-03-01",
       "history": [
-        {"month": "2025-01", "value": 28500},
-        {"month": "2025-02", "value": 25200},
-        {"month": "2025-03", "value": 22000},
-        {"month": "2025-04", "value": 18500},
-        {"month": "2025-05", "value": 17800},
-        {"month": "2025-06", "value": 16200},
-        {"month": "2025-07", "value": 19100},
-        {"month": "2025-08", "value": 17500},
-        {"month": "2025-09", "value": 16800},
-        {"month": "2025-10", "value": 15900},
-        {"month": "2025-11", "value": 14200},
-        {"month": "2025-12", "value": 13800},
-        {"month": "2026-01", "value": 15200},
-        {"month": "2026-02", "value": 12500}
+        {
+          "month": "2025-01",
+          "value": 28500
+        },
+        {
+          "month": "2025-02",
+          "value": 25200
+        },
+        {
+          "month": "2025-03",
+          "value": 22000
+        },
+        {
+          "month": "2025-04",
+          "value": 18500
+        },
+        {
+          "month": "2025-05",
+          "value": 17800
+        },
+        {
+          "month": "2025-06",
+          "value": 16200
+        },
+        {
+          "month": "2025-07",
+          "value": 19100
+        },
+        {
+          "month": "2025-08",
+          "value": 17500
+        },
+        {
+          "month": "2025-09",
+          "value": 16800
+        },
+        {
+          "month": "2025-10",
+          "value": 15900
+        },
+        {
+          "month": "2025-11",
+          "value": 14200
+        },
+        {
+          "month": "2025-12",
+          "value": 13800
+        },
+        {
+          "month": "2026-01",
+          "value": 15200
+        },
+        {
+          "month": "2026-02",
+          "value": 12500
+        }
       ]
     },
     "ai_job_postings": {
@@ -53,20 +95,62 @@
       "last_updated": "2026-01-15",
       "next_update": "2026-02-15",
       "history": [
-        {"month": "2025-01", "value": 102},
-        {"month": "2025-02", "value": 105},
-        {"month": "2025-03", "value": 108},
-        {"month": "2025-04", "value": 112},
-        {"month": "2025-05", "value": 115},
-        {"month": "2025-06", "value": 118},
-        {"month": "2025-07", "value": 120},
-        {"month": "2025-08", "value": 122},
-        {"month": "2025-09", "value": 125},
-        {"month": "2025-10", "value": 128},
-        {"month": "2025-11", "value": 130},
-        {"month": "2025-12", "value": 132},
-        {"month": "2026-01", "value": 135},
-        {"month": "2026-02", "value": 142}
+        {
+          "month": "2025-01",
+          "value": 102
+        },
+        {
+          "month": "2025-02",
+          "value": 105
+        },
+        {
+          "month": "2025-03",
+          "value": 108
+        },
+        {
+          "month": "2025-04",
+          "value": 112
+        },
+        {
+          "month": "2025-05",
+          "value": 115
+        },
+        {
+          "month": "2025-06",
+          "value": 118
+        },
+        {
+          "month": "2025-07",
+          "value": 120
+        },
+        {
+          "month": "2025-08",
+          "value": 122
+        },
+        {
+          "month": "2025-09",
+          "value": 125
+        },
+        {
+          "month": "2025-10",
+          "value": 128
+        },
+        {
+          "month": "2025-11",
+          "value": 130
+        },
+        {
+          "month": "2025-12",
+          "value": 132
+        },
+        {
+          "month": "2026-01",
+          "value": 135
+        },
+        {
+          "month": "2026-02",
+          "value": 142
+        }
       ]
     },
     "enterprise_ai_adoption": {
@@ -88,12 +172,30 @@
       "last_updated": "2025-12-01",
       "next_update": "2026-12-01",
       "history": [
-        {"year": "2020", "value": 50},
-        {"year": "2021", "value": 56},
-        {"year": "2022", "value": 50},
-        {"year": "2023", "value": 55},
-        {"year": "2024", "value": 65},
-        {"year": "2025", "value": 72}
+        {
+          "year": "2020",
+          "value": 50
+        },
+        {
+          "year": "2021",
+          "value": 56
+        },
+        {
+          "year": "2022",
+          "value": 50
+        },
+        {
+          "year": "2023",
+          "value": 55
+        },
+        {
+          "year": "2024",
+          "value": 65
+        },
+        {
+          "year": "2025",
+          "value": 72
+        }
       ]
     },
     "ai_ml_job_share": {
@@ -114,20 +216,62 @@
       "last_updated": "2026-01-20",
       "next_update": "2026-02-20",
       "history": [
-        {"month": "2025-01", "value": 1.8},
-        {"month": "2025-02", "value": 2.0},
-        {"month": "2025-03", "value": 2.1},
-        {"month": "2025-04", "value": 2.3},
-        {"month": "2025-05", "value": 2.4},
-        {"month": "2025-06", "value": 2.5},
-        {"month": "2025-07", "value": 2.6},
-        {"month": "2025-08", "value": 2.7},
-        {"month": "2025-09", "value": 2.8},
-        {"month": "2025-10", "value": 2.9},
-        {"month": "2025-11", "value": 3.0},
-        {"month": "2025-12", "value": 3.1},
-        {"month": "2026-01", "value": 3.2},
-        {"month": "2026-02", "value": 3.8}
+        {
+          "month": "2025-01",
+          "value": 1.8
+        },
+        {
+          "month": "2025-02",
+          "value": 2
+        },
+        {
+          "month": "2025-03",
+          "value": 2.1
+        },
+        {
+          "month": "2025-04",
+          "value": 2.3
+        },
+        {
+          "month": "2025-05",
+          "value": 2.4
+        },
+        {
+          "month": "2025-06",
+          "value": 2.5
+        },
+        {
+          "month": "2025-07",
+          "value": 2.6
+        },
+        {
+          "month": "2025-08",
+          "value": 2.7
+        },
+        {
+          "month": "2025-09",
+          "value": 2.8
+        },
+        {
+          "month": "2025-10",
+          "value": 2.9
+        },
+        {
+          "month": "2025-11",
+          "value": 3
+        },
+        {
+          "month": "2025-12",
+          "value": 3.1
+        },
+        {
+          "month": "2026-01",
+          "value": 3.2
+        },
+        {
+          "month": "2026-02",
+          "value": 3.8
+        }
       ]
     },
     "college_wage_premium": {
@@ -149,12 +293,30 @@
       "last_updated": "2025-10-01",
       "next_update": "2026-10-01",
       "history": [
-        {"year": "2019", "value": 75},
-        {"year": "2020", "value": 74},
-        {"year": "2021", "value": 73},
-        {"year": "2022", "value": 71},
-        {"year": "2023", "value": 69},
-        {"year": "2024", "value": 66}
+        {
+          "year": "2019",
+          "value": 75
+        },
+        {
+          "year": "2020",
+          "value": 74
+        },
+        {
+          "year": "2021",
+          "value": 73
+        },
+        {
+          "year": "2022",
+          "value": 71
+        },
+        {
+          "year": "2023",
+          "value": 69
+        },
+        {
+          "year": "2024",
+          "value": 66
+        }
       ]
     },
     "ai_model_performance": {
@@ -175,20 +337,62 @@
       "last_updated": "2026-02-10",
       "next_update": "2026-03-10",
       "history": [
-        {"month": "2025-01", "value": 1235},
-        {"month": "2025-02", "value": 1240},
-        {"month": "2025-03", "value": 1250},
-        {"month": "2025-04", "value": 1260},
-        {"month": "2025-05", "value": 1270},
-        {"month": "2025-06", "value": 1285},
-        {"month": "2025-07", "value": 1290},
-        {"month": "2025-08", "value": 1300},
-        {"month": "2025-09", "value": 1310},
-        {"month": "2025-10", "value": 1320},
-        {"month": "2025-11", "value": 1330},
-        {"month": "2025-12", "value": 1335},
-        {"month": "2026-01", "value": 1340},
-        {"month": "2026-02", "value": 1380}
+        {
+          "month": "2025-01",
+          "value": 1235
+        },
+        {
+          "month": "2025-02",
+          "value": 1240
+        },
+        {
+          "month": "2025-03",
+          "value": 1250
+        },
+        {
+          "month": "2025-04",
+          "value": 1260
+        },
+        {
+          "month": "2025-05",
+          "value": 1270
+        },
+        {
+          "month": "2025-06",
+          "value": 1285
+        },
+        {
+          "month": "2025-07",
+          "value": 1290
+        },
+        {
+          "month": "2025-08",
+          "value": 1300
+        },
+        {
+          "month": "2025-09",
+          "value": 1310
+        },
+        {
+          "month": "2025-10",
+          "value": 1320
+        },
+        {
+          "month": "2025-11",
+          "value": 1330
+        },
+        {
+          "month": "2025-12",
+          "value": 1335
+        },
+        {
+          "month": "2026-01",
+          "value": 1340
+        },
+        {
+          "month": "2026-02",
+          "value": 1380
+        }
       ]
     },
     "cost_per_token": {
@@ -197,10 +401,10 @@
       "name": "Cost per Million Tokens",
       "subtitle": "Hoe duur is AI gebruiken",
       "category": "ai_capability",
-      "value": 3.00,
+      "value": 3,
       "unit": "$/1M tokens",
-      "prev": 5.00,
-      "delta": -2.00,
+      "prev": 5,
+      "delta": -2,
       "direction": "down",
       "signal": "positive",
       "source": "Anthropic/OpenAI Pricing",
@@ -209,20 +413,62 @@
       "last_updated": "2026-02-01",
       "next_update": "2026-03-01",
       "history": [
-        {"month": "2025-01", "value": 15.00},
-        {"month": "2025-02", "value": 15.00},
-        {"month": "2025-03", "value": 15.00},
-        {"month": "2025-04", "value": 15.00},
-        {"month": "2025-05", "value": 15.00},
-        {"month": "2025-06", "value": 10.00},
-        {"month": "2025-07", "value": 10.00},
-        {"month": "2025-08", "value": 10.00},
-        {"month": "2025-09", "value": 8.00},
-        {"month": "2025-10", "value": 8.00},
-        {"month": "2025-11", "value": 5.00},
-        {"month": "2025-12", "value": 5.00},
-        {"month": "2026-01", "value": 5.00},
-        {"month": "2026-02", "value": 3.00}
+        {
+          "month": "2025-01",
+          "value": 15
+        },
+        {
+          "month": "2025-02",
+          "value": 15
+        },
+        {
+          "month": "2025-03",
+          "value": 15
+        },
+        {
+          "month": "2025-04",
+          "value": 15
+        },
+        {
+          "month": "2025-05",
+          "value": 15
+        },
+        {
+          "month": "2025-06",
+          "value": 10
+        },
+        {
+          "month": "2025-07",
+          "value": 10
+        },
+        {
+          "month": "2025-08",
+          "value": 10
+        },
+        {
+          "month": "2025-09",
+          "value": 8
+        },
+        {
+          "month": "2025-10",
+          "value": 8
+        },
+        {
+          "month": "2025-11",
+          "value": 5
+        },
+        {
+          "month": "2025-12",
+          "value": 5
+        },
+        {
+          "month": "2026-01",
+          "value": 5
+        },
+        {
+          "month": "2026-02",
+          "value": 3
+        }
       ]
     },
     "ai_corporate_investment": {
@@ -244,13 +490,34 @@
       "last_updated": "2026-01-15",
       "next_update": "2027-01-15",
       "history": [
-        {"year": "2019", "value": 75},
-        {"year": "2020", "value": 80},
-        {"year": "2021", "value": 120},
-        {"year": "2022", "value": 110},
-        {"year": "2023", "value": 130},
-        {"year": "2024", "value": 154},
-        {"year": "2025", "value": 189}
+        {
+          "year": "2019",
+          "value": 75
+        },
+        {
+          "year": "2020",
+          "value": 80
+        },
+        {
+          "year": "2021",
+          "value": 120
+        },
+        {
+          "year": "2022",
+          "value": 110
+        },
+        {
+          "year": "2023",
+          "value": 130
+        },
+        {
+          "year": "2024",
+          "value": 154
+        },
+        {
+          "year": "2025",
+          "value": 189
+        }
       ]
     },
     "ai_course_enrollments": {
@@ -272,13 +539,34 @@
       "last_updated": "2025-11-01",
       "next_update": "2026-11-01",
       "history": [
-        {"year": "2019", "value": 2.1},
-        {"year": "2020", "value": 3.8},
-        {"year": "2021", "value": 4.5},
-        {"year": "2022", "value": 5.2},
-        {"year": "2023", "value": 6.8},
-        {"year": "2024", "value": 8.5},
-        {"year": "2025", "value": 14.2}
+        {
+          "year": "2019",
+          "value": 2.1
+        },
+        {
+          "year": "2020",
+          "value": 3.8
+        },
+        {
+          "year": "2021",
+          "value": 4.5
+        },
+        {
+          "year": "2022",
+          "value": 5.2
+        },
+        {
+          "year": "2023",
+          "value": 6.8
+        },
+        {
+          "year": "2024",
+          "value": 8.5
+        },
+        {
+          "year": "2025",
+          "value": 14.2
+        }
       ]
     }
   }
