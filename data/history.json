@@ -22,9 +22,9 @@
   "months": [
     {
       "month": "2026-02",
-      "timestamp": "2026-02-23T09:00:10.403Z",
-      "scenario_signal": "stagnation",
-      "ai_interpretation": "De wereldwijde arbeidsmarkt vertoont tekenen van een gezonde maar vertragende transitie. In de VS daalt de werkloosheid licht naar 4,3% terwijl de arbeidsparticipatie stabiel blijft op 62,5%, maar het aantal vacatures krimpt zorgwekkend van 6,9M naar 6,5M – een daling van bijna 20% sinds begin 2025. De EU laat een vergelijkbaar patroon zien met stabiele werkloosheid (6,2%) en stijgende arbeidsdeelname (75,9%), maar vacatures halveren bijna naar 2,0%. Japan blijft uitzonderlijk stabiel met slechts 2,6% werkloosheid en recordhoge arbeidsparticipatie van 64,1%, hoewel de vacature-ratio daalt naar 1,19. Het grootste zorgpunt: productiviteitsgroei stagneert overal (VS +1,9%, EU +0,6%, Japan +0,2%), wat suggereert dat AI nog niet haar beloofde productiviteitssprong realiseert. De dalende vacatures bij stabiele werkloosheid duiden op een koelende arbeidsmarkt, niet op massaal banenverlies. Lonen stagneren (VS) en ongelijkheid blijft hoog (VS 41,8), wat wijst op een moeizame transitie richting nieuwe baantypen."
+      "timestamp": "2026-02-25T09:00:12.585Z",
+      "scenario_signal": "job_shift",
+      "ai_interpretation": "De arbeidsmarkt toont een gemengd beeld met tekenen van een voorzichtige transitie, maar ook verhullende signalen van structurele druk. In de VS daalt de werkloosheid licht naar 4,3%, maar tegelijk zijn de vacatures gekelderd van 8M (begin 2025) naar 6,5M – een daling van bijna 20% in een jaar tijd. De arbeidsparticipatie blijft stabiel rond 62,5%, terwijl de productiviteitsgroei licht aantrekt (1,92% YoY). De EU vertoont stabiliteit: werkloosheid op historisch lage 6,2%, maar het vacaturepercentage is gedaald van 2,9% (2023) naar 2,0%, en de productiviteitsgroei is ingezakt van 1,2% naar 0,6%. Japan blijft een uitzondering met slechts 2,6% werkloosheid en stijgende arbeidsparticipatie (64,1%), maar ook daar daalt de job-to-applicant ratio (van 1,26 naar 1,19) en stagneert de productiviteit (0,2%). Opvallend positief: de Gini-coëfficiënt daalt licht in zowel EU (29,4) als Japan (0,323), terwijl die in de VS oploopt (41,8). Het patroon wijst op een zachte transitie waarin bedrijven terughoudender worden met vacatures, maar massale baanverliezen (nog) uitblijven – een 'wait-and-see'-fase waarin AI-adoptie mogelijk leidt tot selectievere aanwervingen en grotere nadruk op productiviteit per werknemer."
     },
     {
       "month": "2026-01",
