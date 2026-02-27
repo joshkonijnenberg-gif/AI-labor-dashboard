@@ -22,9 +22,9 @@
   "months": [
     {
       "month": "2026-02",
-      "timestamp": "2026-02-26T09:00:12.381Z",
-      "scenario_signal": "job_shift",
-      "ai_interpretation": "De arbeidsmarktdata wijzen op een voorzichtige **job shift** met regionale verschillen. In de **VS** daalt de werkloosheid licht naar 4,3%, maar het aantal vacatures krimpt fors (6,5M, -0,4M), wat duidt op terughoudendheid bij werkgevers—mogelijk door AI-gedreven efficiëntie of economische onzekerheid. Positief is de lichte stijging in arbeidsparticipatie (62,5%) en kortere werkloosheidsduur (23,9 weken). De **EU** toont stabiliteit: werkloosheid daalt naar 6,2%, arbeidsparticipatie stijgt naar 75,9%, maar vacatures stagneren (2,0%) en productiviteitsgroei zakt (0,6%). **Japan** vertoont een krappe arbeidsmarkt (2,6% werkloosheid, recordhoge participatie 64,1%), maar de job-ratio daalt naar 1,19, wat wijst op minder vacatures per werkzoekende—een signaal van structurele verschuivingen. Productiviteitsgroei stagneert in zowel EU als Japan, terwijl de VS een bescheiden herstel laat zien (+1,9%). De stijgende Gini-coëfficiënt in de VS (41,8) contrasteert met verbeteringen in EU (29,4) en Japan (0,323), wat suggereert dat AI-transitie ongelijk verloopt. Geen alarmsignalen van massaal banenverlies, maar wel voorzichtigheid geboden."
+      "timestamp": "2026-02-27T09:00:54.636Z",
+      "scenario_signal": "stagnation",
+      "ai_interpretation": "De data wijst op een situatie van voorzichtige stagnatie met regionale verschillen. In de VS daalt de werkloosheid licht naar 4,3%, maar het aantal openstaande vacatures krimpt sterk (van 6,9M naar 6,5M), wat duidt op afnemende arbeidsvraag. De arbeidsparticipatie blijft stabiel rond 62,5%, terwijl productiviteitsgroei aantrekt tot 1,9% jaar-op-jaar – een positief signaal, maar lonen stagneren en ongelijkheid neemt toe (Gini 41,8). In de EU blijft de werkloosheid laag (6,2%) met stijgende arbeidsdeelname (75,9%), maar de productiviteitsgroei zakt zorgwekkend terug van 1,2% naar 0,6%. Japan vertoont het meest stabiele beeld met zeer lage werkloosheid (2,6%) en hoge arbeidsparticipatie (64,1%), maar ook hier daalt productiviteit (0,2%) en krimpt de job-to-applicant ratio naar 1,19. Het overkoepelende patroon is geen gezonde job shift, maar eerder een vertragende arbeidsmarkt waarin productiviteitswinst nog niet resulteert in nieuwe baancreatie of loongroei – een signaal van structurele aanpassing zonder momentum."
     },
     {
       "month": "2026-01",
