@@ -21,6 +21,12 @@
   },
   "months": [
     {
+      "month": "2026-03",
+      "timestamp": "2026-03-01T09:00:51.911Z",
+      "scenario_signal": "job_shift",
+      "ai_interpretation": "De arbeidsmarkt vertoont tekenen van **voorzichtige afkoeling** in alle drie de regio's, maar nog geen crisissignalen. In de **VS** daalt de werkloosheid licht (4,3%), maar het aantal openstaande vacatures krimpt fors van 6,9M naar 6,5M (-5,8%), wat duidt op terughoudendheid bij werkgevers. De **EU** blijft stabiel met een lage werkloosheid van 6,2% en stabiele vacaturegraad, maar productiviteitsgroei zakt van 1,2% naar 0,6% – een waarschuwingssignaal. **Japan** vertoont een krappe arbeidsmarkt (2,6% werkloosheid, stijgende participatie), maar de job-to-applicant ratio daalt structureel van 1,26 naar 1,19, wat wijst op minder vraag. Opvallend positief: arbeidsparticipatie stijgt overal (VS 62,5%, EU 75,9%, Japan 64,1%), wat suggereert dat mensen niet massaal de arbeidsmarkt verlaten. De gemiddelde werkloosheidsduur in de VS daalt zelfs. Negatief: productiviteitsgroei stagneert in EU en Japan, terwijl die in de VS juist toeneemt (1,9%). Dit patroon wijst op een **job shift-fase**: werkgevers zijn selectiever geworden, maar er is geen sprake van massaal banenverlies – eerder een periode van heroriëntatie en aanpassing aan nieuwe technologie."
+    },
+    {
       "month": "2026-02",
       "timestamp": "2026-02-28T09:00:52.390Z",
       "scenario_signal": "stagnation",
@@ -97,12 +103,6 @@
       "timestamp": "2025-02-07T15:00:00Z",
       "scenario_signal": "stagnation",
       "ai_interpretation": "Februari toont de naweeën van de januari-reorganisatiegolf. Werkloosheid steeg naar 4.1%, tech layoffs op 25.2K. Positief: AI vacatures stijgen (index 105) en werkloosheidsduur daalt. De markt is in transitie — veel bedrijven reorganiseren rond AI maar creëren tegelijk nieuwe rollen. Nog te vroeg voor een duidelijk scenario."
-    },
-    {
-      "month": "2025-01",
-      "timestamp": "2025-01-10T15:00:00Z",
-      "scenario_signal": "stagnation",
-      "ai_interpretation": "Roerig begin van 2025. Grote tech-bedrijven kondigden 28.5K ontslagen aan, deels AI-gerelateerd (Microsoft, Google, Amazon). Werkloosheid op 4.0% — nog geen impact zichtbaar in macro-cijfers. JOLTS vacatures hoog (9.0M). AI kosten nog op $15/1M tokens maar prijsdalingen worden verwacht. De markt houdt z'n adem in: veel reorganisatie-aankondigingen maar nog geen macro-effect."
     }
   ]
 }
