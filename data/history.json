@@ -22,9 +22,9 @@
   "months": [
     {
       "month": "2026-03",
-      "timestamp": "2026-03-02T09:00:53.609Z",
-      "scenario_signal": "stagnation",
-      "ai_interpretation": "De arbeidsmarktdata wijzen op een **genuanceerd patroon van stagnatie met regionale verschillen**. In de VS daalt de werkloosheid licht naar 4,3%, maar het aantal vacatures krimpt fors (van 6,9M naar 6,5M), wat duidt op afkoelende vraag. Europa toont stabiliteit met een werkloosheid van 6,2% en stijgende arbeidsdeelname (75,9%), maar ook daar dalen vacaturepercentages. Japan houdt zeer lage werkloosheid (2,6%), maar de job-to-applicant ratio daalt gestaag van 1,26 naar 1,19, een signaal dat de vraag verzwakt. **Opvallend positief** is de stijgende arbeidsproductiviteit in de VS (+0,44pp naar 1,92%), wat kan wijzen op succesvolle AI-integratie zonder massaal banenverlies. **Zorgwekkend** is de stagnatie van mediaan lonen in de VS bij gelijkblijvende Gini-coëfficiënt (41,8), terwijl productiviteit wél stijgt—een teken van ongelijke verdeling van AI-winsten. De EU en Japan tonen lagere ongelijkheid maar ook zwakkere productiviteitsgroei. Gemiddelde werkloosheidsduur in de VS daalt naar 23,9 weken, wat herstel suggereert, maar de afnemende vacatures over alle regio's wijzen op terughoudendheid bij werkgevers, mogelijk door afwachten van verdere automatisering."
+      "timestamp": "2026-03-03T09:00:51.969Z",
+      "scenario_signal": "job_shift",
+      "ai_interpretation": "De arbeidsmarktdata wijzen op een voorzichtige afkoeling, maar nog geen structurele baanvernietiging. In de VS daalt de werkloosheid licht naar 4,3%, terwijl vacatures met 6% krimpen tot 6,5 miljoen – een waarschuwingssignaal dat bedrijven terughoudender worden. De EU stabiliseert op 6,2% werkloosheid met stagnerende vacaturegraad (2%), en Japan blijft robuust op 2,6% met stabiele job-ratio (1,19). Opvallend positief: arbeidsparticipatie stijgt overal licht, wat wijst op vertrouwen in de markt. Zorgwekkend is de productiviteitsgroei die in zowel EU (0,6%) als Japan (0,2%) stagneert na eerdere opleving – mogelijk duidt dit op moeizame AI-adoptie of verschuivingen die nog niet meetbaar zijn. De Gini-coëfficiënt blijft problematisch hoog in de VS (41,8) vergeleken met EU (29,4) en Japan (32,3), wat wijst op ongelijke verdeling van AI-baten. De combinatie van krimpende vacatures, stabiele werkloosheid en vlakke lonen suggereert een transitiefase waarin bedrijven reorganiseren maar mensen (nog) niet massaal ontslaan."
     },
     {
       "month": "2026-02",
