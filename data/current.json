@@ -1,6 +1,6 @@
 {
   "month": "2026-03",
-  "timestamp": "2026-03-04T09:00:52.134Z",
+  "timestamp": "2026-03-05T09:00:52.083Z",
   "next_harvest": "2026-04-03",
   "metrics": {
     "unrate": {
@@ -18,8 +18,8 @@
       "source": "FRED",
       "series_id": "UNRATE",
       "frequency": "monthly",
-      "last_updated": "2026-03-04",
-      "next_update": "2026-04-04",
+      "last_updated": "2026-03-05",
+      "next_update": "2026-04-05",
       "history": [
         {
           "value": 4.2,
@@ -94,8 +94,8 @@
       "source": "FRED",
       "series_id": "JTSJOL",
       "frequency": "monthly",
-      "last_updated": "2026-03-04",
-      "next_update": "2026-04-04",
+      "last_updated": "2026-03-05",
+      "next_update": "2026-04-05",
       "history": [
         {
           "value": 7.6,
@@ -174,8 +174,8 @@
       "source": "FRED",
       "series_id": "CIVPART",
       "frequency": "monthly",
-      "last_updated": "2026-03-04",
-      "next_update": "2026-04-04",
+      "last_updated": "2026-03-05",
+      "next_update": "2026-04-05",
       "history": [
         {
           "value": 62.4,
@@ -250,8 +250,8 @@
       "source": "FRED",
       "series_id": "ICSA",
       "frequency": "weekly",
-      "last_updated": "2026-03-04",
-      "next_update": "2026-04-04",
+      "last_updated": "2026-03-05",
+      "next_update": "2026-04-05",
       "history": [
         {
           "value": 209000,
@@ -291,8 +291,8 @@
       "source": "FRED",
       "series_id": "UEMPMEAN",
       "frequency": "monthly",
-      "last_updated": "2026-03-04",
-      "next_update": "2026-04-04",
+      "last_updated": "2026-03-05",
+      "next_update": "2026-04-05",
       "history": [
         {
           "value": 23.7,
@@ -367,8 +367,8 @@
       "source": "FRED",
       "series_id": "OPHNFB",
       "frequency": "quarterly",
-      "last_updated": "2026-03-04",
-      "next_update": "2026-06-04",
+      "last_updated": "2026-03-05",
+      "next_update": "2026-06-05",
       "history": [
         {
           "value": 3.06918,
@@ -424,8 +424,8 @@
       "source": "FRED",
       "series_id": "LES1252881600Q",
       "frequency": "quarterly",
-      "last_updated": "2026-03-04",
-      "next_update": "2026-06-04",
+      "last_updated": "2026-03-05",
+      "next_update": "2026-06-05",
       "history": [
         {
           "value": 366,
@@ -481,7 +481,7 @@
       "source": "FRED",
       "series_id": "SIPOVGINIUSA",
       "frequency": "annual",
-      "last_updated": "2026-03-04",
+      "last_updated": "2026-03-05",
       "next_update": "2027-09-15",
       "history": [
         {
@@ -530,8 +530,8 @@
       "source": "Eurostat",
       "series_id": "une_rt_m",
       "frequency": "monthly",
-      "last_updated": "2026-03-04",
-      "next_update": "2026-04-04",
+      "last_updated": "2026-03-05",
+      "next_update": "2026-04-05",
       "history": [
         {
           "value": 6.7,
@@ -546,7 +546,7 @@
           "month": "2023-03"
         },
         {
-          "value": 6.5,
+          "value": 6.6,
           "month": "2023-04"
         },
         {
@@ -574,7 +574,7 @@
           "month": "2023-10"
         },
         {
-          "value": 6.6,
+          "value": 6.5,
           "month": "2023-11"
         },
         {
@@ -658,7 +658,7 @@
           "month": "2025-07"
         },
         {
-          "value": 6.3,
+          "value": 6.4,
           "month": "2025-08"
         },
         {
@@ -666,7 +666,7 @@
           "month": "2025-09"
         },
         {
-          "value": 6.3,
+          "value": 6.4,
           "month": "2025-10"
         },
         {
@@ -674,8 +674,12 @@
           "month": "2025-11"
         },
         {
-          "value": 6.2,
+          "value": 6.3,
           "month": "2025-12"
+        },
+        {
+          "value": 6.2,
+          "month": "2026-01"
         }
       ]
     },
@@ -694,8 +698,8 @@
       "source": "Eurostat",
       "series_id": "jvs_q_nace2",
       "frequency": "quarterly",
-      "last_updated": "2026-03-04",
-      "next_update": "2026-06-04",
+      "last_updated": "2026-03-05",
+      "next_update": "2026-06-05",
       "history": [
         {
           "value": 2.9,
@@ -763,8 +767,8 @@
       "source": "Eurostat",
       "series_id": "lfsq_argan",
       "frequency": "quarterly",
-      "last_updated": "2026-03-04",
-      "next_update": "2026-06-04",
+      "last_updated": "2026-03-05",
+      "next_update": "2026-06-05",
       "history": [
         {
           "value": 74.6,
@@ -829,8 +833,8 @@
       "source": "Eurostat",
       "series_id": "namq_10_lp_ulc",
       "frequency": "quarterly",
-      "last_updated": "2026-03-04",
-      "next_update": "2026-06-04",
+      "last_updated": "2026-03-05",
+      "next_update": "2026-06-05",
       "history": [
         {
           "value": -1.2,
@@ -894,7 +898,7 @@
       "source": "Eurostat",
       "series_id": "ilc_di12",
       "frequency": "annual",
-      "last_updated": "2026-03-04",
+      "last_updated": "2026-03-05",
       "next_update": "2027-10-01",
       "history": [
         {
@@ -1257,5 +1261,5 @@
     }
   },
   "scenario_signal": "stagnation",
-  "ai_interpretation": "De arbeidsmarkt in alle drie de regio's vertoont tekenen van een geleidelijke afkoeling, maar nog geen alarmerende baanverliezen. In de VS daalt de werkloosheid licht naar 4,3%, terwijl vacatures significant dalen van 6,9M naar 6,5M – een waarschuwingssignaal dat bedrijven voorzichtiger worden met inhuren. De arbeidsparticipatie blijft stabiel rond 62,5%. Europa laat een vergelijkbaar patroon zien: werkloosheid daalt naar 6,2%, maar de vacaturegraad stagneert op 2,0% en productiviteitsgroei zakt van 1,2% naar 0,6%. Japan blijft opvallend stabiel met 2,6% werkloosheid, maar de job-to-applicant ratio daalt gestaag van 1,26 naar 1,19, wat duidt op krappere arbeidsmarkt. Positief is dat de gemiddelde werkloosheidsduur in de VS daalt en arbeidsparticipatie in Japan stijgt naar recordhoogte (64,1%). De stagnerende productiviteitsgroei in zowel EU als Japan, gecombineerd met dalende vacatures, wijst eerder op een transitiefase dan op structureel banenverlies – bedrijven lijken te temporiseren in afwachting van AI-integratie."
+  "ai_interpretation": "De arbeidsmarktdata wijzen op een voorzichtige **stagnatie met regionale nuances**. In de VS dalen vacatures (JOLTS) aanzienlijk van 6,9M naar 6,5M, terwijl de werkloosheid licht verbetert naar 4,3% en de arbeidsparticipatie stabiel blijft op 62,5% – dit suggereert dat minder banen worden gecreëerd, maar geen acute afbouw. De EU toont een vergelijkbaar patroon: werkloosheid daalt naar 6,2%, maar de vacaturegraad stagneert op 2,0% en productiviteitsgroei halveerde van 1,2% naar 0,6%. Japan blijft het meest stabiel met 2,6% werkloosheid en stijgende arbeidsparticipatie (64,1%), maar ook hier zakt productiviteit terug naar 0,2%. **Opvallend positief**: alle regio's houden lage werkloosheid en stijgende participatie. **Zorgwekkend**: dalende vacatures en productiviteitsgroei in VS en EU, stagnerende lonen (VS mediaan weekinkomen vlak op $376), en toenemende ongelijkheid (VS Gini stijgt naar 41,8). Dit duidt niet op massaal banenverlies door AI, maar op een **vertraging in banengroei** zonder duidelijke opwaartse mobiliteit – een typisch stagnatiepatroon waarbij de transitie naar nieuwe banen stokt."
 }
