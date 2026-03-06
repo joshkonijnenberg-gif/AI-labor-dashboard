@@ -22,9 +22,9 @@
   "months": [
     {
       "month": "2026-03",
-      "timestamp": "2026-03-05T09:00:52.083Z",
+      "timestamp": "2026-03-06T09:00:52.137Z",
       "scenario_signal": "stagnation",
-      "ai_interpretation": "De arbeidsmarktdata wijzen op een voorzichtige **stagnatie met regionale nuances**. In de VS dalen vacatures (JOLTS) aanzienlijk van 6,9M naar 6,5M, terwijl de werkloosheid licht verbetert naar 4,3% en de arbeidsparticipatie stabiel blijft op 62,5% – dit suggereert dat minder banen worden gecreëerd, maar geen acute afbouw. De EU toont een vergelijkbaar patroon: werkloosheid daalt naar 6,2%, maar de vacaturegraad stagneert op 2,0% en productiviteitsgroei halveerde van 1,2% naar 0,6%. Japan blijft het meest stabiel met 2,6% werkloosheid en stijgende arbeidsparticipatie (64,1%), maar ook hier zakt productiviteit terug naar 0,2%. **Opvallend positief**: alle regio's houden lage werkloosheid en stijgende participatie. **Zorgwekkend**: dalende vacatures en productiviteitsgroei in VS en EU, stagnerende lonen (VS mediaan weekinkomen vlak op $376), en toenemende ongelijkheid (VS Gini stijgt naar 41,8). Dit duidt niet op massaal banenverlies door AI, maar op een **vertraging in banengroei** zonder duidelijke opwaartse mobiliteit – een typisch stagnatiepatroon waarbij de transitie naar nieuwe banen stokt."
+      "ai_interpretation": "De data wijst op een patroon van gematigde stagnatie met regionale verschillen. In de VS daalt de werkloosheid licht (4,3%), maar het aantal vacatures kromp fors van 8M naar 6,5M in een jaar tijd, wat duidt op afnemende vraag. De EU (6,2% werkloosheid) en Japan (2,6%) tonen stabielere arbeidsmarkten, al daalt ook daar de vacaturedruk. Positief is dat arbeidsparticipatie in alle regio's licht stijgt en werkloosheidsduur in de VS afneemt. Productiviteitsgroei stagneert echter (EU +0,6%, Japan +0,2%), wat suggereert dat AI-winsten nog niet breed zichtbaar zijn. Lonen stagneren (VS mediaan stabiel op $376) terwijl ongelijkheid toeneemt (VS Gini 41,8). Het beeld is dat van een 'wachtstand': geen massaal banenverlies, maar ook geen duidelijke shift naar nieuwe sectoren – eerder vertraagde groei en afnemend optimisme bij werkgevers."
     },
     {
       "month": "2026-02",
