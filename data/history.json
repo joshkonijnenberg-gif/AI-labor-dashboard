@@ -22,9 +22,9 @@
   "months": [
     {
       "month": "2026-03",
-      "timestamp": "2026-03-06T09:00:52.137Z",
+      "timestamp": "2026-03-07T09:00:52.381Z",
       "scenario_signal": "stagnation",
-      "ai_interpretation": "De data wijst op een patroon van gematigde stagnatie met regionale verschillen. In de VS daalt de werkloosheid licht (4,3%), maar het aantal vacatures kromp fors van 8M naar 6,5M in een jaar tijd, wat duidt op afnemende vraag. De EU (6,2% werkloosheid) en Japan (2,6%) tonen stabielere arbeidsmarkten, al daalt ook daar de vacaturedruk. Positief is dat arbeidsparticipatie in alle regio's licht stijgt en werkloosheidsduur in de VS afneemt. Productiviteitsgroei stagneert echter (EU +0,6%, Japan +0,2%), wat suggereert dat AI-winsten nog niet breed zichtbaar zijn. Lonen stagneren (VS mediaan stabiel op $376) terwijl ongelijkheid toeneemt (VS Gini 41,8). Het beeld is dat van een 'wachtstand': geen massaal banenverlies, maar ook geen duidelijke shift naar nieuwe sectoren – eerder vertraagde groei en afnemend optimisme bij werkgevers."
+      "ai_interpretation": "De arbeidsmarkt vertoont tekenen van een moeizame transitie met regionale verschillen. In de VS stijgt de werkloosheid licht naar 4,4%, terwijl vacatures stevig dalen van 8M naar 6,5M en de arbeidsparticipatie afneemt tot 62% – dit duidt op ontmoediging. Opvallend is dat de gemiddelde werkloosheidsduur sterk toeneemt naar 25,7 weken, wat wijst op een groeiende mismatch tussen vraag en aanbod. De EU presteert solider: werkloosheid daalt naar 6,2%, arbeidsdeelname stijgt naar 75,9%, maar de productiviteitsgroei stagneert (0,5%). Japan blijft het meest stabiel met 2,6% werkloosheid en stijgende participatie (64,1%), hoewel de job-to-applicant ratio daalt naar 1,19. Positief is dat de productiviteit in de VS stijgt (+2,8% YoY) en lonen stabiel blijven, maar de combinatie van dalende vacatures, langere werkloosheid en afnemende participatie in de VS waarschuwt voor structurele fricties in plaats van gezonde job shift."
     },
     {
       "month": "2026-02",
