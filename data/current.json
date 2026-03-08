@@ -1,6 +1,6 @@
 {
   "month": "2026-03",
-  "timestamp": "2026-03-07T09:00:52.381Z",
+  "timestamp": "2026-03-08T09:00:51.946Z",
   "next_harvest": "2026-04-03",
   "metrics": {
     "unrate": {
@@ -18,8 +18,8 @@
       "source": "FRED",
       "series_id": "UNRATE",
       "frequency": "monthly",
-      "last_updated": "2026-03-07",
-      "next_update": "2026-04-07",
+      "last_updated": "2026-03-08",
+      "next_update": "2026-04-08",
       "history": [
         {
           "value": 4.1,
@@ -94,8 +94,8 @@
       "source": "FRED",
       "series_id": "JTSJOL",
       "frequency": "monthly",
-      "last_updated": "2026-03-07",
-      "next_update": "2026-04-07",
+      "last_updated": "2026-03-08",
+      "next_update": "2026-04-08",
       "history": [
         {
           "value": 7.6,
@@ -174,8 +174,8 @@
       "source": "FRED",
       "series_id": "CIVPART",
       "frequency": "monthly",
-      "last_updated": "2026-03-07",
-      "next_update": "2026-04-07",
+      "last_updated": "2026-03-08",
+      "next_update": "2026-04-08",
       "history": [
         {
           "value": 62.5,
@@ -250,8 +250,8 @@
       "source": "FRED",
       "series_id": "ICSA",
       "frequency": "weekly",
-      "last_updated": "2026-03-07",
-      "next_update": "2026-04-07",
+      "last_updated": "2026-03-08",
+      "next_update": "2026-04-08",
       "history": [
         {
           "value": 232000,
@@ -291,8 +291,8 @@
       "source": "FRED",
       "series_id": "UEMPMEAN",
       "frequency": "monthly",
-      "last_updated": "2026-03-07",
-      "next_update": "2026-04-07",
+      "last_updated": "2026-03-08",
+      "next_update": "2026-04-08",
       "history": [
         {
           "value": 23.7,
@@ -367,8 +367,8 @@
       "source": "FRED",
       "series_id": "OPHNFB",
       "frequency": "quarterly",
-      "last_updated": "2026-03-07",
-      "next_update": "2026-06-07",
+      "last_updated": "2026-03-08",
+      "next_update": "2026-06-08",
       "history": [
         {
           "value": 3.45072,
@@ -424,8 +424,8 @@
       "source": "FRED",
       "series_id": "LES1252881600Q",
       "frequency": "quarterly",
-      "last_updated": "2026-03-07",
-      "next_update": "2026-06-07",
+      "last_updated": "2026-03-08",
+      "next_update": "2026-06-08",
       "history": [
         {
           "value": 366,
@@ -481,7 +481,7 @@
       "source": "FRED",
       "series_id": "SIPOVGINIUSA",
       "frequency": "annual",
-      "last_updated": "2026-03-07",
+      "last_updated": "2026-03-08",
       "next_update": "2027-09-15",
       "history": [
         {
@@ -530,8 +530,8 @@
       "source": "Eurostat",
       "series_id": "une_rt_m",
       "frequency": "monthly",
-      "last_updated": "2026-03-07",
-      "next_update": "2026-04-07",
+      "last_updated": "2026-03-08",
+      "next_update": "2026-04-08",
       "history": [
         {
           "value": 6.7,
@@ -698,8 +698,8 @@
       "source": "Eurostat",
       "series_id": "jvs_q_nace2",
       "frequency": "quarterly",
-      "last_updated": "2026-03-07",
-      "next_update": "2026-06-07",
+      "last_updated": "2026-03-08",
+      "next_update": "2026-06-08",
       "history": [
         {
           "value": 2.9,
@@ -767,8 +767,8 @@
       "source": "Eurostat",
       "series_id": "lfsq_argan",
       "frequency": "quarterly",
-      "last_updated": "2026-03-07",
-      "next_update": "2026-06-07",
+      "last_updated": "2026-03-08",
+      "next_update": "2026-06-08",
       "history": [
         {
           "value": 74.6,
@@ -833,8 +833,8 @@
       "source": "Eurostat",
       "series_id": "namq_10_lp_ulc",
       "frequency": "quarterly",
-      "last_updated": "2026-03-07",
-      "next_update": "2026-06-07",
+      "last_updated": "2026-03-08",
+      "next_update": "2026-06-08",
       "history": [
         {
           "value": -1.2,
@@ -902,7 +902,7 @@
       "source": "Eurostat",
       "series_id": "ilc_di12",
       "frequency": "annual",
-      "last_updated": "2026-03-07",
+      "last_updated": "2026-03-08",
       "next_update": "2027-10-01",
       "history": [
         {
@@ -1265,5 +1265,5 @@
     }
   },
   "scenario_signal": "stagnation",
-  "ai_interpretation": "De arbeidsmarkt vertoont tekenen van een moeizame transitie met regionale verschillen. In de VS stijgt de werkloosheid licht naar 4,4%, terwijl vacatures stevig dalen van 8M naar 6,5M en de arbeidsparticipatie afneemt tot 62% – dit duidt op ontmoediging. Opvallend is dat de gemiddelde werkloosheidsduur sterk toeneemt naar 25,7 weken, wat wijst op een groeiende mismatch tussen vraag en aanbod. De EU presteert solider: werkloosheid daalt naar 6,2%, arbeidsdeelname stijgt naar 75,9%, maar de productiviteitsgroei stagneert (0,5%). Japan blijft het meest stabiel met 2,6% werkloosheid en stijgende participatie (64,1%), hoewel de job-to-applicant ratio daalt naar 1,19. Positief is dat de productiviteit in de VS stijgt (+2,8% YoY) en lonen stabiel blijven, maar de combinatie van dalende vacatures, langere werkloosheid en afnemende participatie in de VS waarschuwt voor structurele fricties in plaats van gezonde job shift."
+  "ai_interpretation": "De data wijst op een gemengdbeeld met tekenen van arbeidsmarktstress, vooral in de VS. De Amerikaanse arbeidsmarkt toont meerdere waarschuwingssignalen: het aantal openstaande vacatures daalt sterk (van 7,8M naar 6,5M in een jaar), de arbeidsparticipatie zakt naar 62% (laagste sinds 2021), en de gemiddelde werkloosheidsduur stijgt naar 25,7 weken – allemaal indicatoren van een moeilijker wordende markt. Positief is dat de productiviteitsgroei aantrekt tot 2,8% en werkloosheidsuitkeringen stabiel blijven. Europa presteert relatief beter met dalende werkloosheid (6,2%), stabiele vacatureratio's en stijgende arbeidsdeelname (75,9%), hoewel de productiviteitsgroei afzwakt tot 0,5%. Japan blijft het meest stabiel met zeer lage werkloosheid (2,6%), maar de dalende job-to-applicant ratio (van 1,26 naar 1,19) en zwakke productiviteitsgroei (0,2%) suggereren structurele stagnatie. Het patroon suggereert een langzame transitie met risico op job loss als de vacaturedaling in de VS doorzet, maar nog geen acute crisis."
 }
