@@ -22,9 +22,9 @@
   "months": [
     {
       "month": "2026-03",
-      "timestamp": "2026-03-09T09:00:51.977Z",
-      "scenario_signal": "stagnation",
-      "ai_interpretation": "De arbeidsmarkt toont een gemengdbeeld met duidelijke tekenen van verschuiving, maar ook zorgpunten. In de VS stijgt de werkloosheid licht naar 4,4% terwijl vacatures dalen naar 6,5 miljoen, het laagste niveau sinds 2020; opvallend is dat de gemiddelde werkloosheidsduur steeg naar 25,7 weken (+2 weken), wat wijst op een moeilijkere matching tussen werkzoekenden en vacatures – mogelijk een reskilling-probleem. Europa laat een positiever beeld zien met dalende werkloosheid (6,2%) en stabiele arbeidsdeelname (75,9%), hoewel de productiviteitsgroei afzwakt naar 0,5%. Japan blijft het meest stabiel met slechts 2,6% werkloosheid en 64,1% arbeidsdeelname, maar ook daar daalt de job-to-applicant ratio naar 1,19 – een meerjarig dieptepunt. Over alle regio's stijgt de productiviteit (VS +2,8%, EU +0,5%), wat consistent is met AI-adoptie, maar de afnemende participatie in de VS (62%) en krimpende vacaturevolumes suggereren dat de transitie naar nieuwe functies stagneert. Dit patroon – stijgende werkloosheidsduur, dalende vacatures bij stijgende productiviteit – duidt eerder op een transitieprobleem dan op gezonde job shift."
+      "timestamp": "2026-03-10T09:00:52.699Z",
+      "scenario_signal": "job_shift",
+      "ai_interpretation": "De data wijst op een voorzichtige **job shift** met regionale verschillen. De VS toont tekenen van vertraging: werkloosheid stijgt licht naar 4,4%, vacatures dalen fors (-0,4M tot 6,5M), en arbeidsparticipatie daalt naar 62%. Zorgwekkend is de forse toename van de gemiddelde werkloosheidsduur (25,7 weken, +2 weken), wat duidt op mismatch tussen skills en vraag. De EU presteert relatief stabiel met dalende werkloosheid (6,2%), stijgende arbeidsparticipatie (75,9%) en lage vacaturedruk (2%), wat op gezonde consolidatie wijst. Japan blijft het best presteren met slechts 2,6% werkloosheid en stabiele verhoudingen, hoewel de dalende job-to-applicant ratio (1,19) enige afkoeling signaleert. Productiviteit groeit in de VS (+2,79% YoY) maar stagneert in de EU (+0,5%) en Japan (+0,2%), wat suggereert dat AI-integratie ongelijk verloopt. De combinatie van stijgende werkloosheidsduur in de VS en stabiele loongroei duidt op een transitiefase waarin reskilling cruciaal wordt."
     },
     {
       "month": "2026-02",
