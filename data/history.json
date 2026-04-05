@@ -21,6 +21,12 @@
   },
   "months": [
     {
+      "month": "2026-04",
+      "timestamp": "2026-04-05T09:00:10.054Z",
+      "scenario_signal": "job_shift",
+      "ai_interpretation": "De arbeidsmarkt toont signalen van een **gezonde maar vertragende transitie**. In de VS daalt de werkloosheid licht (4,3%) en blijven ontslagcijfers laag, maar het aantal vacatures krimpt fors (-300k) en de arbeidsparticipatie zakt naar 61,9% – het laagste in meer dan een jaar. De EU stabiliseert op 6,2% werkloosheid met een lichte opleving in vacatures, maar de arbeidsdeelname daalt ook daar. Japan blijft een uitzondering met slechts 2,6% werkloosheid en stijgende participatie (64,1%), al daalt de job-to-applicant ratio gestaag. **Productiviteit** groeit in de VS (+2,5% YoY) en herstelt in de EU (+0,5%), maar stagneert in Japan. De **gemiddelde werkloosheidsduur** in de VS blijft hoog (25 weken), wat duidt op mismatch tussen vaardigheden en vacatures. Lonen stagneren wereldwijd, terwijl ongelijkheid toeneemt (VS Gini 41,8). Het patroon wijst op een **job shift**, maar met toenemende fricties: mensen verlaten de arbeidsmarkt sneller dan ze overstappen naar nieuwe banen."
+    },
+    {
       "month": "2026-03",
       "timestamp": "2026-03-10T09:00:52.699Z",
       "scenario_signal": "job_shift",
@@ -97,12 +103,6 @@
       "timestamp": "2025-03-07T15:00:00Z",
       "scenario_signal": "stagnation",
       "ai_interpretation": "Onzeker begin van Q2. Werkloosheid op 4.2%, iets hoger dan verwacht. JOLTS vacatures op 8.8M — dalende trend. Tech layoffs nog hoog (22K) maar dalend. AI adoptie versnelt: 72% van enterprises gebruikt nu AI in minstens één functie. Kosten per token nog hoog ($15) maar prijsdalingen worden verwacht. De combinatie van hoge layoffs en groeiende adoptie maakt de richting onduidelijk."
-    },
-    {
-      "month": "2025-02",
-      "timestamp": "2025-02-07T15:00:00Z",
-      "scenario_signal": "stagnation",
-      "ai_interpretation": "Februari toont de naweeën van de januari-reorganisatiegolf. Werkloosheid steeg naar 4.1%, tech layoffs op 25.2K. Positief: AI vacatures stijgen (index 105) en werkloosheidsduur daalt. De markt is in transitie — veel bedrijven reorganiseren rond AI maar creëren tegelijk nieuwe rollen. Nog te vroeg voor een duidelijk scenario."
     }
   ]
 }

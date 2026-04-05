@@ -1,7 +1,7 @@
 {
-  "month": "2026-03",
-  "timestamp": "2026-03-10T09:00:52.699Z",
-  "next_harvest": "2026-04-03",
+  "month": "2026-04",
+  "timestamp": "2026-04-05T09:00:10.054Z",
+  "next_harvest": "2026-05-01",
   "metrics": {
     "unrate": {
       "id": "unrate",
@@ -9,22 +9,18 @@
       "name": "US Unemployment Rate",
       "subtitle": "Hoeveel mensen zoeken werk",
       "category": "labor_market",
-      "value": 4.4,
+      "value": 4.3,
       "unit": "%",
-      "prev": 4.3,
-      "delta": 0.1,
-      "direction": "up",
-      "signal": "warning",
+      "prev": 4.4,
+      "delta": -0.1,
+      "direction": "down",
+      "signal": "positive",
       "source": "FRED",
       "series_id": "UNRATE",
       "frequency": "monthly",
-      "last_updated": "2026-03-10",
-      "next_update": "2026-04-10",
+      "last_updated": "2026-04-05",
+      "next_update": "2026-05-05",
       "history": [
-        {
-          "value": 4.1,
-          "month": "2024-12"
-        },
         {
           "value": 4,
           "month": "2025-01"
@@ -76,6 +72,10 @@
         {
           "value": 4.4,
           "month": "2026-02"
+        },
+        {
+          "value": 4.3,
+          "month": "2026-03"
         }
       ]
     },
@@ -85,77 +85,77 @@
       "name": "US Job Openings (JOLTS)",
       "subtitle": "Hoeveel banen staan open",
       "category": "labor_market",
-      "value": 6.5,
+      "value": 6.9,
       "unit": "M",
-      "prev": 6.9,
-      "delta": -0.4,
+      "prev": 7.2,
+      "delta": -0.3,
       "direction": "down",
       "signal": "warning",
       "source": "FRED",
       "series_id": "JTSJOL",
       "frequency": "monthly",
-      "last_updated": "2026-03-10",
-      "next_update": "2026-04-10",
+      "last_updated": "2026-04-05",
+      "next_update": "2026-05-05",
       "history": [
         {
-          "value": 7.6,
-          "month": "2024-10"
-        },
-        {
-          "value": 8,
-          "month": "2024-11"
-        },
-        {
-          "value": 7.5,
+          "value": 7.3,
           "month": "2024-12"
         },
         {
-          "value": 7.8,
+          "value": 7.4,
           "month": "2025-01"
         },
         {
-          "value": 7.5,
+          "value": 7.2,
           "month": "2025-02"
         },
         {
-          "value": 7.2,
+          "value": 7,
           "month": "2025-03"
         },
         {
-          "value": 7.4,
+          "value": 7.1,
           "month": "2025-04"
         },
         {
-          "value": 7.7,
+          "value": 7.3,
           "month": "2025-05"
         },
         {
-          "value": 7.4,
+          "value": 7.2,
           "month": "2025-06"
         },
         {
-          "value": 7.2,
+          "value": 7.1,
           "month": "2025-07"
         },
         {
-          "value": 7.2,
+          "value": 6.9,
           "month": "2025-08"
         },
         {
-          "value": 7.7,
+          "value": 7.2,
           "month": "2025-09"
         },
         {
-          "value": 7.4,
+          "value": 7.2,
           "month": "2025-10"
         },
         {
-          "value": 6.9,
+          "value": 6.8,
           "month": "2025-11"
         },
         {
-          "value": 6.5,
+          "value": 6.6,
           "month": "2025-12"
+        },
+        {
+          "value": 7.2,
+          "month": "2026-01"
+        },
+        {
+          "value": 6.9,
+          "month": "2026-02"
         }
       ]
     },
@@ -165,22 +165,18 @@
       "name": "US Labor Force Participation",
       "subtitle": "Hoeveel mensen werken of zoeken",
       "category": "labor_market",
-      "value": 62,
+      "value": 61.9,
       "unit": "%",
-      "prev": 62.1,
+      "prev": 62,
       "delta": -0.1,
       "direction": "down",
       "signal": "warning",
       "source": "FRED",
       "series_id": "CIVPART",
       "frequency": "monthly",
-      "last_updated": "2026-03-10",
-      "next_update": "2026-04-10",
+      "last_updated": "2026-04-05",
+      "next_update": "2026-05-05",
       "history": [
-        {
-          "value": 62.5,
-          "month": "2024-12"
-        },
         {
           "value": 62.6,
           "month": "2025-01"
@@ -232,6 +228,10 @@
         {
           "value": 62,
           "month": "2026-02"
+        },
+        {
+          "value": 61.9,
+          "month": "2026-03"
         }
       ]
     },
@@ -241,37 +241,37 @@
       "name": "US Initial Jobless Claims",
       "subtitle": "Nieuwe werkloosheidsaanvragen",
       "category": "labor_market",
-      "value": 213000,
+      "value": 202000,
       "unit": "K",
-      "prev": 213000,
-      "delta": 0,
-      "direction": "stable",
-      "signal": "neutral",
+      "prev": 211000,
+      "delta": -9000,
+      "direction": "down",
+      "signal": "positive",
       "source": "FRED",
       "series_id": "ICSA",
       "frequency": "weekly",
-      "last_updated": "2026-03-10",
-      "next_update": "2026-04-10",
+      "last_updated": "2026-04-05",
+      "next_update": "2026-05-05",
       "history": [
         {
-          "value": 232000,
-          "month": "2026-01"
-        },
-        {
-          "value": 229000,
-          "month": "2026-02"
-        },
-        {
-          "value": 208000,
+          "value": 214000,
           "month": "2026-02"
         },
         {
           "value": 213000,
-          "month": "2026-02"
+          "month": "2026-03"
         },
         {
-          "value": 213000,
-          "month": "2026-02"
+          "value": 205000,
+          "month": "2026-03"
+        },
+        {
+          "value": 211000,
+          "month": "2026-03"
+        },
+        {
+          "value": 202000,
+          "month": "2026-03"
         }
       ],
       "note": "Laatste week van de maand"
@@ -282,22 +282,18 @@
       "name": "US Avg Unemployment Duration",
       "subtitle": "Hoe lang duurt werk vinden",
       "category": "reskilling",
-      "value": 25.7,
+      "value": 25.3,
       "unit": "weeks",
-      "prev": 23.7,
-      "delta": 2,
-      "direction": "up",
-      "signal": "warning",
+      "prev": 25.7,
+      "delta": -0.4,
+      "direction": "down",
+      "signal": "positive",
       "source": "FRED",
       "series_id": "UEMPMEAN",
       "frequency": "monthly",
-      "last_updated": "2026-03-10",
-      "next_update": "2026-04-10",
+      "last_updated": "2026-04-05",
+      "next_update": "2026-05-05",
       "history": [
-        {
-          "value": 23.7,
-          "month": "2024-12"
-        },
         {
           "value": 22,
           "month": "2025-01"
@@ -349,6 +345,10 @@
         {
           "value": 25.7,
           "month": "2026-02"
+        },
+        {
+          "value": 25.3,
+          "month": "2026-03"
         }
       ]
     },
@@ -358,17 +358,17 @@
       "name": "US Labor Productivity",
       "subtitle": "Productiviteitsgroei (jaar-op-jaar)",
       "category": "productivity",
-      "value": 2.79052,
+      "value": 2.52934,
       "unit": "% YoY",
       "prev": 2.43558,
-      "delta": 0.355,
+      "delta": 0.094,
       "direction": "up",
       "signal": "positive",
       "source": "FRED",
       "series_id": "OPHNFB",
       "frequency": "quarterly",
-      "last_updated": "2026-03-10",
-      "next_update": "2026-06-10",
+      "last_updated": "2026-04-05",
+      "next_update": "2026-07-05",
       "history": [
         {
           "value": 3.45072,
@@ -403,7 +403,7 @@
           "quarter": "Q3-2025"
         },
         {
-          "value": 2.79052,
+          "value": 2.52934,
           "quarter": "Q4-2025"
         }
       ],
@@ -424,8 +424,8 @@
       "source": "FRED",
       "series_id": "LES1252881600Q",
       "frequency": "quarterly",
-      "last_updated": "2026-03-10",
-      "next_update": "2026-06-10",
+      "last_updated": "2026-04-05",
+      "next_update": "2026-07-05",
       "history": [
         {
           "value": 366,
@@ -481,7 +481,7 @@
       "source": "FRED",
       "series_id": "SIPOVGINIUSA",
       "frequency": "annual",
-      "last_updated": "2026-03-10",
+      "last_updated": "2026-04-05",
       "next_update": "2027-09-15",
       "history": [
         {
@@ -523,15 +523,15 @@
       "category": "labor_market",
       "value": 6.2,
       "unit": "%",
-      "prev": 6.3,
-      "delta": -0.1,
-      "direction": "down",
-      "signal": "positive",
+      "prev": 6.2,
+      "delta": 0,
+      "direction": "stable",
+      "signal": "neutral",
       "source": "Eurostat",
       "series_id": "une_rt_m",
       "frequency": "monthly",
-      "last_updated": "2026-03-10",
-      "next_update": "2026-04-10",
+      "last_updated": "2026-04-05",
+      "next_update": "2026-05-05",
       "history": [
         {
           "value": 6.7,
@@ -680,6 +680,10 @@
         {
           "value": 6.2,
           "month": "2026-01"
+        },
+        {
+          "value": 6.2,
+          "month": "2026-02"
         }
       ]
     },
@@ -689,17 +693,17 @@
       "name": "EU Job Vacancy Rate",
       "subtitle": "Onvervulde vacatures als % van totaal",
       "category": "labor_market",
-      "value": 2,
+      "value": 2.1,
       "unit": "%",
       "prev": 2,
-      "delta": 0,
-      "direction": "stable",
-      "signal": "neutral",
+      "delta": 0.1,
+      "direction": "up",
+      "signal": "positive",
       "source": "Eurostat",
       "series_id": "jvs_q_nace2",
       "frequency": "quarterly",
-      "last_updated": "2026-03-10",
-      "next_update": "2026-06-10",
+      "last_updated": "2026-04-05",
+      "next_update": "2026-07-05",
       "history": [
         {
           "value": 2.9,
@@ -746,7 +750,7 @@
           "quarter": "2025-Q3"
         },
         {
-          "value": 2,
+          "value": 2.1,
           "quarter": "2025-Q4"
         }
       ],
@@ -758,17 +762,17 @@
       "name": "EU Activity Rate",
       "subtitle": "Arbeidsdeelname in de EU",
       "category": "labor_market",
-      "value": 75.9,
+      "value": 75.6,
       "unit": "%",
-      "prev": 75.8,
-      "delta": 0.1,
-      "direction": "up",
-      "signal": "positive",
+      "prev": 75.9,
+      "delta": -0.3,
+      "direction": "down",
+      "signal": "warning",
       "source": "Eurostat",
       "series_id": "lfsq_argan",
       "frequency": "quarterly",
-      "last_updated": "2026-03-10",
-      "next_update": "2026-06-10",
+      "last_updated": "2026-04-05",
+      "next_update": "2026-07-05",
       "history": [
         {
           "value": 74.6,
@@ -813,9 +817,13 @@
         {
           "value": 75.9,
           "quarter": "2025-Q3"
+        },
+        {
+          "value": 75.6,
+          "quarter": "2025-Q4"
         }
       ],
-      "quarter": "2025-Q3",
+      "quarter": "2025-Q4",
       "note": "Activiteitsgraad 15-64 jaar"
     },
     "eu_labour_productivity": {
@@ -833,8 +841,8 @@
       "source": "Eurostat",
       "series_id": "namq_10_lp_ulc",
       "frequency": "quarterly",
-      "last_updated": "2026-03-10",
-      "next_update": "2026-06-10",
+      "last_updated": "2026-04-05",
+      "next_update": "2026-07-05",
       "history": [
         {
           "value": -1.2,
@@ -902,7 +910,7 @@
       "source": "Eurostat",
       "series_id": "ilc_di12",
       "frequency": "annual",
-      "last_updated": "2026-03-10",
+      "last_updated": "2026-04-05",
       "next_update": "2027-10-01",
       "history": [
         {
@@ -1265,5 +1273,5 @@
     }
   },
   "scenario_signal": "job_shift",
-  "ai_interpretation": "De data wijst op een voorzichtige **job shift** met regionale verschillen. De VS toont tekenen van vertraging: werkloosheid stijgt licht naar 4,4%, vacatures dalen fors (-0,4M tot 6,5M), en arbeidsparticipatie daalt naar 62%. Zorgwekkend is de forse toename van de gemiddelde werkloosheidsduur (25,7 weken, +2 weken), wat duidt op mismatch tussen skills en vraag. De EU presteert relatief stabiel met dalende werkloosheid (6,2%), stijgende arbeidsparticipatie (75,9%) en lage vacaturedruk (2%), wat op gezonde consolidatie wijst. Japan blijft het best presteren met slechts 2,6% werkloosheid en stabiele verhoudingen, hoewel de dalende job-to-applicant ratio (1,19) enige afkoeling signaleert. Productiviteit groeit in de VS (+2,79% YoY) maar stagneert in de EU (+0,5%) en Japan (+0,2%), wat suggereert dat AI-integratie ongelijk verloopt. De combinatie van stijgende werkloosheidsduur in de VS en stabiele loongroei duidt op een transitiefase waarin reskilling cruciaal wordt."
+  "ai_interpretation": "De arbeidsmarkt toont signalen van een **gezonde maar vertragende transitie**. In de VS daalt de werkloosheid licht (4,3%) en blijven ontslagcijfers laag, maar het aantal vacatures krimpt fors (-300k) en de arbeidsparticipatie zakt naar 61,9% – het laagste in meer dan een jaar. De EU stabiliseert op 6,2% werkloosheid met een lichte opleving in vacatures, maar de arbeidsdeelname daalt ook daar. Japan blijft een uitzondering met slechts 2,6% werkloosheid en stijgende participatie (64,1%), al daalt de job-to-applicant ratio gestaag. **Productiviteit** groeit in de VS (+2,5% YoY) en herstelt in de EU (+0,5%), maar stagneert in Japan. De **gemiddelde werkloosheidsduur** in de VS blijft hoog (25 weken), wat duidt op mismatch tussen vaardigheden en vacatures. Lonen stagneren wereldwijd, terwijl ongelijkheid toeneemt (VS Gini 41,8). Het patroon wijst op een **job shift**, maar met toenemende fricties: mensen verlaten de arbeidsmarkt sneller dan ze overstappen naar nieuwe banen."
 }
